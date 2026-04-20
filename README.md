@@ -10,6 +10,7 @@ Figma 기반의 멀티 프레임워크 디자인 시스템. React 18과 Vue 3을
 | [`@beusable-dev/react`](./packages/react) | React 18 컴포넌트 라이브러리 (13개) | ✅ |
 | [`@beusable-dev/vue`](./packages/vue) | Vue 3 컴포넌트 라이브러리 (13개) | ✅ |
 | `@beusable-dev/storybook` | Storybook 8 문서/플레이그라운드 | ✅ React / 🔲 Vue |
+| [`@beusable/cli`](./apps/cli) | shadcn 스타일 컴포넌트 소스 복사 CLI | ✅ |
 
 ## 패키지 설치 (팀원용)
 
@@ -80,6 +81,48 @@ export function App() {
 
 ---
 
+## CLI로 컴포넌트 설치
+
+npm 패키지 설치 대신 **소스 파일을 프로젝트에 직접 복사**하는 shadcn 스타일 설치 방법입니다. 복사된 파일은 팀 소유로, 자유롭게 수정할 수 있습니다.
+
+### npm 배포 버전
+
+```bash
+# 설치 없이 바로 실행
+npx beusable add button
+
+# 전역 설치 후 사용
+npm install -g @beusable/cli
+beusable add button
+```
+
+### 미배포(로컬) 버전
+
+```bash
+# 1. 빌드 (최초 1회)
+pnpm --filter @beusable/cli build
+
+# 2. 전역 링크 설정 (최초 1회)
+cd apps/cli && pnpm link --global
+```
+
+링크 설정 후에는 배포 버전과 동일하게 사용할 수 있습니다.
+
+### 주요 명령어
+
+```bash
+beusable add tokens          # CSS 토큰 설치 (권장 선행)
+beusable add button          # 컴포넌트 추가 (프레임워크 자동 감지)
+beusable add button --framework vue   # 프레임워크 직접 지정
+beusable add button --output-dir src/ui  # 출력 경로 지정
+beusable add button --overwrite       # 기존 파일 덮어쓰기
+beusable list                # 설치 가능한 컴포넌트 목록
+```
+
+> 자세한 사용법은 [apps/cli/README.md](./apps/cli/README.md)를 참고하세요.
+
+---
+
 ## Getting Started (기여자용)
 
 ### Prerequisites
@@ -119,7 +162,8 @@ beusable-design-system/
 │   ├── react/      @beusable-dev/react   — React 컴포넌트
 │   └── vue/        @beusable-dev/vue     — Vue 3 컴포넌트
 └── apps/
-    └── storybook/  @beusable-dev/storybook — 문서
+    ├── storybook/  @beusable-dev/storybook — 문서
+    └── cli/        @beusable/cli          — 컴포넌트 설치 CLI
 ```
 
 ## Components

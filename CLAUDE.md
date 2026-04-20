@@ -19,7 +19,8 @@ beusable-design-system/
 │   ├── react/      @beusable/react   — React 18 component library
 │   └── vue/        @beusable/vue     — Vue 3 component library
 └── apps/
-    └── storybook/  @beusable/storybook — Storybook 8 docs/playground (React only currently)
+    ├── storybook/  @beusable/storybook — Storybook 8 docs/playground (React only currently)
+    └── cli/        @beusable/cli      — shadcn-style component installer CLI
 ```
 
 ## Commands
