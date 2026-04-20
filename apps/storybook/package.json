@@ -16,6 +16,7 @@
     "@beusable-dev/react": "workspace:*",
     "@beusable-dev/tokens": "workspace:*",
     "@storybook/addon-essentials": "^8.6.18",
+    "storybook": "^8.6.18",
     "@storybook/addon-interactions": "^8.6.18",
     "@storybook/addon-links": "^8.6.18",
     "@storybook/blocks": "^8.6.18",
