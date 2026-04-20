@@ -21,6 +21,10 @@
   "files": [
     "dist"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/beusable-dev/beusable-design-system.git"
+  },
   "publishConfig": {
     "@beusable-dev:registry": "https://npm.pkg.github.com"
   },
