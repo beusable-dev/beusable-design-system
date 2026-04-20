@@ -1,0 +1,107 @@
+/* ────────────────────────────────────────────────
+   Wrapper
+──────────────────────────────────────────────── */
+.wrapper {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  user-select: none;
+  font-family: var(--font-family-pretendard);
+}
+
+.disabled {
+  cursor: not-allowed;
+}
+
+/* ────────────────────────────────────────────────
+   Hidden native input
+──────────────────────────────────────────────── */
+.input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* ────────────────────────────────────────────────
+   Custom control
+──────────────────────────────────────────────── */
+.control {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  border: 1.5px solid var(--color-grayscale-500);
+  border-radius: 50%;
+  background: var(--color-grayscale-white);
+  transition: border-color 0.15s;
+  box-sizing: border-box;
+}
+
+.wrapper:hover:not(.disabled) .control:not(.checked) {
+  border-color: var(--color-grayscale-600);
+}
+
+.control.checked {
+  border-color: var(--selection-color, var(--color-brand-500));
+  border-width: 2px;
+}
+
+.control.controlDisabled {
+  border-color: var(--color-grayscale-250);
+}
+
+.control.checked.controlDisabled {
+  border-color: var(--color-grayscale-250);
+}
+
+/* ────────────────────────────────────────────────
+   Inner dot
+──────────────────────────────────────────────── */
+.dot {
+  border-radius: 50%;
+  background: var(--selection-color, var(--color-brand-500));
+}
+
+.controlDisabled .dot {
+  background: var(--color-grayscale-250);
+}
+
+/* ────────────────────────────────────────────────
+   Label text
+──────────────────────────────────────────────── */
+.label {
+  color: var(--color-grayscale-900);
+  line-height: 1.2;
+}
+
+.disabled .label {
+  color: var(--color-grayscale-500);
+}
+
+/* ────────────────────────────────────────────────
+   Size — s
+──────────────────────────────────────────────── */
+.s .control { width: 16px; height: 16px; }
+.s .dot     { width: 8px; height: 8px; }
+.s .label   { font-size: 13px; }
+
+/* ────────────────────────────────────────────────
+   Size — m (default)
+──────────────────────────────────────────────── */
+.m .control { width: 18px; height: 18px; }
+.m .dot     { width: 8px; height: 8px; }
+.m .label   { font-size: 14px; }
+
+/* ────────────────────────────────────────────────
+   Size — l
+──────────────────────────────────────────────── */
+.l .control { width: 20px; height: 20px; }
+.l .dot     { width: 10px; height: 10px; }
+.l .label   { font-size: 16px; }

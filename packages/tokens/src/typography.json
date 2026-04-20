@@ -1,0 +1,63 @@
+{
+  "font": {
+    "family": {
+      "pretendard": { "$value": "'Pretendard Variable', sans-serif", "$type": "fontFamily" },
+      "pretendard-jp": { "$value": "'Pretendard JP Variable', sans-serif", "$type": "fontFamily" },
+      "new-rubrik": { "$value": "'rubrik-new', sans-serif", "$type": "fontFamily" }
+    },
+    "weight": {
+      "bold": { "$value": 700, "$type": "fontWeight" },
+      "semibold": { "$value": 600, "$type": "fontWeight" },
+      "medium": { "$value": 500, "$type": "fontWeight" },
+      "regular": { "$value": 400, "$type": "fontWeight" }
+    },
+    "size": {
+      "display": {
+        "100": { "$value": "100px", "$type": "dimension" },
+        "80":  { "$value": "80px",  "$type": "dimension" },
+        "68":  { "$value": "68px",  "$type": "dimension" },
+        "60":  { "$value": "60px",  "$type": "dimension" },
+        "48":  { "$value": "48px",  "$type": "dimension" },
+        "44":  { "$value": "44px",  "$type": "dimension" },
+        "42":  { "$value": "42px",  "$type": "dimension" }
+      },
+      "heading": {
+        "40": { "$value": "40px", "$type": "dimension" },
+        "36": { "$value": "36px", "$type": "dimension" },
+        "30": { "$value": "30px", "$type": "dimension" },
+        "26": { "$value": "26px", "$type": "dimension" },
+        "24": { "$value": "24px", "$type": "dimension" },
+        "22": { "$value": "22px", "$type": "dimension" },
+        "20": { "$value": "20px", "$type": "dimension" },
+        "18": { "$value": "18px", "$type": "dimension" },
+        "16": { "$value": "16px", "$type": "dimension" },
+        "15": { "$value": "15px", "$type": "dimension" },
+        "14": { "$value": "14px", "$type": "dimension" },
+        "13": { "$value": "13px", "$type": "dimension" },
+        "12": { "$value": "12px", "$type": "dimension" },
+        "11": { "$value": "11px", "$type": "dimension" }
+      },
+      "paragraph": {
+        "18": { "$value": "18px", "$type": "dimension" },
+        "16": { "$value": "16px", "$type": "dimension" },
+        "14": { "$value": "14px", "$type": "dimension" },
+        "13": { "$value": "13px", "$type": "dimension" },
+        "12": { "$value": "12px", "$type": "dimension" },
+        "11": { "$value": "11px", "$type": "dimension" },
+        "10": { "$value": "10px", "$type": "dimension" }
+      }
+    },
+    "line-height": {
+      "none":    { "$value": 1,   "$type": "number", "$description": "Display, 1행 텍스트" },
+      "tight":   { "$value": 1.2, "$type": "number", "$description": "헤드라인, 라벨, Navigation" },
+      "relaxed": { "$value": 1.5, "$type": "number", "$description": "문단, 항목" }
+    },
+    "letter-spacing": {
+      "0":    { "$value": "0px",      "$type": "dimension" },
+      "1":    { "$value": "-0.3px",   "$type": "dimension" },
+      "2":    { "$value": "-0.5px",   "$type": "dimension" },
+      "3":    { "$value": "-0.8px",   "$type": "dimension" },
+      "4":    { "$value": "-1px",     "$type": "dimension" }
+    }
+  }
+}

@@ -1,0 +1,684 @@
+.root {
+  position: relative;
+  display: inline-flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 238px;
+  font-family: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+.label {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1;
+  color: #666;
+}
+
+.trigger {
+  height: 38px;
+  border: 1px solid #bbb;
+  border-radius: 5px;
+  background: #fff;
+  color: #666;
+  padding: 0 9px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-align: left;
+  cursor: pointer;
+  transition: border-color 0.15s ease, color 0.15s ease;
+}
+
+.trigger:not(:disabled):hover {
+  border-color: #888;
+}
+
+.triggerVariantA {
+  height: 38px;
+  width: 238px;
+  padding: 0 9px;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.triggerVariantB {
+  height: 32px;
+  width: 212px;
+  padding: 8px 8px 8px 12px;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 400;
+}
+
+.triggerVariantC {
+  height: 22px;
+  width: 244px;
+  border: 0;
+  background: transparent;
+  padding: 2px 0 2px 0;
+  gap: 8px;
+  font-size: 16px;
+  font-weight: 700;
+  border-radius: 4px;
+  color: #0e90a5;
+}
+
+.triggerHovered {
+  border-color: #888;
+}
+
+.triggerPlaceholderState {
+  color: #bbb;
+}
+
+.triggerVariantCValue .triggerText {
+  color: #0e90a5;
+  font-weight: 700;
+}
+
+.triggerVariantCPlaceholder .triggerText {
+  color: #bbb;
+  font-weight: 700;
+}
+
+.triggerVariantCPlaceholder:not(:disabled):hover .triggerText,
+.triggerVariantCPlaceholder.triggerHovered .triggerText {
+  color: #888;
+}
+
+.triggerVariantCValue:not(:disabled):hover .triggerText,
+.triggerVariantCValue.triggerHovered .triggerText {
+  color: #0b7d8d;
+}
+
+.trigger:disabled {
+  background: #e6e6e6;
+  border-color: #d7d7d7;
+  color: #aaa;
+  cursor: not-allowed;
+}
+
+.triggerError {
+  border-color: #ec0047;
+}
+
+.triggerIcon {
+  width: 20px;
+  height: 20px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: #666;
+}
+
+.triggerText {
+  display: block;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font-size: inherit;
+  font-weight: inherit;
+  line-height: 1;
+  transition: color 0.15s ease;
+}
+
+.trailingIconArea {
+  margin-left: auto;
+  width: 22px;
+  height: 22px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #7b7b7b;
+}
+
+.trailingIconAreaC {
+  border-left: 0;
+  margin-left: 0;
+  padding: 0 4px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  background: transparent;
+  transition: border-color 0.15s ease, background-color 0.15s ease;
+}
+
+.triggerVariantCValue:not(:disabled):hover .trailingIconAreaC,
+.triggerVariantCValue.triggerHovered .trailingIconAreaC,
+.triggerVariantCPlaceholder:not(:disabled):hover .trailingIconAreaC,
+.triggerVariantCPlaceholder.triggerHovered .trailingIconAreaC {
+  border-color: #d7d7d7;
+  background: #fff;
+}
+
+.triggerVariantC.triggerHovered {
+  border: 0;
+}
+
+.triggerVariantC:disabled {
+  border: 0;
+  background: transparent;
+}
+
+.triggerVariantC:disabled .triggerText {
+  color: #ccc;
+}
+
+.triggerVariantB:disabled .triggerText,
+.triggerVariantA:disabled .triggerText {
+  color: #aaa;
+}
+
+.triggerVariantA:disabled .triggerIcon,
+.triggerVariantB:disabled .trailingIconArea,
+.triggerVariantC:disabled .trailingIconArea {
+  opacity: 0.55;
+}
+
+.popup {
+  position: absolute;
+  z-index: 20;
+  top: calc(100% + 12px);
+  left: 0;
+  width: 576px;
+  padding: 32px 24px 24px;
+  border: 1px solid rgba(0, 0, 0, 0.16);
+  border-radius: 14px;
+  background: #fff;
+  box-shadow:
+    0 0 0 1px rgba(0, 0, 0, 0.16),
+    0 8px 14px rgba(0, 0, 0, 0.16);
+}
+
+.popupSingle {
+  width: 300px;
+  padding: 24px 24px 20px;
+}
+
+.popupTopSingle {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  align-items: center;
+}
+
+.singleTimezone {
+  margin: 0;
+  font-size: 12px;
+  color: #767676;
+  text-align: center;
+  line-height: 1;
+}
+
+.singleDivider {
+  height: 1px;
+  background: #dedede;
+  width: calc(100% + 48px);
+  margin: 16px -24px;
+}
+
+.nonstopRow {
+  display: flex;
+  align-items: center;
+  gap: 0;
+}
+
+.nonstopControl {
+  cursor: pointer;
+  flex: 1 0 0;
+}
+
+.popupTop {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.infoRow {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.infoRowRange {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  width: 512px;
+}
+
+.infoLabel {
+  font-size: 14px;
+  color: #666;
+  min-width: 140px;
+  line-height: 1;
+}
+
+.infoLabelTimezone {
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.infoLabelAnalysis {
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.infoValue {
+  font-size: 14px;
+  font-weight: 400;
+  color: #777;
+  line-height: 1;
+}
+
+.rangeInputs {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.rangeInput {
+  height: 38px;
+  min-width: 160px;
+  border: 1px solid #bbb;
+  border-radius: 5px;
+  padding: 0 10px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #666;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  color: #666;
+}
+
+.placeholderText {
+  color: #bbb;
+}
+
+.rangeSeparator {
+  width: 16px;
+  text-align: center;
+  color: #444;
+  font-family: Roboto, 'Pretendard Variable', sans-serif;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 27px;
+}
+
+.topDivider,
+.bottomDivider {
+  height: 0;
+  border-top: 1px dashed #dedede;
+}
+
+.topDivider {
+  width: 527px;
+  margin: 20px 0 28px;
+}
+
+.bottomDivider {
+  width: 512px;
+  margin: 24px 0 20px;
+}
+
+.calendarRow {
+  display: grid;
+  grid-template-columns: 236px 236px;
+  justify-content: space-between;
+  gap: 40px;
+  width: 512px;
+}
+
+.calendarSingle {
+  grid-template-columns: 236px;
+}
+
+.month {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.monthHeader {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+}
+
+.monthHeaderLeft {
+  justify-content: flex-start;
+}
+
+.monthHeaderRight {
+  justify-content: flex-end;
+}
+
+.monthHeaderBoth {
+  justify-content: space-between;
+}
+
+.monthTitle {
+  width: 148px;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1;
+  color: #444;
+  text-align: left;
+}
+
+.monthHeaderBoth .monthTitle {
+  width: auto;
+  flex: 1;
+  text-align: center;
+}
+
+.monthHeaderRight .monthTitle {
+  text-align: right;
+}
+
+.navButton {
+  border: 0;
+  background: transparent;
+  color: #444;
+  cursor: pointer;
+  font-size: 14px;
+  padding: 0;
+  width: 16px;
+  height: 16px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.navButtonPrev {
+  color: #444;
+}
+
+.navButtonNext {
+  color: #444;
+}
+
+.navButton:disabled {
+  color: #bbb;
+  cursor: not-allowed;
+}
+
+.weekdays {
+  display: grid;
+  grid-template-columns: repeat(7, 20px);
+  gap: 16px;
+}
+
+.weekday {
+  text-align: center;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1;
+  color: #767676;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(7, 20px);
+  gap: 18px 16px;
+  align-items: start;
+}
+
+.emptyDay {
+  width: 20px;
+  height: 16px;
+}
+
+.dayButton {
+  width: 24px;
+  height: 24px;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: #2f2f2f;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0;
+  position: relative;
+  isolation: isolate;
+  transition: color 0.15s ease;
+}
+
+.dayButton::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  bottom: auto;
+  left: 0;
+  right: 0;
+  height: 24px;
+  transform: translateY(-50%);
+  border-radius: 11px;
+  background: transparent;
+  z-index: -1;
+  transition: background-color 0.15s ease, left 0.15s ease, right 0.15s ease, border-radius 0.15s ease;
+}
+
+.dayButton:hover:not(:disabled) {
+  color: #fff;
+  font-weight: 600;
+}
+
+.dayButton:hover:not(:disabled)::before {
+  background: #ec0047;
+  border-radius: 999px;
+}
+
+.dayInRange:hover:not(:disabled)::before {
+  background: #c70040;
+}
+
+.dayButton:disabled {
+  color: #bbb;
+  cursor: not-allowed;
+}
+
+.daySelected {
+  color: #fff;
+  font-weight: 600;
+}
+
+.daySelected::before {
+  background: #ec0047;
+}
+
+/* start mode: 오른쪽으로 더 길게 연장 (3px left, 7px right) */
+.daySelectedSingleStart::before {
+  left: -3px;
+  right: -7px;
+  background: #ec0047;
+}
+
+/* end mode: 왼쪽으로 더 길게 연장 (7px left, 3px right), 파란색 */
+.daySelectedSingleEnd {
+  color: #fff;
+}
+
+.daySelectedSingleEnd::before {
+  left: -7px;
+  right: -3px;
+  background: #0074ff;
+}
+
+.dayInRange {
+  color: #fff;
+  font-weight: 600;
+}
+
+.dayInRange::before {
+  left: -8px;
+  right: -8px;
+  border-radius: 0;
+  background: #ec0047;
+}
+
+.dayInRangeRowStart::before {
+  left: 0;
+}
+
+.dayInRangeRowEnd::before {
+  right: 0;
+}
+
+/* selectedStart: 왼쪽 둥근 캡(20px), 오른쪽으로 gap까지 연장 */
+.daySelectedStart::before {
+  left: -4px;
+  right: -8px;
+  border-radius: 20px 0 0 20px;
+}
+
+/* selectedEnd: 왼쪽으로 gap까지 연장, 오른쪽 둥근 캡 */
+.daySelectedEnd::before {
+  left: -8px;
+  right: -4px;
+  border-radius: 0 20px 20px 0;
+}
+
+/* start = end (단일 날짜): 완전한 원 */
+.daySelectedStart.daySelectedEnd::before {
+  left: -4px;
+  right: -4px;
+  border-radius: 20px;
+}
+
+/* hover 프리뷰: start 선택 후 end 확정 전 마우스 오버 구간 */
+.dayHoverRange::before {
+  left: -8px;
+  right: -8px;
+  border-radius: 0;
+  background: rgba(236, 0, 71, 0.1);
+}
+
+.dayHoverRangeRowStart::before {
+  left: 0;
+}
+
+.dayHoverRangeRowEnd::before {
+  right: 0;
+}
+
+/* hover end: 마우스 오버 중인 잠재적 end 날짜 */
+.dayHoverEnd::before {
+  left: -8px;
+  right: -4px;
+  border-radius: 0 20px 20px 0;
+  background: rgba(236, 0, 71, 0.1);
+}
+
+.dayToday {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 1px;
+}
+
+.rangeInput .triggerIcon {
+  color: #666;
+}
+
+.legendRow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  width: max-content;
+  margin: 24px auto 0;
+}
+
+.legendItem {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.legendDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.legendFree {
+  background: #444;
+}
+
+.legendPaid {
+  background: #ff2d92;
+}
+
+.legendSample {
+  background: #7c40dd;
+}
+
+.legendText {
+  color: #777;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.footer {
+  display: flex;
+  align-items: center;
+  gap: 86px;
+  width: 528px;
+}
+
+.footerMessage {
+  margin: 0;
+  width: 258px;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #666;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.footerMessage strong {
+  color: #ec0047;
+  font-weight: 600;
+}
+
+.cancelButton,
+.applyButton {
+  min-width: 90px;
+}
+
+.actionButtons {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  width: 184px;
+  flex-shrink: 0;
+}
+
+.error,
+.message {
+  margin: 0;
+  font-size: 13px;
+}
+
+.error {
+  color: #ec0047;
+}
+
+.message {
+  color: #666;
+}

@@ -1,0 +1,23 @@
+{
+  "radius": {
+    "button": {
+      "xxs": { "$value": "2px",  "$type": "dimension", "$description": "Button smallest" },
+      "xs":  { "$value": "3px",  "$type": "dimension" },
+      "s":   { "$value": "4px",  "$type": "dimension" },
+      "m":   { "$value": "5px",  "$type": "dimension" },
+      "l":   { "$value": "6px",  "$type": "dimension" },
+      "xl":  { "$value": "8px",  "$type": "dimension" },
+      "full": { "$value": "999px", "$type": "dimension", "$description": "Pill/round button" }
+    },
+    "panel": {
+      "xs":  { "$value": "8px",  "$type": "dimension", "$description": "Panel, Navigation, Control panel" },
+      "s":   { "$value": "10px", "$type": "dimension" },
+      "m":   { "$value": "12px", "$type": "dimension" }
+    },
+    "graphic": {
+      "s":   { "$value": "14px", "$type": "dimension", "$description": "Screenshot, Graphic area" },
+      "m":   { "$value": "20px", "$type": "dimension" },
+      "l":   { "$value": "34px", "$type": "dimension", "$description": "Contents panel" }
+    }
+  }
+}

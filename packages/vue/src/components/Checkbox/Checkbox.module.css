@@ -1,0 +1,36 @@
+.wrapper {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  user-select: none;
+  font-family: var(--font-family-pretendard);
+}
+.disabled { cursor: not-allowed; }
+.input {
+  position: absolute;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+.control {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: var(--color-grayscale-500);
+}
+.wrapper:hover:not(.disabled) .control { color: var(--color-grayscale-700); }
+.control svg { width: 100%; height: 100%; display: block; }
+.label { color: var(--color-grayscale-900); line-height: 1.2; }
+.disabled .label { color: var(--color-grayscale-500); }
+.disabled .control { color: var(--color-grayscale-250); --cb-inner: var(--color-grayscale-50); }
+.s .control { width: 16px; height: 16px; }
+.s .label   { font-size: 13px; }
+.m .control { width: 18px; height: 18px; }
+.m .label   { font-size: 14px; }
+.l .control { width: 20px; height: 20px; }
+.l .label   { font-size: 16px; }

@@ -1,0 +1,37 @@
+{
+  "name": "@beusable/cli",
+  "version": "0.1.0",
+  "description": "Beusable Design System CLI — shadcn-style component installer",
+  "type": "commonjs",
+  "bin": {
+    "beusable": "./dist/index.js"
+  },
+  "main": "./dist/index.js",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "prebuild": "tsx src/scripts/generate-manifest.ts",
+    "build": "tsup",
+    "postbuild": "tsx src/scripts/copy-assets.ts",
+    "dev": "tsx src/index.ts",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "clean": "tsx src/scripts/clean.ts"
+  },
+  "dependencies": {
+    "commander": "^12.1.0",
+    "picocolors": "^1.1.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "tsup": "^8.4.0",
+    "tsx": "^4.19.2",
+    "typescript": "^5.5.0",
+    "vitest": "^2.1.0"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

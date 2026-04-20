@@ -1,0 +1,46 @@
+{
+  "shadow": {
+    "button": {
+      "disabled": { "$value": "0 1px 2px 0 rgba(0,0,0,0.08)",                                          "$type": "shadow", "$description": "xxs disabled" },
+      "xs":       { "$value": "0 1px 2px 0 rgba(0,0,0,0.2)",                                           "$type": "shadow" },
+      "xs-ring":  { "$value": "0 0 0 1px rgba(0,0,0,0.08), 0 1px 2px 0 rgba(0,0,0,0.2)",              "$type": "shadow", "$description": "xs with 1px outline" },
+      "s":        { "$value": "0 5px 6px -2px rgba(0,0,0,0.16)",                                       "$type": "shadow" },
+      "s-ring":   { "$value": "0 0 0 1px rgba(0,0,0,0.08), 0 5px 6px -2px rgba(0,0,0,0.16)",          "$type": "shadow", "$description": "s with 1px outline" },
+      "m":        { "$value": "0 20px 16px -12px rgba(0,0,0,0.12)",                                    "$type": "shadow" },
+      "m-ring":   { "$value": "0 0 0 1px rgba(0,0,0,0.08), 0 20px 16px -12px rgba(0,0,0,0.12)",       "$type": "shadow", "$description": "m with 1px outline" }
+    },
+    "panel": {
+      "xxs": { "$value": "0 2px 4px -2px rgba(0,0,0,0.2)",                                             "$type": "shadow" },
+      "xs":  { "$value": "0 2px 4px -2px rgba(0,0,0,0.32)",                                            "$type": "shadow" },
+      "xs-ring": { "$value": "0 0 0 1px rgba(0,0,0,0.08), 0 2px 4px -2px rgba(0,0,0,0.32)",           "$type": "shadow" },
+      "s":   { "$value": "0 8px 12px -6px rgba(0,0,0,0.12)",                                           "$type": "shadow" },
+      "s-ring": { "$value": "0 0 0 1px rgba(0,0,0,0.08), 0 8px 12px -6px rgba(0,0,0,0.12)",           "$type": "shadow" },
+      "m":   { "$value": "0 20px 16px -12px rgba(0,0,0,0.12)",                                         "$type": "shadow" },
+      "m-ring": { "$value": "0 0 0 1px rgba(0,0,0,0.08), 0 20px 16px -12px rgba(0,0,0,0.12)",         "$type": "shadow" },
+      "l":   { "$value": "0 18px 16px -12px rgba(0,0,0,0.24)",                                         "$type": "shadow" },
+      "l-ring": { "$value": "0 0 0 1px rgba(0,0,0,0.08), 0 20px 16px -12px rgba(0,0,0,0.24)",         "$type": "shadow" },
+      "xl":  { "$value": "0 20px 38px -10px rgba(0,0,0,0.32)",                                         "$type": "shadow" },
+      "xl-ring": { "$value": "0 0 0 1px rgba(0,0,0,0.08), 0 24px 38px -10px rgba(0,0,0,0.32)",        "$type": "shadow" },
+      "xxl": { "$value": "0 38px 38px -10px rgba(0,0,0,0.44)",                                         "$type": "shadow" },
+      "xxl-ring": { "$value": "0 0 0 1px rgba(0,0,0,0.06), 0 38px 38px -10px rgba(0,0,0,0.44)",       "$type": "shadow" }
+    },
+    "popup": {
+      "m":      { "$value": "0 8px 14px 0 rgba(0,0,0,0.16)",                                           "$type": "shadow" },
+      "m-ring": { "$value": "0 0 0 1px rgba(0,0,0,0.16), 0 8px 14px 0 rgba(0,0,0,0.16)",              "$type": "shadow" }
+    },
+    "tooltip": {
+      "s":      { "$value": "0 8px 14px -2px rgba(0,0,0,0.08)",                                        "$type": "shadow" },
+      "s-ring": { "$value": "0 0 0 1px rgba(0,0,0,0.16), 0 8px 14px -2px rgba(0,0,0,0.08)",           "$type": "shadow" },
+      "m":      { "$value": "0 8px 16px 0 rgba(0,0,0,0.16)",                                           "$type": "shadow" },
+      "m-ring": { "$value": "0 0 0 1px rgba(0,0,0,0.16), 0 8px 14px 0 rgba(0,0,0,0.16)",              "$type": "shadow" }
+    },
+    "inner": {
+      "xs": { "$value": "inset 0 1px 3px 0 rgba(0,0,0,0.32)",  "$type": "shadow", "$description": "Inner shadow xs (Button)" },
+      "s":  { "$value": "inset 0 2px 4px 0 rgba(0,0,0,0.32)",  "$type": "shadow", "$description": "Inner shadow s (Button)" }
+    },
+    "bevel": {
+      "normal":  { "$value": "1px 1px 3px 0 rgba(0,0,0,0.25), -1px -1px 3px 0 rgba(255,255,255,0.75)",        "$type": "shadow", "$description": "Bevel normal" },
+      "pressed": { "$value": "inset -1px -1px 2px 0 rgba(255,255,255,0.85), inset 1px 1px 2px 0 rgba(0,0,0,0.35)", "$type": "shadow", "$description": "Bevel pressed" }
+    }
+  }
+}

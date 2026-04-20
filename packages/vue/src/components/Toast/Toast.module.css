@@ -1,0 +1,32 @@
+.toast {
+  display: inline-flex;
+  align-items: center;
+  background: var(--color-grayscale-black);
+  border-radius: var(--radius-button-l);
+  box-shadow: var(--shadow-tooltip-m);
+  font-family: var(--font-family-pretendard);
+  font-size: 13px;
+  font-weight: var(--font-weight-regular);
+  box-sizing: border-box;
+}
+.complete { color: var(--color-semantic-green-500); }
+.caution  { color: var(--color-semantic-yellow-600); }
+.normal   { color: var(--color-grayscale-white); }
+.a1 { height: 32px; padding: 6px 10px; gap: 20px; }
+.a2 { height: 32px; padding: 6px 16px; justify-content: center; }
+.b  { padding: 8px 16px; justify-content: center; }
+.message { white-space: nowrap; line-height: 1.2; }
+.a2 .message { text-align: center; }
+.textBlock {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  white-space: nowrap;
+}
+.textBlock span { line-height: 1.5; }
+.iconWrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}

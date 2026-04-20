@@ -1,0 +1,180 @@
+/* ────────────────────────────────────────────────
+   Wrapper
+──────────────────────────────────────────────── */
+.wrapper {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  user-select: none;
+  font-family: var(--font-family-pretendard);
+}
+
+.disabled {
+  cursor: not-allowed;
+}
+
+/* ────────────────────────────────────────────────
+   Hidden native input
+──────────────────────────────────────────────── */
+.input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* ────────────────────────────────────────────────
+   Track (pill)
+──────────────────────────────────────────────── */
+.track {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+  border-radius: 24px;
+  transition: background 0.2s;
+  overflow: hidden;
+}
+
+/* ON state */
+.track.on  { background: var(--color-semantic-green-600); }
+/* OFF state */
+.track.off { background: var(--color-grayscale-250); }
+
+/* Hover */
+.wrapper:hover:not(.disabled) .track.on:not(.trackDisabled)  { background: var(--color-semantic-green-700); }
+.wrapper:hover:not(.disabled) .track.off:not(.trackDisabled) { background: var(--color-grayscale-450); }
+
+/* Disabled */
+.track.trackDisabled.on  { background: var(--color-semantic-green-100); }
+.track.trackDisabled.off { background: var(--color-grayscale-100); }
+
+/* ────────────────────────────────────────────────
+   Knob
+──────────────────────────────────────────────── */
+.knob {
+  position: absolute;
+  background: var(--color-grayscale-white);
+  border-radius: 50%;
+  box-shadow: 0 1px 2px var(--color-grayscale-black-20);
+  transition: transform 0.2s ease;
+  flex-shrink: 0;
+}
+
+/* ────────────────────────────────────────────────
+   ON / OFF text
+──────────────────────────────────────────────── */
+.onText,
+.offText {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 12px;
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-grayscale-white);
+  line-height: 1;
+  transition: opacity 0.15s;
+  pointer-events: none;
+  width: 23px;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ON state: show "ON" on left, hide "OFF" */
+.on .onText  { opacity: 1; }
+.on .offText { opacity: 0; }
+
+/* OFF state: show "OFF" on right, hide "ON" */
+.off .onText  { opacity: 0; }
+.off .offText { opacity: 1; }
+
+/* ────────────────────────────────────────────────
+   Size — m (52×24px, knob 18px)
+──────────────────────────────────────────────── */
+.m {
+  width: 52px;
+  height: 24px;
+  padding: 3px;
+}
+
+.m .knob {
+  width: 18px;
+  height: 18px;
+  top: 3px;
+  left: 3px;
+}
+
+.m.on .knob  { transform: translateX(28px); } /* 52 - 18 - 6 = 28 */
+.m.off .knob { transform: translateX(0); }
+
+.m .onText  { left: 5px; }
+.m .offText { right: 5px; }
+
+/* ────────────────────────────────────────────────
+   Size — m (no text: 36×24px)
+──────────────────────────────────────────────── */
+.m.noText { width: 36px; }
+.m.noText.on .knob  { transform: translateX(12px); } /* 36 - 18 - 6 = 12 */
+.m.noText.off .knob { transform: translateX(0); }
+
+/* ────────────────────────────────────────────────
+   Size — s (48×22px, knob 16px)
+──────────────────────────────────────────────── */
+.s {
+  width: 48px;
+  height: 22px;
+  padding: 3px;
+}
+
+.s .knob {
+  width: 16px;
+  height: 16px;
+  top: 3px;
+  left: 3px;
+}
+
+.s.on .knob  { transform: translateX(26px); } /* 48 - 16 - 6 = 26 */
+.s.off .knob { transform: translateX(0); }
+
+.s .onText  { left: 4px; font-size: 11px; }
+.s .offText { right: 4px; font-size: 11px; }
+
+/* ────────────────────────────────────────────────
+   Size — xs (no text: 28×18px, knob 14px)
+──────────────────────────────────────────────── */
+.xs {
+  width: 28px;
+  height: 18px;
+  padding: 2px;
+}
+
+.xs .knob {
+  width: 14px;
+  height: 14px;
+  top: 2px;
+  left: 2px;
+}
+
+.xs.on .knob  { transform: translateX(10px); } /* 28 - 14 - 4 = 10 */
+.xs.off .knob { transform: translateX(0); }
+
+/* ────────────────────────────────────────────────
+   External label
+──────────────────────────────────────────────── */
+.label {
+  font-size: 14px;
+  color: var(--color-grayscale-900);
+  line-height: 1.2;
+}
+
+.disabled .label {
+  color: var(--color-grayscale-500);
+}

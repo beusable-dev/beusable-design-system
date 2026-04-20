@@ -1,0 +1,366 @@
+{
+  "version": "0.1.0",
+  "components": {
+    "button": {
+      "react": [
+        "Button.module.css",
+        "Button.tsx",
+        "index.ts"
+      ],
+      "vue": [
+        "Button.module.css",
+        "Button.vue"
+      ],
+      "deps": [
+        "clsx"
+      ]
+    },
+    "checkbox": {
+      "react": [
+        "Checkbox.module.css",
+        "Checkbox.tsx",
+        "index.ts"
+      ],
+      "vue": [
+        "Checkbox.module.css",
+        "Checkbox.vue"
+      ],
+      "deps": [
+        "clsx"
+      ],
+      "sharedReact": [
+        {
+          "src": "hooks/useControllableState.ts",
+          "dest": "../../hooks/useControllableState.ts"
+        },
+        {
+          "src": "components/selectionColors.ts",
+          "dest": "../selectionColors.ts"
+        }
+      ],
+      "sharedVue": [
+        {
+          "src": "composables/useControllableState.ts",
+          "dest": "../../composables/useControllableState.ts"
+        }
+      ]
+    },
+    "datepicker": {
+      "react": [
+        "DatePicker.module.css",
+        "DatePicker.tsx",
+        "index.ts"
+      ],
+      "vue": [
+        "DatePicker.module.css",
+        "DatePicker.vue",
+        "index.ts",
+        "types.ts"
+      ],
+      "deps": [
+        "clsx",
+        "date-fns",
+        "date-fns-tz"
+      ],
+      "componentDeps": [
+        "button",
+        "checkbox"
+      ],
+      "sharedReact": [
+        {
+          "src": "hooks/useControllableState.ts",
+          "dest": "../../hooks/useControllableState.ts"
+        }
+      ],
+      "sharedVue": [
+        {
+          "src": "composables/useControllableState.ts",
+          "dest": "../../composables/useControllableState.ts"
+        }
+      ]
+    },
+    "dropdown": {
+      "react": [
+        "Dropdown.module.css",
+        "Dropdown.tsx",
+        "index.ts",
+        "useDropdownSelection.ts",
+        "useDropdownState.ts"
+      ],
+      "vue": [
+        "Dropdown.module.css",
+        "Dropdown.vue"
+      ],
+      "deps": [
+        "clsx"
+      ],
+      "sharedReact": [
+        {
+          "src": "hooks/useControllableState.ts",
+          "dest": "../../hooks/useControllableState.ts"
+        }
+      ],
+      "sharedVue": [
+        {
+          "src": "composables/useControllableState.ts",
+          "dest": "../../composables/useControllableState.ts"
+        }
+      ]
+    },
+    "modal": {
+      "react": [
+        "Modal.module.css",
+        "Modal.tsx",
+        "ModalBody.tsx",
+        "ModalButtons.tsx",
+        "ModalDivider.tsx",
+        "ModalFooter.tsx",
+        "ModalHeader.tsx",
+        "ModalPopup.tsx",
+        "index.ts"
+      ],
+      "vue": [
+        "Modal.module.css",
+        "Modal.vue",
+        "ModalBody.vue",
+        "ModalButtons.vue",
+        "ModalDivider.vue",
+        "ModalFooter.vue",
+        "ModalHeader.vue",
+        "ModalPopup.vue",
+        "index.ts"
+      ],
+      "deps": [
+        "clsx"
+      ]
+    },
+    "radio": {
+      "react": [
+        "Radio.module.css",
+        "Radio.tsx",
+        "index.ts"
+      ],
+      "vue": [
+        "Radio.module.css",
+        "Radio.vue"
+      ],
+      "deps": [
+        "clsx"
+      ],
+      "sharedReact": [
+        {
+          "src": "hooks/useControllableState.ts",
+          "dest": "../../hooks/useControllableState.ts"
+        },
+        {
+          "src": "components/selectionColors.ts",
+          "dest": "../selectionColors.ts"
+        }
+      ],
+      "sharedVue": [
+        {
+          "src": "composables/useControllableState.ts",
+          "dest": "../../composables/useControllableState.ts"
+        }
+      ]
+    },
+    "slider": {
+      "react": [
+        "Slider.module.css",
+        "Slider.tsx",
+        "index.ts"
+      ],
+      "vue": [
+        "Slider.module.css",
+        "Slider.vue"
+      ],
+      "deps": [
+        "clsx"
+      ],
+      "sharedReact": [
+        {
+          "src": "hooks/useControllableState.ts",
+          "dest": "../../hooks/useControllableState.ts"
+        }
+      ],
+      "sharedVue": [
+        {
+          "src": "composables/useControllableState.ts",
+          "dest": "../../composables/useControllableState.ts"
+        }
+      ]
+    },
+    "snackbar": {
+      "react": [
+        "Snackbar.module.css",
+        "Snackbar.tsx",
+        "index.ts"
+      ],
+      "vue": [
+        "Snackbar.module.css",
+        "Snackbar.vue"
+      ],
+      "deps": [
+        "clsx"
+      ]
+    },
+    "table": {
+      "react": [
+        "Table.module.css",
+        "Table.tsx",
+        "index.ts"
+      ],
+      "vue": [
+        "Table.module.css",
+        "Table.vue",
+        "index.ts",
+        "types.ts"
+      ],
+      "deps": [
+        "clsx"
+      ],
+      "componentDeps": [
+        "checkbox"
+      ],
+      "sharedReact": [
+        {
+          "src": "hooks/useControllableState.ts",
+          "dest": "../../hooks/useControllableState.ts"
+        }
+      ],
+      "sharedVue": [
+        {
+          "src": "composables/useControllableState.ts",
+          "dest": "../../composables/useControllableState.ts"
+        }
+      ]
+    },
+    "tabs": {
+      "react": [
+        "SegmentControl.module.css",
+        "SegmentControl.tsx",
+        "TabBar.module.css",
+        "TabBar.tsx",
+        "TabCard.module.css",
+        "TabCard.tsx",
+        "TabPill.module.css",
+        "TabPill.tsx",
+        "index.ts"
+      ],
+      "vue": [
+        "SegmentControl.module.css",
+        "SegmentControl.vue",
+        "TabBar.module.css",
+        "TabBar.vue",
+        "TabCard.module.css",
+        "TabCard.vue",
+        "TabPill.module.css",
+        "TabPill.vue",
+        "index.ts"
+      ],
+      "deps": [
+        "clsx"
+      ],
+      "sharedReact": [
+        {
+          "src": "hooks/useControllableState.ts",
+          "dest": "../../hooks/useControllableState.ts"
+        }
+      ],
+      "sharedVue": [
+        {
+          "src": "composables/useControllableState.ts",
+          "dest": "../../composables/useControllableState.ts"
+        }
+      ]
+    },
+    "textfield": {
+      "react": [
+        "TextField.module.css",
+        "TextField.tsx",
+        "index.ts"
+      ],
+      "vue": [
+        "TextField.module.css",
+        "TextField.vue"
+      ],
+      "deps": [
+        "clsx"
+      ],
+      "sharedReact": [
+        {
+          "src": "hooks/useControllableState.ts",
+          "dest": "../../hooks/useControllableState.ts"
+        },
+        {
+          "src": "hooks/useCountdownTimer.ts",
+          "dest": "../../hooks/useCountdownTimer.ts"
+        }
+      ],
+      "sharedVue": [
+        {
+          "src": "composables/useCountdownTimer.ts",
+          "dest": "../../composables/useCountdownTimer.ts"
+        }
+      ]
+    },
+    "toast": {
+      "react": [
+        "Toast.module.css",
+        "Toast.tsx",
+        "index.ts"
+      ],
+      "vue": [
+        "Toast.module.css",
+        "Toast.vue"
+      ],
+      "deps": [
+        "clsx"
+      ]
+    },
+    "toggle": {
+      "react": [
+        "Toggle.module.css",
+        "Toggle.tsx",
+        "index.ts"
+      ],
+      "vue": [
+        "Toggle.module.css",
+        "Toggle.vue"
+      ],
+      "deps": [
+        "clsx"
+      ],
+      "sharedReact": [
+        {
+          "src": "hooks/useControllableState.ts",
+          "dest": "../../hooks/useControllableState.ts"
+        }
+      ],
+      "sharedVue": [
+        {
+          "src": "composables/useControllableState.ts",
+          "dest": "../../composables/useControllableState.ts"
+        }
+      ]
+    },
+    "tooltip": {
+      "react": [
+        "Tooltip.module.css",
+        "Tooltip.tsx",
+        "index.ts"
+      ],
+      "vue": [
+        "Tooltip.module.css",
+        "Tooltip.vue"
+      ],
+      "deps": [
+        "clsx"
+      ]
+    }
+  },
+  "tokens": {
+    "src": "packages/tokens/dist/css/variables.css",
+    "dest": "src/styles/tokens.css"
+  }
+}

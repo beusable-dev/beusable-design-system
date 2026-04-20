@@ -1,0 +1,195 @@
+.wrapper {
+  position: relative;
+  background-color: var(--color-grayscale-white);
+}
+
+.scrollContainer {
+  overflow-x: auto;
+}
+
+.inner {
+  display: inline-flex;
+  flex-direction: column;
+  min-width: 100%;
+}
+
+.headerRow {
+  display: flex;
+  align-items: stretch;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+.headerRowLight {}
+
+.headerCell {
+  height: var(--table-header-height, var(--table-row-height, 40px));
+  padding: 6px 12px;
+  display: flex;
+  align-items: flex-end;
+  gap: 4px;
+  flex-shrink: 0;
+  box-sizing: border-box;
+  overflow: hidden;
+  user-select: none;
+}
+
+.headerCellRoundedLeft {
+  border-top-left-radius: var(--radius-button-m);
+  border-bottom-left-radius: var(--radius-button-m);
+}
+
+.headerCellRoundedRight {
+  border-top-right-radius: var(--radius-button-m);
+  border-bottom-right-radius: var(--radius-button-m);
+}
+
+.headerCellDark {
+  background-color: var(--color-grayscale-850);
+}
+
+.headerCellLight {
+  background-color: var(--color-grayscale-white);
+  border-bottom: 1px solid var(--color-grayscale-400);
+}
+
+.headerCellMuted {
+  background-color: var(--color-grayscale-750);
+}
+
+.headerCellSortable {
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.headerCellHoverable:hover {
+  background-color: var(--header-bg) !important;
+}
+
+.headerCellSelected {
+  background-color: var(--header-bg) !important;
+}
+
+.headerCellCenter {
+  justify-content: center;
+}
+
+.headerCellRight {
+  justify-content: flex-end;
+}
+
+.headerLabel {
+  font-family: var(--font-family-pretendard);
+  font-size: 13px;
+  font-weight: var(--font-weight-medium);
+  line-height: 1.2;
+  padding-block: 2px;
+  white-space: pre-line;
+}
+
+.headerCellDark .headerLabel {
+  color: var(--color-grayscale-white);
+}
+
+.headerCellLight .headerLabel {
+  color: var(--color-grayscale-650);
+}
+
+.sortIcon {
+  flex-shrink: 0;
+}
+
+.headerCellSticky {
+  position: sticky;
+  z-index: 10;
+}
+
+.bodyCellSticky {
+  position: sticky;
+  z-index: 5;
+}
+
+.headerStickyCapCover {
+  position: sticky;
+  left: 0;
+  align-self: stretch;
+  background-color: var(--color-grayscale-white);
+  z-index: 9;
+  pointer-events: none;
+  flex-shrink: 0;
+}
+
+.scrollShadow {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  pointer-events: none;
+  z-index: 3;
+  transition: width 0.2s;
+  background: linear-gradient(to right, var(--color-grayscale-black-08) 1px, var(--color-grayscale-black-16) 1px, transparent);
+}
+
+.scrollShadowScrolled {
+  width: 12px;
+}
+
+.selectionHeaderCell,
+.selectionBodyCell {
+  width: 42px;
+  justify-content: center;
+  padding-left: 12px;
+  padding-right: 12px;
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+}
+
+.bodyRow {
+  display: flex;
+  align-items: stretch;
+}
+
+.bodyCell {
+  height: var(--table-row-height, 40px);
+  padding: 12px;
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  box-sizing: border-box;
+  overflow: hidden;
+  background-color: var(--color-grayscale-white);
+  border-bottom: 1px solid var(--color-grayscale-100);
+}
+
+.bodyCellCenter {
+  justify-content: center;
+}
+
+.bodyCellRight {
+  justify-content: flex-end;
+}
+
+.cellTextCenter {
+  text-align: center;
+}
+
+.cellTextRight {
+  text-align: right;
+}
+
+.cellText {
+  font-family: var(--font-family-pretendard);
+  font-size: 13px;
+  font-weight: var(--font-weight-regular);
+  line-height: 1.2;
+  color: var(--color-grayscale-800);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  display: block;
+  width: 100%;
+}

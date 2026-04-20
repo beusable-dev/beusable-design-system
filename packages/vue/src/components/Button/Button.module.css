@@ -1,0 +1,114 @@
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-family-pretendard);
+  font-weight: var(--font-weight-semibold);
+  line-height: 1;
+  letter-spacing: 0;
+  cursor: pointer;
+  border: 1px solid transparent;
+  outline: none;
+  white-space: nowrap;
+  text-decoration: none;
+  box-sizing: border-box;
+  transition: background 0.3s ease, border-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+.btn:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+}
+.pill    { border-radius: var(--radius-button-full); }
+.rounded { border-radius: var(--radius-button-m); }
+.xs { height: 28px; padding: 0 12px; font-size: 12px; gap: 4px; }
+.s  { height: 32px; padding: 0 16px; font-size: 12px; gap: 4px; }
+.m  { height: 38px; padding: 0 18px; font-size: 14px; gap: 6px; }
+.l  { height: 44px; padding: 0 20px; font-size: 14px; gap: 8px; }
+.xs.hasLeft  { padding-left:  8px; }
+.xs.hasRight { padding-right: 8px; }
+.s.hasLeft   { padding-left:  10px; }
+.s.hasRight  { padding-right: 10px; }
+.m.hasLeft   { padding-left:  12px; }
+.m.hasRight  { padding-right: 12px; }
+.l.hasLeft   { padding-left:  14px; }
+.l.hasRight  { padding-right: 14px; }
+.fullWidth { width: 100%; }
+.xs.iconOnly { width: 28px; padding: 0; }
+.s.iconOnly  { width: 32px; padding: 0; }
+.m.iconOnly  { width: 38px; padding: 0; }
+.l.iconOnly  { width: 44px; padding: 0; }
+.primary { background: var(--color-brand-500); color: var(--color-grayscale-white); }
+.primary:hover:not(:disabled):not(.loading)  { background: var(--color-brand-600); }
+.primary:active:not(:disabled):not(.loading) { background: var(--color-brand-700); }
+.primary:disabled { background: var(--color-grayscale-250); }
+.primaryOutline { background: var(--color-grayscale-white); border-color: var(--color-brand-500); color: var(--color-brand-500); }
+.primaryOutline:hover:not(:disabled):not(.loading)  { background: var(--color-brand-500); color: var(--color-grayscale-white); border-color: transparent; }
+.primaryOutline:active:not(:disabled):not(.loading) { background: var(--color-brand-700); color: var(--color-grayscale-white); border-color: transparent; }
+.primaryOutline:disabled { border-color: var(--color-brand-50); color: var(--color-brand-50); background: var(--color-grayscale-white); }
+.primarySurface { background: var(--color-grayscale-white); color: var(--color-brand-500); box-shadow: var(--shadow-button-xs); }
+.primarySurface:hover:not(:disabled):not(.loading)  { background: var(--color-brand-500); color: var(--color-grayscale-white); box-shadow: none; }
+.primarySurface:active:not(:disabled):not(.loading) { background: var(--color-brand-700); color: var(--color-grayscale-white); box-shadow: none; }
+.primarySurface:disabled { color: var(--color-brand-50); box-shadow: none; }
+.primaryGhost { background: transparent; color: var(--color-brand-500); }
+.primaryGhost:hover:not(:disabled):not(.loading)  { background: var(--color-brand-500); color: var(--color-grayscale-white); }
+.primaryGhost:active:not(:disabled):not(.loading) { background: var(--color-brand-700); color: var(--color-grayscale-white); }
+.primaryGhost:disabled { color: var(--color-brand-50); }
+.secondary { background: var(--color-grayscale-white); border-color: var(--color-grayscale-400); color: var(--color-grayscale-800); }
+.secondary:hover:not(:disabled):not(.loading)  { background: var(--color-grayscale-50); }
+.secondary:active:not(:disabled):not(.loading) { background: var(--color-grayscale-150); }
+.secondary:disabled { border-color: var(--color-grayscale-100); color: var(--color-grayscale-350); background: var(--color-grayscale-white); }
+.secondarySurface { background: var(--color-grayscale-white); color: var(--color-grayscale-800); box-shadow: var(--shadow-button-xs); }
+.secondarySurface:hover:not(:disabled):not(.loading)  { background: var(--color-grayscale-50); }
+.secondarySurface:active:not(:disabled):not(.loading) { background: var(--color-grayscale-150); box-shadow: none; }
+.secondarySurface:disabled { color: var(--color-grayscale-350); box-shadow: none; }
+.secondaryGhost { background: transparent; color: var(--color-grayscale-800); }
+.secondaryGhost:hover:not(:disabled):not(.loading)  { background: var(--color-grayscale-50); }
+.secondaryGhost:active:not(:disabled):not(.loading) { background: var(--color-grayscale-150); }
+.secondaryGhost:disabled { color: var(--color-grayscale-350); }
+.action { background: var(--color-grayscale-white); border-color: var(--color-semantic-green-600); color: var(--color-semantic-green-700); }
+.action:hover:not(:disabled):not(.loading)  { background: var(--color-semantic-green-600); color: var(--color-grayscale-white); }
+.action:active:not(:disabled):not(.loading) { background: var(--color-semantic-green-800); color: var(--color-grayscale-white); }
+.action:disabled { border-color: var(--color-semantic-green-200); color: var(--color-semantic-green-200); background: var(--color-grayscale-white); }
+.actionSurface { background: var(--color-grayscale-white); color: var(--color-semantic-green-700); box-shadow: var(--shadow-button-xs); }
+.actionSurface:hover:not(:disabled):not(.loading)  { background: var(--color-semantic-green-600); color: var(--color-grayscale-white); box-shadow: none; }
+.actionSurface:active:not(:disabled):not(.loading) { background: var(--color-semantic-green-800); color: var(--color-grayscale-white); box-shadow: none; }
+.actionSurface:disabled { color: var(--color-semantic-green-200); box-shadow: none; }
+.actionGhost { background: transparent; color: var(--color-semantic-green-700); }
+.actionGhost:hover:not(:disabled):not(.loading)  { background: var(--color-semantic-green-600); color: var(--color-grayscale-white); }
+.actionGhost:active:not(:disabled):not(.loading) { background: var(--color-semantic-green-800); color: var(--color-grayscale-white); }
+.actionGhost:disabled { color: var(--color-semantic-green-200); }
+.accent { background: var(--color-grayscale-white); border-color: var(--color-semantic-blue-600); color: var(--color-semantic-blue-600); }
+.accent:hover:not(:disabled):not(.loading)  { background: var(--color-semantic-blue-600); color: var(--color-grayscale-white); }
+.accent:active:not(:disabled):not(.loading) { background: #0070d6; color: var(--color-grayscale-white); }
+.accent:disabled { border-color: #b7ddff; color: #b7ddff; background: var(--color-grayscale-white); }
+.accentSurface { background: var(--color-grayscale-white); color: var(--color-semantic-blue-600); box-shadow: var(--shadow-button-xs); }
+.accentSurface:hover:not(:disabled):not(.loading)  { background: var(--color-semantic-blue-600); color: var(--color-grayscale-white); box-shadow: none; }
+.accentSurface:active:not(:disabled):not(.loading) { background: #0070d6; color: var(--color-grayscale-white); box-shadow: none; }
+.accentSurface:disabled { color: #b7ddff; box-shadow: none; }
+.accentGhost { background: transparent; color: var(--color-semantic-blue-600); }
+.accentGhost:hover:not(:disabled):not(.loading)  { background: var(--color-semantic-blue-600); color: var(--color-grayscale-white); }
+.accentGhost:active:not(:disabled):not(.loading) { background: #0070d6; color: var(--color-grayscale-white); }
+.accentGhost:disabled { color: #b7ddff; }
+.btn:disabled,
+.loading {
+  cursor: not-allowed;
+  pointer-events: none;
+}
+.icon {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+.xs :deep(svg), .s :deep(svg), .m :deep(svg) { width: 16px; height: 16px; }
+.l :deep(svg) { width: 18px; height: 18px; }
+.spinner {
+  display: inline-block;
+  width: 1.1em;
+  height: 1.1em;
+  animation: spin 0.8s linear infinite;
+  flex-shrink: 0;
+}
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}

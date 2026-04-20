@@ -1,0 +1,34 @@
+{
+  "name": "@beusable-dev/tokens",
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Beusable Design System Tokens — SCSS, CSS variables, JS/TS",
+  "license": "MIT",
+  "main": "dist/js/index.cjs",
+  "module": "dist/js/index.mjs",
+  "types": "dist/js/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/js/index.mjs",
+      "require": "./dist/js/index.cjs",
+      "types": "./dist/js/index.d.ts"
+    },
+    "./scss": "./dist/scss/_tokens.scss",
+    "./css": "./dist/css/variables.css",
+    "./fonts": "./dist/css/fonts.css",
+    "./js": "./dist/js/index.mjs"
+  },
+  "files": [
+    "dist"
+  ],
+  "publishConfig": {
+    "@beusable-dev:registry": "https://npm.pkg.github.com"
+  },
+  "scripts": {
+    "build": "node style-dictionary.config.js",
+    "clean": "rm -rf dist"
+  },
+  "devDependencies": {
+    "style-dictionary": "4"
+  }
+}

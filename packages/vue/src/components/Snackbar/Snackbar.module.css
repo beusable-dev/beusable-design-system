@@ -1,0 +1,88 @@
+.wrapper {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-family-pretendard);
+  font-weight: var(--font-weight-regular);
+  width: fit-content;
+}
+.rounded { border-radius: var(--radius-button-s); }
+.notice { background: var(--color-semantic-yellow-500); }
+.tip    { background: #9fce12; }
+.alert  { background: #ff9494; }
+.s { height: 28px; padding: 4px 8px 4px 4px; }
+.s .message { font-size: 12px; font-weight: var(--font-weight-regular); line-height: normal; }
+.s .closeBtn { margin-left: 4px; }
+.m { height: 34px; padding: 4px 10px 4px 8px; }
+.m .message { font-size: 13px; font-weight: var(--font-weight-regular); line-height: 1; }
+.m .closeBtn { margin-left: 8px; }
+.m .actionBtn ~ .closeBtn { margin-left: 4px; }
+.icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+}
+.message {
+  min-width: 0;
+  color: var(--color-grayscale-900);
+  line-height: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.actionText {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  padding: 0 8px;
+  font-size: 12px;
+  font-weight: var(--font-weight-semibold);
+  line-height: 1;
+  background: none;
+  border: none;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.actionText_notice { color: var(--color-semantic-yellow-900); }
+.actionText_tip    { color: #57700a; }
+.actionText_alert  { color: #8a4343; }
+.actionText_notice:hover { color: var(--color-semantic-yellow-800); }
+.actionText_tip:hover    { color: #7b9f0e; }
+.actionText_alert:hover  { color: #a85555; }
+.actionBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  height: 28px;
+  width: 63px;
+  padding: 0 12px;
+  background: var(--color-grayscale-white);
+  border: none;
+  border-radius: var(--radius-button-m);
+  box-shadow: var(--shadow-button-xs);
+  font-size: 12px;
+  font-family: var(--font-family-pretendard);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-grayscale-800);
+  line-height: 1;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.actionBtn:hover { background: var(--color-grayscale-50); }
+.closeBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 14px;
+  height: 14px;
+  padding: 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+}

@@ -1,0 +1,104 @@
+/* ────────────────────────────────────────────────
+   Wrapper
+──────────────────────────────────────────────── */
+.wrapper {
+  display: inline-flex;
+  align-items: flex-start;
+  gap: 4px;
+  font-family: var(--font-family-pretendard);
+}
+
+/* ────────────────────────────────────────────────
+   Card
+──────────────────────────────────────────────── */
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  width: 76px;
+  height: 76px;
+  padding-top: 20px;
+  background: var(--color-grayscale-white);
+  border-radius: var(--radius-panel-xs);
+  border: 1px solid;
+  cursor: pointer;
+  box-shadow:
+    0 1px 2px 0 var(--color-grayscale-black-20),
+    0 4px 7px -3px var(--color-grayscale-black-16);
+  transition:
+    background-color 0.3s,
+    color 0.3s,
+    box-shadow 0.3s;
+}
+
+.card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: var(--radius-panel-xs);
+  background-color: var(--color-grayscale-black-06);
+  opacity: 0;
+  transition: opacity 0.15s ease;
+}
+
+.card:hover::after {
+  opacity: 1;
+}
+
+/* ────────────────────────────────────────────────
+   Color — primary (#ec0047)
+──────────────────────────────────────────────── */
+.primary {
+  border-color: var(--color-brand-500);
+  color: var(--color-brand-500);
+}
+
+.primary:hover {
+  background-color: var(--color-brand-500);
+  color: var(--color-grayscale-white);
+}
+
+/* ────────────────────────────────────────────────
+   Color — accent (#0085ff)
+──────────────────────────────────────────────── */
+.accent {
+  border-color: var(--color-semantic-blue-600);
+  color: var(--color-semantic-blue-700);
+}
+
+.accent:hover {
+  background-color: var(--color-semantic-blue-600);
+  color: var(--color-grayscale-white);
+}
+
+/* ────────────────────────────────────────────────
+   Disabled
+──────────────────────────────────────────────── */
+.cardDisabled {
+  pointer-events: none;
+  opacity: 0.3;
+}
+
+/* ────────────────────────────────────────────────
+   Label
+──────────────────────────────────────────────── */
+.label {
+  font-size: 15px;
+  font-weight: var(--font-weight-semibold);
+  line-height: 1;
+  text-align: center;
+  white-space: nowrap;
+}
+
+/* ────────────────────────────────────────────────
+   Arrow icon
+──────────────────────────────────────────────── */
+.arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+}

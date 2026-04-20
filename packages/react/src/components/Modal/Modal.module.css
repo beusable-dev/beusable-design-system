@@ -1,0 +1,386 @@
+/* ────────────────────────────────────────────────
+   Overlay
+──────────────────────────────────────────────── */
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+/* ────────────────────────────────────────────────
+   Modal container
+──────────────────────────────────────────────── */
+.modal {
+  background: var(--color-grayscale-white);
+  border-radius: var(--radius-graphic-s);
+  box-shadow: var(--shadow-popup-m);
+  display: flex;
+  flex-direction: column;
+  max-height: 720px;
+  overflow: hidden;
+  font-family: var(--font-family-pretendard);
+  box-sizing: border-box;
+}
+
+/* ────────────────────────────────────────────────
+   Header
+──────────────────────────────────────────────── */
+.header {
+  flex-shrink: 0;
+}
+
+
+.closeBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  padding: 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.closeBtnLg {
+  width: 24px;
+  height: 24px;
+}
+
+/* ────────────────────────────────────────────────
+   Header — sm 모드 (16px 닫기, 별도 상단 행)
+──────────────────────────────────────────────── */
+.headerTopSm {
+  display: flex;
+  justify-content: flex-end;
+  padding: 12px 12px 0;
+}
+
+/* Type 4: 스텝 + 닫기 가로 배치 */
+.headerTopSmStep {
+  justify-content: space-between;
+  align-items: flex-start;
+  padding-bottom: 16px;
+}
+
+/* ────────────────────────────────────────────────
+   Header — lg 모드 (24px 닫기, 타이틀과 같은 행)
+──────────────────────────────────────────────── */
+
+/* 타이틀 + 닫기 / 아이콘 행 + 닫기 공통 행
+   좌측 padding 없음 — 자식이 각자 pl-28px(title) / pl-12px(step) 로 관리 */
+.headerTopLg {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 12px 12px 0 0;
+}
+
+/* Type 1 lg: 닫기만 있을 때 */
+.headerTopLgOnly {
+  height: 40px;
+  box-sizing: border-box;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-end;
+  padding: 16px 16px 0;
+}
+
+/* lg 모드에서 타이틀이 닫기와 같은 행에 위치 */
+.headerTitleInRow {
+  flex: 1;
+  padding: 18px 0 12px 28px;
+  font-size: 15px;
+  font-weight: var(--font-weight-semibold);
+  line-height: 1;
+  color: var(--color-grayscale-900);
+  opacity: 0.9;
+}
+
+.headerTitleInRowCenter {
+  text-align: center;
+  /* 우측 gap(pr-12 + close-24 = 36px)만큼 좌측 padding 추가해 시각적 중앙 정렬 */
+  padding-left: 36px;
+}
+
+/* ────────────────────────────────────────────────
+   Header — 공통 content 영역 (title / desc)
+──────────────────────────────────────────────── */
+.headerContent {
+  padding: 0 28px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.headerContentCenter {
+  text-align: center;
+}
+
+.headerTitleText {
+  font-size: 15px;
+  font-weight: var(--font-weight-semibold);
+  line-height: 1;
+  color: var(--color-grayscale-900);
+  opacity: 0.9;
+}
+
+.headerTitleTextLarge {
+  font-size: 20px;
+}
+
+.headerDesc {
+  font-size: 12px;
+  font-weight: var(--font-weight-regular);
+  line-height: 1.5;
+  color: var(--color-grayscale-650);
+}
+
+/* ────────────────────────────────────────────────
+   Header — Step (원형 뱃지)
+──────────────────────────────────────────────── */
+.headerStep {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 1px solid var(--color-grayscale-250);
+  font-size: 16px;
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-grayscale-700);
+  flex-shrink: 0;
+}
+
+/* Type 4 lg: step+close 행 하단 여백 (sm과 동일하게 pb-16) */
+.headerTopLgStep {
+  padding-bottom: 16px;
+}
+
+.headerStepContainer {
+  padding: 0 28px 0 12px;
+}
+
+/* ────────────────────────────────────────────────
+   Header — Icon row (Type 5)
+──────────────────────────────────────────────── */
+.headerIconRow {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  padding: 0 28px 12px;
+  flex: 1;
+}
+
+/* lg 모드에서 icon row: pt-18px, pr-0 (close btn이 headerTopLg 우측에서 처리) */
+.headerIconRowLg {
+  padding-top: 18px;
+  padding-right: 0;
+}
+
+.headerIconEl {
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.headerIconDivider {
+  width: 1px;
+  background: var(--color-grayscale-250);
+  align-self: stretch;
+  flex-shrink: 0;
+}
+
+.headerIconBody {
+  flex: 1;
+  display: flex;
+  gap: 24px;
+  align-items: flex-start;
+  padding-right: 12px;
+}
+
+.headerIconContent {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.headerAction {
+  flex-shrink: 0;
+}
+
+/* 기존 호환성 유지 */
+.headerTitle {
+  padding: 0 28px 12px;
+  font-size: 15px;
+  font-weight: var(--font-weight-semibold);
+  line-height: 1;
+  color: var(--color-grayscale-900);
+}
+
+/* ────────────────────────────────────────────────
+   Divider
+──────────────────────────────────────────────── */
+.divider {
+  height: 1px;
+  background: var(--color-grayscale-250);
+  flex-shrink: 0;
+  margin: 0 28px;
+}
+
+/* ────────────────────────────────────────────────
+   Body
+──────────────────────────────────────────────── */
+.body {
+  padding: 24px 28px 0;
+  overflow-y: auto;
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  box-sizing: border-box;
+}
+
+/* ────────────────────────────────────────────────
+   Body — fadeout 모드
+──────────────────────────────────────────────── */
+
+/* 외부 래퍼: flex space 차지 + overflow 클립 */
+.bodyOuter {
+  position: relative;
+  flex: 1 1 auto;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+/* fadeout 모드에서 body는 래퍼를 꽉 채우며 스크롤 */
+.bodyScrollable {
+  min-height: 0;
+}
+
+/* 상단 fadeout: 스크롤 내려갈 때 표시 (white → transparent) */
+.fadeTop {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 12px;
+  background: linear-gradient(to bottom, var(--color-grayscale-white), rgba(255, 255, 255, 0));
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0;
+  transition: opacity 0.15s;
+}
+
+/* 하단 fadeout: 아래 컨텐츠가 있을 때 표시 (transparent → black 6%) */
+.fadeBottom {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 12px;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0), var(--color-grayscale-black-06));
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0;
+  transition: opacity 0.15s;
+}
+
+.fadeVisible {
+  opacity: 1;
+}
+
+/* ────────────────────────────────────────────────
+   Footer
+──────────────────────────────────────────────── */
+.footer {
+  padding: 24px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  flex-shrink: 0;
+  box-sizing: border-box;
+}
+
+/* ────────────────────────────────────────────────
+   Footer — 체크박스 동의 행
+──────────────────────────────────────────────── */
+.footerCheckbox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+/* ────────────────────────────────────────────────
+   Footer — 버튼 행 (3-column: left | center | right)
+──────────────────────────────────────────────── */
+.buttonsRow {
+  display: flex;
+  align-items: center;
+  padding: 0 24px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.buttonsRowLeft {
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
+
+.buttonsRowCenter {
+  flex-shrink: 0;
+  display: flex;
+  gap: 4px;
+  align-items: center;
+}
+
+.buttonsRowRight {
+  flex: 1;
+}
+
+/* ────────────────────────────────────────────────
+   Buttons row (ModalPopup 내부 단독 사용 — B-type)
+──────────────────────────────────────────────── */
+.buttons {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ────────────────────────────────────────────────
+   Popup (B-type: Confirmation / Alert / Prompt)
+──────────────────────────────────────────────── */
+.popup {
+  padding: 48px 48px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  box-sizing: border-box;
+}
+
+/* B-3 Prompt: 좌우 패딩 28px */
+.popupNarrow {
+  padding: 48px 28px 24px;
+}
+
+/* popup 내 icon 영역 */
+.popup .popupSpacer {
+  height: 18px;
+  flex-shrink: 0;
+}

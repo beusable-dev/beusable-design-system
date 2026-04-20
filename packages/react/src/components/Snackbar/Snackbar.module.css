@@ -1,0 +1,169 @@
+/* ────────────────────────────────────────────────
+   Wrapper
+──────────────────────────────────────────────── */
+.wrapper {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-family-pretendard);
+  font-weight: var(--font-weight-regular);
+  width: fit-content;
+}
+
+.rounded {
+  border-radius: var(--radius-button-s);
+}
+
+/* ────────────────────────────────────────────────
+   Variants
+──────────────────────────────────────────────── */
+.notice { background: var(--color-semantic-yellow-500); }
+.tip    { background: #9fce12; }
+.alert  { background: #ff9494; }
+
+/* ────────────────────────────────────────────────
+   Size — s (28px)
+──────────────────────────────────────────────── */
+.s {
+  height: 28px;
+  padding: 4px 8px 4px 4px;
+}
+
+.s .message {
+  font-size: 12px;
+  font-weight: var(--font-weight-regular);
+  line-height: normal;
+}
+
+/* Figma spec: 4px spacer div before close in size s */
+.s .closeBtn {
+  margin-left: 4px;
+}
+
+/* ────────────────────────────────────────────────
+   Size — m (34px)
+──────────────────────────────────────────────── */
+.m {
+  height: 34px;
+  padding: 4px 10px 4px 8px;
+}
+
+.m .message {
+  font-size: 13px;
+  font-weight: var(--font-weight-regular);
+  line-height: 1;
+}
+
+/* Figma spec: 8px spacer before close (no action) / 4px (with action) */
+.m .closeBtn {
+  margin-left: 8px;
+}
+
+.m .actionBtn ~ .closeBtn {
+  margin-left: 4px;
+}
+
+/* ────────────────────────────────────────────────
+   Icon
+──────────────────────────────────────────────── */
+.icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+}
+
+/* ────────────────────────────────────────────────
+   Message text
+──────────────────────────────────────────────── */
+.message {
+  min-width: 0;
+  color: var(--color-grayscale-900);
+  line-height: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.message > :global(span.snack-accent) {
+  color: var(--color-brand-500);
+  font-weight: var(--font-weight-medium);
+}
+
+.alert .message > :global(span.snack-accent) {
+  color: var(--color-grayscale-white);
+}
+
+/* ────────────────────────────────────────────────
+   Action — text link (size s)
+──────────────────────────────────────────────── */
+.actionText {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  padding: 0 8px;
+  font-size: 12px;
+  font-weight: var(--font-weight-semibold);
+  line-height: 1;
+  background: none;
+  border: none;
+  cursor: pointer;
+  white-space: nowrap;
+  text-decoration: none;
+}
+
+.actionText_notice { color: var(--color-semantic-yellow-900); }
+.actionText_tip    { color: #57700a; }
+.actionText_alert  { color: #8a4343; }
+
+/* Figma hover: right-side action variant colors */
+.actionText_notice:hover { color: var(--color-semantic-yellow-800); }
+.actionText_tip:hover    { color: #7b9f0e; }
+.actionText_alert:hover  { color: #a85555; }
+
+/* ────────────────────────────────────────────────
+   Action — button (size m)
+──────────────────────────────────────────────── */
+.actionBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  height: 28px;
+  width: 63px;
+  padding: 0 12px;
+  background: var(--color-grayscale-white);
+  border: none;
+  border-radius: var(--radius-button-m);
+  box-shadow: var(--shadow-button-xs);
+  font-size: 12px;
+  font-family: var(--font-family-pretendard);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-grayscale-800);
+  line-height: 1;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.actionBtn:hover {
+  background: var(--color-grayscale-50);
+}
+
+/* ────────────────────────────────────────────────
+   Close button
+──────────────────────────────────────────────── */
+.closeBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 14px;
+  height: 14px;
+  padding: 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+}

@@ -1,0 +1,129 @@
+/* ────────────────────────────────────────────────
+   Wrapper
+──────────────────────────────────────────────── */
+.wrapper {
+  display: inline-flex;
+  align-items: center;
+  width: 100%;
+  height: 30px;
+  background: var(--color-grayscale-white);
+  border-radius: var(--radius-button-m);
+  box-shadow: var(--shadow-button-xs-ring);
+  font-family: var(--font-family-pretendard);
+  user-select: none;
+  overflow: visible;
+}
+
+.extended {
+  padding: 0 6px;
+  gap: 6px;
+}
+
+.simplified {
+  padding: 0 12px;
+}
+
+.disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+/* ────────────────────────────────────────────────
+   Icon buttons (± in extended variant)
+──────────────────────────────────────────────── */
+.iconButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 12px;
+  height: 12px;
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+  color: var(--color-grayscale-600);
+  flex-shrink: 0;
+  transition: color 0.3s;
+}
+
+.iconButton:disabled {
+  cursor: not-allowed;
+}
+
+.wrapper:hover:not(.disabled) .iconButton:not(:disabled) {
+  color: var(--color-grayscale-700);
+}
+
+.iconButton:active:not(:disabled) {
+  color: var(--color-grayscale-800);
+}
+
+/* ────────────────────────────────────────────────
+   Track area
+──────────────────────────────────────────────── */
+.trackArea {
+  position: relative;
+  flex: 1;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+/* ────────────────────────────────────────────────
+   Track (rail)
+──────────────────────────────────────────────── */
+.track {
+  width: 100%;
+  height: 4px;
+  border-radius: 2px;
+  background: var(--color-grayscale-250);
+  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.15) inset;
+  transition: background 0.3s;
+}
+
+.wrapper:hover:not(.disabled) .track {
+  background: var(--color-grayscale-450);
+}
+
+/* ────────────────────────────────────────────────
+   Handle (Oval)
+──────────────────────────────────────────────── */
+.handle {
+  position: absolute;
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: var(--color-grayscale-white);
+  border: 1px solid var(--color-grayscale-black-16);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+  transform: translateX(-50%);
+  pointer-events: none;
+  transition:
+    border-color 0.3s,
+    box-shadow 0.3s;
+}
+
+.wrapper:hover:not(.disabled) .handle {
+  border-color: var(--color-grayscale-black-32);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
+}
+
+/* ────────────────────────────────────────────────
+   Native range input (invisible, on top for interaction)
+──────────────────────────────────────────────── */
+.input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  opacity: 0;
+  cursor: pointer;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.input:disabled {
+  cursor: not-allowed;
+}
