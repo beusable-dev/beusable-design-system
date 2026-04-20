@@ -58,7 +58,7 @@ beusable-design-system/
 │   ├── .storybook/               main.ts, preview.ts, reset.css
 │   ├── stories/tokens/           Colors, Radius, Shadows, Typography
 │   └── stories/components/       (React only — Vue stories 미작성)
-└── apps/cli/                     @beusable/cli — shadcn-style 컴포넌트 설치 CLI
+└── apps/cli/                     @beusable-dev/cli — shadcn-style 컴포넌트 설치 CLI
     ├── package.json              bin: beusable, type: commonjs
     ├── tsconfig.json
     ├── tsup.config.ts
@@ -253,7 +253,7 @@ build     → tsup                                    # CJS 번들
 postbuild → tsx src/scripts/copy-assets.ts          # dist/assets/ + dist/components.json 복사
 ```
 
-`pnpm --filter @beusable/cli build` 한 번으로 세 단계가 순서대로 실행된다.
+`pnpm --filter @beusable-dev/cli build` 한 번으로 세 단계가 순서대로 실행된다.
 
 ### SHARED_DEPS_MAP 규칙 (가장 중요)
 
@@ -268,7 +268,7 @@ postbuild → tsx src/scripts/copy-assets.ts          # dist/assets/ + dist/comp
 
 **누락 시 증상**: `beusable add <component> --framework react` 후 소비자 프로젝트에서 모듈을 찾지 못해 즉시 빌드 실패.
 
-**수정 후 필수 절차**: `SHARED_DEPS_MAP` 수정 → `pnpm --filter @beusable/cli build` 실행 → `src/components.json`에 `sharedReact`/`sharedVue` 항목 확인.
+**수정 후 필수 절차**: `SHARED_DEPS_MAP` 수정 → `pnpm --filter @beusable-dev/cli build` 실행 → `src/components.json`에 `sharedReact`/`sharedVue` 항목 확인.
 
 ### `--overwrite` 동작
 

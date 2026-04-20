@@ -1,4 +1,4 @@
-# @beusable/cli
+# @beusable-dev/cli
 
 shadcn 스타일 컴포넌트 설치 도구. `beusable add button` 한 줄로 컴포넌트 소스를 프로젝트에 복사한다.
 
@@ -23,7 +23,7 @@ npm에 배포된 경우 설치 없이 바로 실행할 수 있다.
 npx beusable add button
 
 # 또는 전역 설치 후 사용
-npm install -g @beusable/cli
+npm install -g @beusable-dev/cli
 beusable add button
 ```
 
@@ -33,7 +33,7 @@ npm에 배포하지 않은 경우 모노레포에서 직접 빌드한 뒤 전역
 
 ```bash
 # 1. 모노레포 루트에서 빌드 (최초 1회)
-pnpm --filter @beusable/cli build
+pnpm --filter @beusable-dev/cli build
 
 # 2. 전역 링크 설정 (최초 1회)
 cd apps/cli && pnpm link --global

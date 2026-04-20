@@ -20,7 +20,7 @@ beusable-design-system/
 │   └── vue/        @beusable/vue     — Vue 3 component library
 └── apps/
     ├── storybook/  @beusable/storybook — Storybook 8 docs/playground (React only currently)
-    └── cli/        @beusable/cli      — shadcn-style component installer CLI
+    └── cli/        @beusable-dev/cli      — shadcn-style component installer CLI
 ```
 
 ## Commands
@@ -35,9 +35,9 @@ pnpm test:watch         # Watch mode
 pnpm test:coverage      # With coverage report
 
 # CLI (apps/cli)
-pnpm --filter @beusable/cli build    # CLI 빌드 (components.json 생성 + tsup 번들)
-pnpm --filter @beusable/cli test     # CLI 테스트
-pnpm --filter @beusable/cli dev      # tsx로 직접 실행 (개발용)
+pnpm --filter @beusable-dev/cli build    # CLI 빌드 (components.json 생성 + tsup 번들)
+pnpm --filter @beusable-dev/cli test     # CLI 테스트
+pnpm --filter @beusable-dev/cli dev      # tsx로 직접 실행 (개발용)
 ```
 
 ## Stack

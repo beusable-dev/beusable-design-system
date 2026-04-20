@@ -1,5 +1,5 @@
 {
-  "name": "@beusable/cli",
+  "name": "@beusable-dev/cli",
   "version": "0.1.0",
   "description": "Beusable Design System CLI — shadcn-style component installer",
   "type": "commonjs",
@@ -10,6 +10,10 @@
   "files": [
     "dist"
   ],
+  "publishConfig": {
+    "@beusable-dev:registry": "https://npm.pkg.github.com",
+    "access": "public"
+  },
   "scripts": {
     "prebuild": "tsx src/scripts/generate-manifest.ts",
     "build": "tsup",
