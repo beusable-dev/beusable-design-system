@@ -23,7 +23,8 @@
     "url": "https://github.com/beusable-dev/beusable-design-system.git"
   },
   "publishConfig": {
-    "@beusable-dev:registry": "https://npm.pkg.github.com"
+    "@beusable-dev:registry": "https://npm.pkg.github.com",
+    "access": "public"
   },
   "scripts": {
     "build": "vue-tsc -p tsconfig.json --noEmit && vite build",

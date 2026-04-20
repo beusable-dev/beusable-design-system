@@ -6,12 +6,81 @@ Figma 기반의 멀티 프레임워크 디자인 시스템. React 18과 Vue 3을
 
 | Package | Description | Status |
 |---------|-------------|--------|
-| [`@beusable/tokens`](./packages/tokens) | Style Dictionary v4 기반 CSS/SCSS/JS 토큰 | ✅ |
-| [`@beusable/react`](./packages/react) | React 18 컴포넌트 라이브러리 (13개) | ✅ |
-| [`@beusable/vue`](./packages/vue) | Vue 3 컴포넌트 라이브러리 (13개) | ✅ |
-| `@beusable/storybook` | Storybook 8 문서/플레이그라운드 | ✅ React / 🔲 Vue |
+| [`@beusable-dev/tokens`](./packages/tokens) | Style Dictionary v4 기반 CSS/SCSS/JS 토큰 | ✅ |
+| [`@beusable-dev/react`](./packages/react) | React 18 컴포넌트 라이브러리 (13개) | ✅ |
+| [`@beusable-dev/vue`](./packages/vue) | Vue 3 컴포넌트 라이브러리 (13개) | ✅ |
+| `@beusable-dev/storybook` | Storybook 8 문서/플레이그라운드 | ✅ React / 🔲 Vue |
 
-## Getting Started
+## 패키지 설치 (팀원용)
+
+디자인 시스템 패키지는 [GitHub Package Registry](https://github.com/orgs/beusable-dev/packages)를 통해 배포됩니다.
+
+### 1. GitHub Personal Access Token 발급
+
+[GitHub → Settings → Developer settings → Personal access tokens → Tokens (classic)](https://github.com/settings/tokens/new)
+
+권한 선택:
+- `read:packages` — 패키지 다운로드
+- `repo` — private 패키지 접근
+
+### 2. `.npmrc` 설정
+
+프로젝트 루트 또는 홈 디렉토리(`~/.npmrc`)에 추가:
+
+```
+@beusable-dev:registry=https://npm.pkg.github.com
+//npm.pkg.github.com/:_authToken=YOUR_GITHUB_TOKEN
+```
+
+`YOUR_GITHUB_TOKEN`을 발급받은 토큰으로 교체합니다.
+
+### 3. 패키지 설치
+
+```bash
+# Vue 프로젝트
+npm install @beusable-dev/vue @beusable-dev/tokens
+
+# React 프로젝트
+npm install @beusable-dev/react @beusable-dev/tokens
+```
+
+### 4. 사용
+
+**Vue**
+
+```vue
+<script setup>
+import { BeButton, BeTextField } from '@beusable-dev/vue'
+import '@beusable-dev/vue/style.css'
+import '@beusable-dev/tokens/css'
+</script>
+
+<template>
+  <BeButton variant="primary" shape="rounded">확인</BeButton>
+  <BeTextField label="이름" />
+</template>
+```
+
+**React**
+
+```tsx
+import { BeButton, BeTextField } from '@beusable-dev/react'
+import '@beusable-dev/react/style.css'
+import '@beusable-dev/tokens/css'
+
+export function App() {
+  return (
+    <>
+      <BeButton variant="primary" shape="rounded">확인</BeButton>
+      <BeTextField label="이름" />
+    </>
+  )
+}
+```
+
+---
+
+## Getting Started (기여자용)
 
 ### Prerequisites
 
@@ -36,9 +105,9 @@ pnpm test:watch         # Watch 모드
 ### Build individual packages
 
 ```bash
-pnpm --filter @beusable/tokens build
-pnpm --filter @beusable/react build
-pnpm --filter @beusable/vue build
+pnpm --filter @beusable-dev/tokens build
+pnpm --filter @beusable-dev/react build
+pnpm --filter @beusable-dev/vue build
 ```
 
 ## Repository Structure
@@ -46,11 +115,11 @@ pnpm --filter @beusable/vue build
 ```
 beusable-design-system/
 ├── packages/
-│   ├── tokens/     @beusable/tokens  — 디자인 토큰
-│   ├── react/      @beusable/react   — React 컴포넌트
-│   └── vue/        @beusable/vue     — Vue 3 컴포넌트
+│   ├── tokens/     @beusable-dev/tokens  — 디자인 토큰
+│   ├── react/      @beusable-dev/react   — React 컴포넌트
+│   └── vue/        @beusable-dev/vue     — Vue 3 컴포넌트
 └── apps/
-    └── storybook/  @beusable/storybook — 문서
+    └── storybook/  @beusable-dev/storybook — 문서
 ```
 
 ## Components
