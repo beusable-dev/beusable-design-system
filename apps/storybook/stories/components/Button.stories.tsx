@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { Button } from '@beusable-dev/react';
+import { BeButton } from '@beusable-dev/react';
 
 const CheckIcon = () => (
   <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -21,7 +21,7 @@ const iconMap: Record<string, React.ReactNode> = {
 
 const meta: Meta<typeof Button> = {
   title: 'Components/Button',
-  component: Button,
+  component: BeButton,
   tags: ['autodocs'],
   parameters: { layout: 'padded' },
   argTypes: {
@@ -112,7 +112,7 @@ export const Variants: Story = {
           <div style={{ fontSize: 11, color: '#888', marginBottom: 8, fontWeight: 600 }}>{label}</div>
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: 10, alignItems: 'center' }}>
             {variants.map((v) => (
-              <Button key={v} variant={v}>{v}</Button>
+              <BeButton key={v} variant={v}>{v}</BeButton>
             ))}
           </div>
         </div>
@@ -127,8 +127,8 @@ export const Shapes: Story = {
     <div style={{ display: 'flex', flexWrap: 'wrap', gap: 12, alignItems: 'center' }}>
       {(['primary', 'primary-outline', 'secondary', 'action', 'accent'] as const).map((v) => (
         <div key={v} style={{ display: 'flex', gap: 8 }}>
-          <Button variant={v} shape="pill">Pill</Button>
-          <Button variant={v} shape="rounded">Rounded</Button>
+          <BeButton variant={v} shape="pill">Pill</BeButton>
+          <BeButton variant={v} shape="rounded">Rounded</BeButton>
         </div>
       ))}
     </div>
@@ -139,10 +139,10 @@ export const Shapes: Story = {
 export const Sizes: Story = {
   render: () => (
     <div style={{ display: 'flex', flexWrap: 'wrap', gap: 12, alignItems: 'center' }}>
-      <Button size="l">Large</Button>
-      <Button size="m">Medium</Button>
-      <Button size="s">Small</Button>
-      <Button size="xs">X Small</Button>
+      <BeButton size="l">Large</BeButton>
+      <BeButton size="m">Medium</BeButton>
+      <BeButton size="s">Small</BeButton>
+      <BeButton size="xs">X Small</BeButton>
     </div>
   ),
 };
@@ -151,10 +151,10 @@ export const Sizes: Story = {
 export const WithIcons: Story = {
   render: () => (
     <div style={{ display: 'flex', flexWrap: 'wrap', gap: 12, alignItems: 'center' }}>
-      <Button leftIcon={<CheckIcon />}>Left Icon</Button>
-      <Button rightIcon={<ArrowIcon />}>Right Icon</Button>
-      <Button variant="primary-outline" leftIcon={<CheckIcon />} rightIcon={<ArrowIcon />}>Both Icons</Button>
-      <Button variant="secondary"><CheckIcon /></Button>
+      <BeButton leftIcon={<CheckIcon />}>Left Icon</BeButton>
+      <BeButton rightIcon={<ArrowIcon />}>Right Icon</BeButton>
+      <BeButton variant="primary-outline" leftIcon={<CheckIcon />} rightIcon={<ArrowIcon />}>Both Icons</BeButton>
+      <BeButton variant="secondary"><CheckIcon /></BeButton>
     </div>
   ),
 };
@@ -173,9 +173,9 @@ export const States: Story = {
       {allVariants.map((v) => (
         <div key={v} style={{ display: 'flex', gap: 10, alignItems: 'center' }}>
           <span style={{ width: 148, fontSize: 11, color: '#888' }}>{v}</span>
-          <Button variant={v}>Default</Button>
-          <Button variant={v} disabled>Disabled</Button>
-          <Button variant={v} loading>Loading</Button>
+          <BeButton variant={v}>Default</BeButton>
+          <BeButton variant={v} disabled>Disabled</BeButton>
+          <BeButton variant={v} loading>Loading</BeButton>
         </div>
       ))}
     </div>
@@ -189,19 +189,19 @@ export const SizeMatrix: Story = {
       {(['l', 'm', 's', 'xs'] as const).map((size) => (
         <div key={size} style={{ display: 'flex', gap: 10, alignItems: 'center', flexWrap: 'wrap' }}>
           <span style={{ width: 20, fontSize: 11, color: '#888' }}>{size}</span>
-          <Button size={size} variant="primary">Confirm</Button>
-          <Button size={size} variant="primary-outline">Confirm</Button>
-          <Button size={size} variant="primary-surface">Confirm</Button>
-          <Button size={size} variant="primary-ghost">Confirm</Button>
-          <Button size={size} variant="secondary">Confirm</Button>
-          <Button size={size} variant="secondary-surface">Confirm</Button>
-          <Button size={size} variant="secondary-ghost">Confirm</Button>
-          <Button size={size} variant="action">Confirm</Button>
-          <Button size={size} variant="action-surface">Confirm</Button>
-          <Button size={size} variant="action-ghost">Confirm</Button>
-          <Button size={size} variant="accent">Confirm</Button>
-          <Button size={size} variant="accent-surface">Confirm</Button>
-          <Button size={size} variant="accent-ghost">Confirm</Button>
+          <BeButton size={size} variant="primary">Confirm</BeButton>
+          <BeButton size={size} variant="primary-outline">Confirm</BeButton>
+          <BeButton size={size} variant="primary-surface">Confirm</BeButton>
+          <BeButton size={size} variant="primary-ghost">Confirm</BeButton>
+          <BeButton size={size} variant="secondary">Confirm</BeButton>
+          <BeButton size={size} variant="secondary-surface">Confirm</BeButton>
+          <BeButton size={size} variant="secondary-ghost">Confirm</BeButton>
+          <BeButton size={size} variant="action">Confirm</BeButton>
+          <BeButton size={size} variant="action-surface">Confirm</BeButton>
+          <BeButton size={size} variant="action-ghost">Confirm</BeButton>
+          <BeButton size={size} variant="accent">Confirm</BeButton>
+          <BeButton size={size} variant="accent-surface">Confirm</BeButton>
+          <BeButton size={size} variant="accent-ghost">Confirm</BeButton>
         </div>
       ))}
     </div>

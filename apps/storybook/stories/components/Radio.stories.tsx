@@ -1,10 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
-import { Radio } from '@beusable-dev/react';
+import { BeRadio } from '@beusable-dev/react';
 
 const meta = {
   title: 'Components/Radio',
-  component: Radio,
+  component: BeRadio,
   parameters: { layout: 'padded' },
   tags: ['autodocs'],
 } satisfies Meta<typeof Radio>;
@@ -15,10 +15,10 @@ type Story = StoryObj<typeof meta>;
 export const States: Story = {
   render: () => (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
-      <Radio label="Default" name="radio-states" value="a" />
-      <Radio label="Checked" name="radio-states" value="b" defaultChecked />
-      <Radio label="Disabled" name="radio-states-disabled" value="c" disabled />
-      <Radio label="Checked + Disabled" name="radio-states-disabled" value="d" defaultChecked disabled />
+      <BeRadio label="Default" name="radio-states" value="a" />
+      <BeRadio label="Checked" name="radio-states" value="b" defaultChecked />
+      <BeRadio label="Disabled" name="radio-states-disabled" value="c" disabled />
+      <BeRadio label="Checked + Disabled" name="radio-states-disabled" value="d" defaultChecked disabled />
     </div>
   ),
 };
@@ -26,9 +26,9 @@ export const States: Story = {
 export const Sizes: Story = {
   render: () => (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
-      <Radio label="Small (s)" size="s" name="radio-sizes" value="s" defaultChecked />
-      <Radio label="Medium (m)" size="m" name="radio-sizes" value="m" />
-      <Radio label="Large (l)" size="l" name="radio-sizes" value="l" />
+      <BeRadio label="Small (s)" size="s" name="radio-sizes" value="s" defaultChecked />
+      <BeRadio label="Medium (m)" size="m" name="radio-sizes" value="m" />
+      <BeRadio label="Large (l)" size="l" name="radio-sizes" value="l" />
     </div>
   ),
 };
@@ -36,9 +36,9 @@ export const Sizes: Story = {
 export const Colors: Story = {
   render: () => (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
-      <Radio label="Primary (default)" color="primary" name="radio-colors-primary" value="p" defaultChecked />
-      <Radio label="Secondary (dark)" color="secondary" name="radio-colors-secondary" value="s" defaultChecked />
-      <Radio label="Action (green)" color="action" name="radio-colors-action" value="a" defaultChecked />
+      <BeRadio label="Primary (default)" color="primary" name="radio-colors-primary" value="p" defaultChecked />
+      <BeRadio label="Secondary (dark)" color="secondary" name="radio-colors-secondary" value="s" defaultChecked />
+      <BeRadio label="Action (green)" color="action" name="radio-colors-action" value="a" defaultChecked />
     </div>
   ),
 };
@@ -49,7 +49,7 @@ export const Group: Story = {
     return (
       <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
         {['option1', 'option2', 'option3'].map((opt) => (
-          <Radio
+          <BeRadio
             key={opt}
             label={opt}
             name="radio-group"

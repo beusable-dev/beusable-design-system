@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
-import { SegmentControl, TabBar, TabPill, TabCard } from '@beusable-dev/react';
+import { BeSegmentControl, BeTabBar, BeTabPill, BeTabCard } from '@beusable-dev/react';
 
 const meta = {
   title: 'Components/Tabs',
@@ -16,7 +16,7 @@ type Story = StoryObj;
 export const SegmentControlBasic: Story = {
   name: 'SegmentControl / Basic',
   render: () => (
-    <SegmentControl
+    <BeSegmentControl
       items={[
         { label: 'Rank', value: 'rank' },
         { label: 'Journey', value: 'journey' },
@@ -31,7 +31,7 @@ export const SegmentControlBasic: Story = {
 export const SegmentControlMiddleSelected: Story = {
   name: 'SegmentControl / Middle Selected',
   render: () => (
-    <SegmentControl
+    <BeSegmentControl
       items={[
         { label: 'Rank', value: 'rank' },
         { label: 'Journey', value: 'journey' },
@@ -49,7 +49,7 @@ export const SegmentControlControlled: Story = {
     const [value, setValue] = useState('rank');
     return (
       <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
-        <SegmentControl
+        <BeSegmentControl
           items={[
             { label: 'Rank', value: 'rank' },
             { label: 'Journey', value: 'journey' },
@@ -70,7 +70,7 @@ export const SegmentControlControlled: Story = {
 export const TabBarBasic: Story = {
   name: 'TabBar / Basic',
   render: () => (
-    <TabBar
+    <BeTabBar
       items={[
         { label: 'Sample', value: 'tab1' },
         { label: 'Sample', value: 'tab2' },
@@ -89,7 +89,7 @@ export const TabBarControlled: Story = {
     const [value, setValue] = useState('overview');
     return (
       <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
-        <TabBar
+        <BeTabBar
           items={[
             { label: 'Overview', value: 'overview' },
             { label: 'Analytics', value: 'analytics' },
@@ -110,7 +110,7 @@ export const TabBarControlled: Story = {
 export const TabPillTextOnly: Story = {
   name: 'TabPill / Text Only',
   render: () => (
-    <TabPill
+    <BeTabPill
       items={[
         { label: 'Click', value: 'click' },
         { label: 'Move', value: 'move' },
@@ -125,7 +125,7 @@ export const TabPillTextOnly: Story = {
 export const TabPillDisabled: Story = {
   name: 'TabPill / With Disabled',
   render: () => (
-    <TabPill
+    <BeTabPill
       items={[
         { label: 'Click', value: 'click' },
         { label: 'Move', value: 'move' },
@@ -143,7 +143,7 @@ export const TabPillControlled: Story = {
     const [value, setValue] = useState('click');
     return (
       <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
-        <TabPill
+        <BeTabPill
           items={[
             { label: 'Click', value: 'click' },
             { label: 'Move', value: 'move' },
@@ -164,7 +164,7 @@ export const TabPillControlled: Story = {
 export const TabCardBasic: Story = {
   name: 'TabCard / Basic',
   render: () => (
-    <TabCard
+    <BeTabCard
       items={[
         { label: 'Ranking', value: 'ranking' },
         { label: 'Journey', value: 'journey' },
@@ -184,7 +184,7 @@ export const AllTypes: Story = {
     <div style={{ display: 'flex', flexDirection: 'column', gap: 40 }}>
       <div>
         <p style={{ marginBottom: 12, fontSize: 14, color: '#888' }}>Segment Control</p>
-        <SegmentControl
+        <BeSegmentControl
           items={[
             { label: 'Rank', value: 'rank' },
             { label: 'Journey', value: 'journey' },
@@ -196,7 +196,7 @@ export const AllTypes: Story = {
       </div>
       <div>
         <p style={{ marginBottom: 12, fontSize: 14, color: '#888' }}>Tab Bar (Underline)</p>
-        <TabBar
+        <BeTabBar
           items={[
             { label: 'Sample', value: 'tab1' },
             { label: 'Sample', value: 'tab2' },
@@ -207,7 +207,7 @@ export const AllTypes: Story = {
       </div>
       <div>
         <p style={{ marginBottom: 12, fontSize: 14, color: '#888' }}>Tab Pill (Text)</p>
-        <TabPill
+        <BeTabPill
           items={[
             { label: 'Click', value: 'click' },
             { label: 'Move', value: 'move' },
@@ -218,7 +218,7 @@ export const AllTypes: Story = {
       </div>
       <div>
         <p style={{ marginBottom: 12, fontSize: 14, color: '#888' }}>Tab Card</p>
-        <TabCard
+        <BeTabCard
           items={[
             { label: 'Ranking', value: 'ranking' },
             { label: 'Journey', value: 'journey' },

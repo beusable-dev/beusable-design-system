@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { Snackbar } from '@beusable-dev/react';
+import { BeSnackbar } from '@beusable-dev/react';
 
 const meta = {
   title: 'Components/Snackbar',
@@ -15,9 +15,9 @@ type Story = StoryObj;
 export const SmallVariants: Story = {
   render: () => (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-      <Snackbar variant="notice" size="s" message="You can only set the analysis period within 2021." onClose={() => {}} />
-      <Snackbar variant="tip"    size="s" message="Choose below Screen, you can see the user's information." onClose={() => {}} />
-      <Snackbar variant="alert"  size="s" message="You can only set the analysis period within 2021." onClose={() => {}} />
+      <BeSnackbar variant="notice" size="s" message="You can only set the analysis period within 2021." onClose={() => {}} />
+      <BeSnackbar variant="tip"    size="s" message="Choose below Screen, you can see the user's information." onClose={() => {}} />
+      <BeSnackbar variant="alert"  size="s" message="You can only set the analysis period within 2021." onClose={() => {}} />
     </div>
   ),
 };
@@ -25,9 +25,9 @@ export const SmallVariants: Story = {
 export const SmallWithAction: Story = {
   render: () => (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-      <Snackbar variant="notice" size="s" message="You can only set the analysis period within 2021." actionLabel="Detail" onAction={() => {}} onClose={() => {}} />
-      <Snackbar variant="tip"    size="s" message="You can only set the analysis period within 2021." actionLabel="Detail" onAction={() => {}} onClose={() => {}} />
-      <Snackbar variant="alert"  size="s" message="You can only set the analysis period within 2021." actionLabel="Detail" onAction={() => {}} onClose={() => {}} />
+      <BeSnackbar variant="notice" size="s" message="You can only set the analysis period within 2021." actionLabel="Detail" onAction={() => {}} onClose={() => {}} />
+      <BeSnackbar variant="tip"    size="s" message="You can only set the analysis period within 2021." actionLabel="Detail" onAction={() => {}} onClose={() => {}} />
+      <BeSnackbar variant="alert"  size="s" message="You can only set the analysis period within 2021." actionLabel="Detail" onAction={() => {}} onClose={() => {}} />
     </div>
   ),
 };
@@ -35,9 +35,9 @@ export const SmallWithAction: Story = {
 export const SmallNoRadius: Story = {
   render: () => (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-      <Snackbar variant="notice" size="s" rounded={false} message="You can only set the analysis period within 2021." onClose={() => {}} />
-      <Snackbar variant="tip"    size="s" rounded={false} message="You can only set the analysis period within 2021." onClose={() => {}} />
-      <Snackbar variant="alert"  size="s" rounded={false} message="You can only set the analysis period within 2021." onClose={() => {}} />
+      <BeSnackbar variant="notice" size="s" rounded={false} message="You can only set the analysis period within 2021." onClose={() => {}} />
+      <BeSnackbar variant="tip"    size="s" rounded={false} message="You can only set the analysis period within 2021." onClose={() => {}} />
+      <BeSnackbar variant="alert"  size="s" rounded={false} message="You can only set the analysis period within 2021." onClose={() => {}} />
     </div>
   ),
 };
@@ -47,19 +47,19 @@ export const SmallNoRadius: Story = {
 export const MediumVariants: Story = {
   render: () => (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-      <Snackbar
+      <BeSnackbar
         variant="notice"
         size="m"
         message={<>Stream feature has been updated on <span className="snack-accent">September 30, 2025</span>, and data from previous periods cannot be viewed.</>}
         onClose={() => {}}
       />
-      <Snackbar
+      <BeSnackbar
         variant="tip"
         size="m"
         message="Choose below Screen, you can see the user's information on the right side of the screen."
         onClose={() => {}}
       />
-      <Snackbar
+      <BeSnackbar
         variant="alert"
         size="m"
         message={<>Stream feature has been updated on <span className="snack-accent">September 30, 2025</span>, and data from previous periods cannot be viewed.</>}
@@ -72,7 +72,7 @@ export const MediumVariants: Story = {
 export const MediumWithAction: Story = {
   render: () => (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-      <Snackbar
+      <BeSnackbar
         variant="notice"
         size="m"
         message={<>Stream feature has been updated on <span className="snack-accent">September 30, 2025</span>, and data from previous periods cannot be viewed.</>}
@@ -80,7 +80,7 @@ export const MediumWithAction: Story = {
         onAction={() => {}}
         onClose={() => {}}
       />
-      <Snackbar
+      <BeSnackbar
         variant="tip"
         size="m"
         message="Choose below Screen, you can see the user's information on the right side of the screen."
@@ -88,7 +88,7 @@ export const MediumWithAction: Story = {
         onAction={() => {}}
         onClose={() => {}}
       />
-      <Snackbar
+      <BeSnackbar
         variant="alert"
         size="m"
         message={<>Stream feature has been updated on <span className="snack-accent">September 30, 2025</span>, and data from previous periods cannot be viewed.</>}
@@ -103,7 +103,7 @@ export const MediumWithAction: Story = {
 export const MediumNoRadius: Story = {
   render: () => (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-      <Snackbar
+      <BeSnackbar
         variant="notice"
         size="m"
         rounded={false}

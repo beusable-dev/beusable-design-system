@@ -5,10 +5,10 @@
   "description": "Beusable Design System Monorepo",
   "scripts": {
     "build": "pnpm -r build",
-    "build:tokens": "pnpm --filter @beusable/tokens build",
+    "build:tokens": "pnpm --filter @beusable-dev/tokens build",
     "dev": "pnpm -r dev",
-    "storybook": "pnpm --filter @beusable/storybook dev",
-    "build:storybook": "pnpm --filter @beusable/storybook build",
+    "storybook": "pnpm --filter @beusable-dev/storybook dev",
+    "build:storybook": "pnpm --filter @beusable-dev/storybook build",
     "test": "pnpm -r --if-present test",
     "test:watch": "pnpm -r --parallel --if-present test:watch",
     "test:coverage": "pnpm -r --if-present test:coverage",

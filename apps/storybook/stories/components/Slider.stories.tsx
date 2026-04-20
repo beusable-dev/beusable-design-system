@@ -1,10 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
-import { Slider } from '@beusable-dev/react';
+import { BeSlider } from '@beusable-dev/react';
 
 const meta = {
   title: 'Components/Slider',
-  component: Slider,
+  component: BeSlider,
   parameters: { layout: 'padded' },
   tags: ['autodocs'],
   argTypes: {
@@ -38,7 +38,7 @@ type Story = StoryObj<typeof Slider>;
 export const Extended: Story = {
   render: () => (
     <div style={{ width: 200 }}>
-      <Slider variant="extended" defaultValue={50} />
+      <BeSlider variant="extended" defaultValue={50} />
     </div>
   ),
 };
@@ -46,7 +46,7 @@ export const Extended: Story = {
 export const Simplified: Story = {
   render: () => (
     <div style={{ width: 200 }}>
-      <Slider variant="simplified" defaultValue={50} />
+      <BeSlider variant="simplified" defaultValue={50} />
     </div>
   ),
 };
@@ -59,13 +59,13 @@ export const VariantComparison: Story = {
       <div>
         <p style={{ marginBottom: 8, fontSize: 14, color: '#888' }}>Extended version</p>
         <div style={{ width: 200 }}>
-          <Slider variant="extended" defaultValue={50} />
+          <BeSlider variant="extended" defaultValue={50} />
         </div>
       </div>
       <div>
         <p style={{ marginBottom: 8, fontSize: 14, color: '#888' }}>Simplified version</p>
         <div style={{ width: 200 }}>
-          <Slider variant="simplified" defaultValue={50} />
+          <BeSlider variant="simplified" defaultValue={50} />
         </div>
       </div>
     </div>
@@ -80,7 +80,7 @@ export const Controlled: Story = {
     return (
       <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
         <div style={{ width: 200 }}>
-          <Slider value={value} onChange={setValue} />
+          <BeSlider value={value} onChange={setValue} />
         </div>
         <span style={{ fontSize: 13, color: '#444' }}>Value: {value}</span>
       </div>
@@ -94,10 +94,10 @@ export const Disabled: Story = {
   render: () => (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
       <div style={{ width: 200 }}>
-        <Slider variant="extended" defaultValue={40} disabled />
+        <BeSlider variant="extended" defaultValue={40} disabled />
       </div>
       <div style={{ width: 200 }}>
-        <Slider variant="simplified" defaultValue={60} disabled />
+        <BeSlider variant="simplified" defaultValue={60} disabled />
       </div>
     </div>
   ),
@@ -111,7 +111,7 @@ export const CustomRange: Story = {
     return (
       <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
         <div style={{ width: 300 }}>
-          <Slider min={0} max={10} step={1} value={value} onChange={setValue} />
+          <BeSlider min={0} max={10} step={1} value={value} onChange={setValue} />
         </div>
         <span style={{ fontSize: 13, color: '#444' }}>Value: {value} / 10</span>
       </div>
@@ -125,19 +125,19 @@ export const Widths: Story = {
   render: () => (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
       <div style={{ width: 121 }}>
-        <Slider variant="extended" defaultValue={70} />
+        <BeSlider variant="extended" defaultValue={70} />
       </div>
       <div style={{ width: 200 }}>
-        <Slider variant="extended" defaultValue={50} />
+        <BeSlider variant="extended" defaultValue={50} />
       </div>
       <div style={{ width: 300 }}>
-        <Slider variant="extended" defaultValue={30} />
+        <BeSlider variant="extended" defaultValue={30} />
       </div>
       <div style={{ width: 97 }}>
-        <Slider variant="simplified" defaultValue={50} />
+        <BeSlider variant="simplified" defaultValue={50} />
       </div>
       <div style={{ width: 200 }}>
-        <Slider variant="simplified" defaultValue={50} />
+        <BeSlider variant="simplified" defaultValue={50} />
       </div>
     </div>
   ),

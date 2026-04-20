@@ -1,15 +1,15 @@
 import { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import {
-  Modal,
-  ModalHeader,
-  ModalBody,
-  ModalFooter,
-  ModalDivider,
-  ModalButtons,
-  ModalPopup,
+  BeModal,
+  BeModalHeader,
+  BeModalBody,
+  BeModalFooter,
+  BeModalDivider,
+  BeModalButtons,
+  BeModalPopup,
 } from '@beusable-dev/react';
-import { Button, Radio, Checkbox, Dropdown, TextField } from '@beusable-dev/react';
+import { BeButton, BeRadio, BeCheckbox, BeDropdown, BeTextField } from '@beusable-dev/react';
 
 const meta = {
   title: 'Components/Modal',
@@ -40,12 +40,12 @@ export const TypeAContent: Story = {
       <FullFrame>
         {!open && (
           <div style={{ padding: 24 }}>
-            <Button variant="primary" onClick={() => setOpen(true)}>Open Modal</Button>
+            <BeButton variant="primary" onClick={() => setOpen(true)}>Open Modal</BeButton>
           </div>
         )}
-        <Modal open={open} onClose={() => setOpen(false)} width={526}>
-          <ModalHeader title={<span style={{ opacity: 0.9 }}>Create CX Report</span>} onClose={() => setOpen(false)} />
-          <ModalBody>
+        <BeModal open={open} onClose={() => setOpen(false)} width={526}>
+          <BeModalHeader title={<span style={{ opacity: 0.9 }}>Create CX Report</span>} onClose={() => setOpen(false)} />
+          <BeModalBody>
             {/* Report 행 — P_13_400_120% / P_14_400_120% */}
             <div style={{ display: 'flex', gap: 10, height: 17, alignItems: 'center' }}>
               <span style={{ fontSize: 13, fontWeight: 400, lineHeight: 1.2, color: '#777', width: 100, flexShrink: 0 }}>Report</span>
@@ -76,7 +76,7 @@ export const TypeAContent: Story = {
               {/* Language — P_13_400_100% */}
               <div style={{ display: 'flex', gap: 6, alignItems: 'center' }}>
                 <span style={{ fontSize: 13, fontWeight: 400, lineHeight: 1, color: '#777', width: 88, flexShrink: 0 }}>Language</span>
-                <Dropdown
+                <BeDropdown
                   size="s"
                   options={[
                     { label: 'EN', value: 'en' },
@@ -95,8 +95,8 @@ export const TypeAContent: Story = {
                 <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
                   {/* Radio label: H_13_500_120% (Radio 컴포넌트가 처리) */}
                   <div style={{ display: 'flex', gap: 24, alignItems: 'center' }}>
-                    <Radio size="s" color="primary" name="payment" value="license" label="CX Report License" checked={payment === 'license'} onChange={() => setPayment('license')} />
-                    <Radio size="s" color="primary" name="payment" value="general" label="General Payment" checked={payment === 'general'} onChange={() => setPayment('general')} />
+                    <BeRadio size="s" color="primary" name="payment" value="license" label="CX Report License" checked={payment === 'license'} onChange={() => setPayment('license')} />
+                    <BeRadio size="s" color="primary" name="payment" value="general" label="General Payment" checked={payment === 'general'} onChange={() => setPayment('general')} />
                   </div>
                   {/* P_13_400_150% */}
                   <p style={{ margin: 0, fontSize: 13, fontWeight: 400, lineHeight: 1.5, color: '#666' }}>
@@ -119,11 +119,11 @@ export const TypeAContent: Story = {
                 </div>
               ))}
             </div>
-          </ModalBody>
-          <ModalDivider />
-          <ModalFooter
+          </BeModalBody>
+          <BeModalDivider />
+          <BeModalFooter
             checkbox={
-              <Checkbox
+              <BeCheckbox
                 size="s"
                 color="primary"
                 label="I have read and agree to the above."
@@ -132,10 +132,10 @@ export const TypeAContent: Story = {
               />
             }
           >
-            <Button variant="secondary" onClick={() => setOpen(false)}>Cancel</Button>
-            <Button variant="primary" onClick={() => setOpen(false)}>Confirm</Button>
-          </ModalFooter>
-        </Modal>
+            <BeButton variant="secondary" onClick={() => setOpen(false)}>Cancel</BeButton>
+            <BeButton variant="primary" onClick={() => setOpen(false)}>Confirm</BeButton>
+          </BeModalFooter>
+        </BeModal>
       </FullFrame>
     );
   },
@@ -153,12 +153,12 @@ export const TypeAContentScrollable: Story = {
       <FullFrame>
         {!open && (
           <div style={{ padding: 24 }}>
-            <Button variant="primary" onClick={() => setOpen(true)}>Open Modal</Button>
+            <BeButton variant="primary" onClick={() => setOpen(true)}>Open Modal</BeButton>
           </div>
         )}
-        <Modal open={open} onClose={() => setOpen(false)} width={526}>
-          <ModalHeader title={<span style={{ opacity: 0.9 }}>Create CX Report</span>} onClose={() => setOpen(false)} />
-          <ModalBody fadeout>
+        <BeModal open={open} onClose={() => setOpen(false)} width={526}>
+          <BeModalHeader title={<span style={{ opacity: 0.9 }}>Create CX Report</span>} onClose={() => setOpen(false)} />
+          <BeModalBody fadeout>
             <div style={{ display: 'flex', gap: 10, height: 17, alignItems: 'center' }}>
               <span style={{ fontSize: 13, fontWeight: 400, lineHeight: 1.2, color: '#777', width: 100, flexShrink: 0 }}>Report</span>
               <span style={{ fontSize: 14, fontWeight: 400, lineHeight: 1.2, color: '#2f2f2f', flex: 1 }}>Journey-based service exploration analysis</span>
@@ -183,7 +183,7 @@ export const TypeAContentScrollable: Story = {
             <div style={{ padding: 12, display: 'flex', flexDirection: 'column', gap: 8 }}>
               <div style={{ display: 'flex', gap: 6, alignItems: 'center' }}>
                 <span style={{ fontSize: 13, fontWeight: 400, lineHeight: 1, color: '#777', width: 88, flexShrink: 0 }}>Language</span>
-                <Dropdown
+                <BeDropdown
                   size="s"
                   options={[{ label: 'EN', value: 'en' }, { label: 'KO', value: 'ko' }]}
                   value={lang}
@@ -196,8 +196,8 @@ export const TypeAContentScrollable: Story = {
                 <p style={{ margin: 0, fontSize: 13, fontWeight: 500, lineHeight: 1, color: '#2f2f2f' }}>Payment</p>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
                   <div style={{ display: 'flex', gap: 24, alignItems: 'center' }}>
-                    <Radio size="s" color="primary" name="payment2" value="license" label="CX Report License" checked={payment === 'license'} onChange={() => setPayment('license')} />
-                    <Radio size="s" color="primary" name="payment2" value="general" label="General Payment" checked={payment === 'general'} onChange={() => setPayment('general')} />
+                    <BeRadio size="s" color="primary" name="payment2" value="license" label="CX Report License" checked={payment === 'license'} onChange={() => setPayment('license')} />
+                    <BeRadio size="s" color="primary" name="payment2" value="general" label="General Payment" checked={payment === 'general'} onChange={() => setPayment('general')} />
                   </div>
                   <p style={{ margin: 0, fontSize: 13, fontWeight: 400, lineHeight: 1.5, color: '#666' }}>
                     보유 중인 CX 리포트 사용권 1개가 차감됩니다. (잔여: N)
@@ -217,11 +217,11 @@ export const TypeAContentScrollable: Story = {
                 </div>
               ))}
             </div>
-          </ModalBody>
-          <ModalDivider />
-          <ModalFooter
+          </BeModalBody>
+          <BeModalDivider />
+          <BeModalFooter
             checkbox={
-              <Checkbox
+              <BeCheckbox
                 size="s"
                 color="primary"
                 label="I have read and agree to the above."
@@ -230,10 +230,10 @@ export const TypeAContentScrollable: Story = {
               />
             }
           >
-            <Button variant="secondary" onClick={() => setOpen(false)}>Cancel</Button>
-            <Button variant="primary" onClick={() => setOpen(false)}>Confirm</Button>
-          </ModalFooter>
-        </Modal>
+            <BeButton variant="secondary" onClick={() => setOpen(false)}>Cancel</BeButton>
+            <BeButton variant="primary" onClick={() => setOpen(false)}>Confirm</BeButton>
+          </BeModalFooter>
+        </BeModal>
       </FullFrame>
     );
   },
@@ -248,11 +248,11 @@ export const TypeB1Confirmation: Story = {
       <FullFrame>
         {!open && (
           <div style={{ padding: 24 }}>
-            <Button variant="primary" onClick={() => setOpen(true)}>Open Modal</Button>
+            <BeButton variant="primary" onClick={() => setOpen(true)}>Open Modal</BeButton>
           </div>
         )}
-        <Modal open={open} onClose={() => setOpen(false)} width={428}>
-          <ModalPopup>
+        <BeModal open={open} onClose={() => setOpen(false)} width={428}>
+          <BeModalPopup>
             <svg xmlns="http://www.w3.org/2000/svg" width="52" height="52" viewBox="0 0 52 52" fill="none" style={{ flexShrink: 0 }}>
               <path d="M26.0002 45.76C36.9134 45.76 45.7602 36.9131 45.7602 26C45.7602 15.0868 36.9134 6.23999 26.0002 6.23999C15.0871 6.23999 6.24023 15.0868 6.24023 26C6.24023 36.9131 15.0871 45.76 26.0002 45.76Z" stroke="#57AB00" strokeWidth="2.08"/>
               <path d="M34.3226 19.7705L22.2918 32.2505L16.6426 26.4388" stroke="#57AB00" strokeWidth="2.08" strokeLinecap="round" strokeLinejoin="round"/>
@@ -264,11 +264,11 @@ export const TypeB1Confirmation: Story = {
               We will look into it and get back to you shortly.
             </p>
             <div style={{ height: 18 }} />
-            <ModalButtons>
-              <Button variant="secondary" onClick={() => setOpen(false)}>Confirm</Button>
-            </ModalButtons>
-          </ModalPopup>
-        </Modal>
+            <BeModalButtons>
+              <BeButton variant="secondary" onClick={() => setOpen(false)}>Confirm</BeButton>
+            </BeModalButtons>
+          </BeModalPopup>
+        </BeModal>
       </FullFrame>
     );
   },
@@ -283,11 +283,11 @@ export const TypeB2Alert: Story = {
       <FullFrame>
         {!open && (
           <div style={{ padding: 24 }}>
-            <Button variant="primary" onClick={() => setOpen(true)}>Open Modal</Button>
+            <BeButton variant="primary" onClick={() => setOpen(true)}>Open Modal</BeButton>
           </div>
         )}
-        <Modal open={open} onClose={() => setOpen(false)} width={428}>
-          <ModalPopup>
+        <BeModal open={open} onClose={() => setOpen(false)} width={428}>
+          <BeModalPopup>
             <svg xmlns="http://www.w3.org/2000/svg" width="52" height="52" viewBox="0 0 52 52" fill="none" style={{ flexShrink: 0 }}>
               <path fillRule="evenodd" clipRule="evenodd" d="M18.6808 8.31982H33.3198L43.6803 18.6803V33.3193L33.3198 43.6798H18.6808L8.32031 33.3193V18.6803L18.6808 8.31982Z" stroke="#EC0047" strokeWidth="2.08" strokeLinecap="round" strokeLinejoin="round"/>
               <path d="M26 19.76V27.04" stroke="#EC0047" strokeWidth="2.08" strokeLinecap="round" strokeLinejoin="round"/>
@@ -303,11 +303,11 @@ export const TypeB2Alert: Story = {
               Maximum number of rows provided by Excel: 1,048,576
             </p>
             <div style={{ height: 18 }} />
-            <ModalButtons>
-              <Button variant="secondary" onClick={() => setOpen(false)}>Confirm</Button>
-            </ModalButtons>
-          </ModalPopup>
-        </Modal>
+            <BeModalButtons>
+              <BeButton variant="secondary" onClick={() => setOpen(false)}>Confirm</BeButton>
+            </BeModalButtons>
+          </BeModalPopup>
+        </BeModal>
       </FullFrame>
     );
   },
@@ -323,11 +323,11 @@ export const TypeB3Prompt: Story = {
       <FullFrame>
         {!open && (
           <div style={{ padding: 24 }}>
-            <Button variant="primary" onClick={() => setOpen(true)}>Open Modal</Button>
+            <BeButton variant="primary" onClick={() => setOpen(true)}>Open Modal</BeButton>
           </div>
         )}
-        <Modal open={open} onClose={() => setOpen(false)} width={428}>
-          <ModalPopup narrow>
+        <BeModal open={open} onClose={() => setOpen(false)} width={428}>
+          <BeModalPopup narrow>
             <svg xmlns="http://www.w3.org/2000/svg" width="52" height="52" viewBox="0 0 52 52" fill="none">
               <path d="M33.2795 11.4401H36.9195C38.9298 11.4401 40.5595 13.0439 40.5595 15.0223V40.0978C40.5595 42.0763 38.9298 43.6801 36.9195 43.6801H15.0795C13.0691 43.6801 11.4395 42.0763 11.4395 40.0978V15.0223C11.4395 13.0439 13.0691 11.4401 15.0795 11.4401H18.7195" stroke="#767676" strokeWidth="2.08" strokeLinecap="round" strokeLinejoin="round"/>
               <path d="M32.2388 8.32007H19.7588C19.1844 8.32007 18.7188 8.78569 18.7188 9.36007V13.5201C18.7188 14.0944 19.1844 14.5601 19.7588 14.5601H32.2388C32.8131 14.5601 33.2788 14.0944 33.2788 13.5201V9.36007C33.2788 8.78569 32.8131 8.32007 32.2388 8.32007Z" fill="#EBEBEB" stroke="#767676" strokeWidth="2.08" strokeLinecap="round" strokeLinejoin="round"/>
@@ -363,7 +363,7 @@ export const TypeB3Prompt: Story = {
             </div>
             {/* 이메일 입력 — pb:16 */}
             <div style={{ width: '100%', boxSizing: 'border-box', paddingBottom: 16 }}>
-              <TextField
+              <BeTextField
                 label="Email address"
                 placeholder="Please enter your email address."
                 type="email"
@@ -380,12 +380,12 @@ export const TypeB3Prompt: Story = {
             </div>
             {/* spacer */}
             <div style={{ height: 18 }} />
-            <ModalButtons>
-              <Button variant="secondary" onClick={() => setOpen(false)}>Cancel</Button>
-              <Button variant="primary-outline" onClick={() => setOpen(false)}>Confirm</Button>
-            </ModalButtons>
-          </ModalPopup>
-        </Modal>
+            <BeModalButtons>
+              <BeButton variant="secondary" onClick={() => setOpen(false)}>Cancel</BeButton>
+              <BeButton variant="primary-outline" onClick={() => setOpen(false)}>Confirm</BeButton>
+            </BeModalButtons>
+          </BeModalPopup>
+        </BeModal>
       </FullFrame>
     );
   },
@@ -400,10 +400,10 @@ export const TypeCLoading: Story = {
       <FullFrame>
         {!open && (
           <div style={{ padding: 24 }}>
-            <Button variant="primary" onClick={() => setOpen(true)}>Open Modal</Button>
+            <BeButton variant="primary" onClick={() => setOpen(true)}>Open Modal</BeButton>
           </div>
         )}
-        <Modal open={open} onClose={() => setOpen(false)} width={600}>
+        <BeModal open={open} onClose={() => setOpen(false)} width={600}>
           {/* 흰 영역 — 일러스트 + 로딩 */}
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '40px 40px 32px', gap: 20 }}>
             {/* 캐릭터 일러스트 placeholder */}
@@ -483,7 +483,7 @@ export const TypeCLoading: Story = {
               40% { opacity: 1; transform: scale(1); }
             }
           `}</style>
-        </Modal>
+        </BeModal>
       </FullFrame>
     );
   },
@@ -505,10 +505,10 @@ export const TypeDRegistration: Story = {
       <FullFrame>
         {!open && (
           <div style={{ padding: 24 }}>
-            <Button variant="primary" onClick={() => setOpen(true)}>Open Modal</Button>
+            <BeButton variant="primary" onClick={() => setOpen(true)}>Open Modal</BeButton>
           </div>
         )}
-        <Modal open={open} onClose={() => setOpen(false)} width={720}>
+        <BeModal open={open} onClose={() => setOpen(false)} width={720}>
           <div style={{ display: 'flex', minHeight: 483 }}>
             {/* 왼쪽 브랜딩 패널 — w:260, padding:40 */}
             <div
@@ -546,7 +546,7 @@ export const TypeDRegistration: Story = {
             >
               {/* Company — top:76, left:60, w:340 */}
               <div style={{ position: 'absolute', top: 76, left: 60, width: 340 }}>
-                <TextField
+                <BeTextField
                   label="Company"
                   placeholder="Please enter your company name."
                   value={company}
@@ -555,7 +555,7 @@ export const TypeDRegistration: Story = {
               </div>
               {/* Email — top:163, left:60, w:340 */}
               <div style={{ position: 'absolute', top: 163, left: 60, width: 340 }}>
-                <TextField
+                <BeTextField
                   label="Email"
                   placeholder="Please enter your email address."
                   type="email"
@@ -565,7 +565,7 @@ export const TypeDRegistration: Story = {
               </div>
               {/* Password — top:250, left:60, w:340 */}
               <div style={{ position: 'absolute', top: 250, left: 60, width: 340 }}>
-                <TextField
+                <BeTextField
                   label="Password"
                   placeholder="Please enter at minimum 6 characters."
                   type="password"
@@ -575,7 +575,7 @@ export const TypeDRegistration: Story = {
               </div>
               {/* Checkbox — top:338, left:60, size:18 */}
               <div style={{ position: 'absolute', top: 338, left: 60 }}>
-                <Checkbox
+                <BeCheckbox
                   size="s"
                   color="primary"
                   checked={agreed}
@@ -616,12 +616,12 @@ export const TypeDRegistration: Story = {
               </p>
               {/* 버튼 — Cancel: left:395 top:419 / Continue: left:489 top:419 */}
               <div style={{ position: 'absolute', top: 419, left: '50%', transform: 'translateX(-50%)',display: 'flex', gap: 4 }}>
-                <Button variant="secondary" onClick={() => setOpen(false)}>Cancel</Button>
-                <Button variant="primary" onClick={() => setOpen(false)}>Continue</Button>
+                <BeButton variant="secondary" onClick={() => setOpen(false)}>Cancel</BeButton>
+                <BeButton variant="primary" onClick={() => setOpen(false)}>Continue</BeButton>
               </div>
             </div>
           </div>
-        </Modal>
+        </BeModal>
       </FullFrame>
     );
   },
@@ -642,14 +642,14 @@ export const ModalHeaderVariants: Story = {
     );
 
     const sampleAction = (
-      <Button variant="primary" size="s">저장</Button>
+      <BeButton variant="primary" size="s">저장</BeButton>
     );
 
     return (
       <FullFrame>
         {!open && (
           <div style={{ padding: 24 }}>
-            <Button variant="primary" onClick={() => setOpen(true)}>Open</Button>
+            <BeButton variant="primary" onClick={() => setOpen(true)}>Open</BeButton>
           </div>
         )}
         <div style={{ padding: 40, display: 'flex', flexWrap: 'wrap', gap: 24 }}>
@@ -657,85 +657,85 @@ export const ModalHeaderVariants: Story = {
           {/* sm: Type 1 — close only */}
           <div style={{ width: 428, background: '#fff', borderRadius: 14, boxShadow: '0 8px 14px rgba(0,0,0,0.12)', overflow: 'hidden' }}>
             <div style={{ padding: '4px 8px', background: '#f5f5f5', fontSize: 11, color: '#888' }}>sm · Type 1 — close only</div>
-            <ModalHeader onClose={() => {}} />
-            <ModalBody><div style={{ color: '#aaa', fontSize: 13 }}>본문 영역</div></ModalBody>
+            <BeModalHeader onClose={() => {}} />
+            <BeModalBody><div style={{ color: '#aaa', fontSize: 13 }}>본문 영역</div></BeModalBody>
           </div>
 
           {/* sm: Type 2 — title + close */}
           <div style={{ width: 428, background: '#fff', borderRadius: 14, boxShadow: '0 8px 14px rgba(0,0,0,0.12)', overflow: 'hidden' }}>
             <div style={{ padding: '4px 8px', background: '#f5f5f5', fontSize: 11, color: '#888' }}>sm · Type 2 — title + close</div>
-            <ModalHeader title="모달 타이틀" onClose={() => {}} />
-            <ModalBody><div style={{ color: '#aaa', fontSize: 13 }}>본문 영역</div></ModalBody>
+            <BeModalHeader title="모달 타이틀" onClose={() => {}} />
+            <BeModalBody><div style={{ color: '#aaa', fontSize: 13 }}>본문 영역</div></BeModalBody>
           </div>
 
           {/* sm: Type 3 — title + desc + close */}
           <div style={{ width: 428, background: '#fff', borderRadius: 14, boxShadow: '0 8px 14px rgba(0,0,0,0.12)', overflow: 'hidden' }}>
             <div style={{ padding: '4px 8px', background: '#f5f5f5', fontSize: 11, color: '#888' }}>sm · Type 3 — title + desc + close</div>
-            <ModalHeader title="모달 타이틀" description="보조 설명 텍스트가 여기 들어갑니다." onClose={() => {}} />
-            <ModalBody><div style={{ color: '#aaa', fontSize: 13 }}>본문 영역</div></ModalBody>
+            <BeModalHeader title="모달 타이틀" description="보조 설명 텍스트가 여기 들어갑니다." onClose={() => {}} />
+            <BeModalBody><div style={{ color: '#aaa', fontSize: 13 }}>본문 영역</div></BeModalBody>
           </div>
 
           {/* sm: Type 4 — step + title + desc */}
           <div style={{ width: 428, background: '#fff', borderRadius: 14, boxShadow: '0 8px 14px rgba(0,0,0,0.12)', overflow: 'hidden' }}>
             <div style={{ padding: '4px 8px', background: '#f5f5f5', fontSize: 11, color: '#888' }}>sm · Type 4 — step + title + desc</div>
-            <ModalHeader step={1} title="단계별 설정" description="1단계 내용을 입력해 주세요." onClose={() => {}} />
-            <ModalBody><div style={{ color: '#aaa', fontSize: 13 }}>본문 영역</div></ModalBody>
+            <BeModalHeader step={1} title="단계별 설정" description="1단계 내용을 입력해 주세요." onClose={() => {}} />
+            <BeModalBody><div style={{ color: '#aaa', fontSize: 13 }}>본문 영역</div></BeModalBody>
           </div>
 
           {/* sm: Type 5 — icon + title + desc + action */}
           <div style={{ width: 526, background: '#fff', borderRadius: 14, boxShadow: '0 8px 14px rgba(0,0,0,0.12)', overflow: 'hidden' }}>
             <div style={{ padding: '4px 8px', background: '#f5f5f5', fontSize: 11, color: '#888' }}>sm · Type 5 — icon + title + desc + action</div>
-            <ModalHeader icon={sampleIcon} title="아이콘 타이틀" description="아이콘과 함께 표시되는 설명입니다." action={sampleAction} onClose={() => {}} />
-            <ModalBody><div style={{ color: '#aaa', fontSize: 13 }}>본문 영역</div></ModalBody>
+            <BeModalHeader icon={sampleIcon} title="아이콘 타이틀" description="아이콘과 함께 표시되는 설명입니다." action={sampleAction} onClose={() => {}} />
+            <BeModalBody><div style={{ color: '#aaa', fontSize: 13 }}>본문 영역</div></BeModalBody>
           </div>
 
           {/* sm: Type 6 — centered, large title */}
           <div style={{ width: 428, background: '#fff', borderRadius: 14, boxShadow: '0 8px 14px rgba(0,0,0,0.12)', overflow: 'hidden' }}>
             <div style={{ padding: '4px 8px', background: '#f5f5f5', fontSize: 11, color: '#888' }}>sm · Type 6 — center + large title</div>
-            <ModalHeader title="중앙 정렬 타이틀" description="설명도 가운데 정렬됩니다." textAlign="center" titleSize="large" onClose={() => {}} />
-            <ModalBody><div style={{ color: '#aaa', fontSize: 13 }}>본문 영역</div></ModalBody>
+            <BeModalHeader title="중앙 정렬 타이틀" description="설명도 가운데 정렬됩니다." textAlign="center" titleSize="large" onClose={() => {}} />
+            <BeModalBody><div style={{ color: '#aaa', fontSize: 13 }}>본문 영역</div></BeModalBody>
           </div>
 
           {/* lg: Type 1 — close only */}
           <div style={{ width: 428, background: '#fff', borderRadius: 14, boxShadow: '0 8px 14px rgba(0,0,0,0.12)', overflow: 'hidden' }}>
             <div style={{ padding: '4px 8px', background: '#f5f5f5', fontSize: 11, color: '#888' }}>lg · Type 1 — close only</div>
-            <ModalHeader closeSize="lg" onClose={() => {}} />
-            <ModalBody><div style={{ color: '#aaa', fontSize: 13 }}>본문 영역</div></ModalBody>
+            <BeModalHeader closeSize="lg" onClose={() => {}} />
+            <BeModalBody><div style={{ color: '#aaa', fontSize: 13 }}>본문 영역</div></BeModalBody>
           </div>
 
           {/* lg: Type 2 — title + close inline */}
           <div style={{ width: 428, background: '#fff', borderRadius: 14, boxShadow: '0 8px 14px rgba(0,0,0,0.12)', overflow: 'hidden' }}>
             <div style={{ padding: '4px 8px', background: '#f5f5f5', fontSize: 11, color: '#888' }}>lg · Type 2 — title + close (inline)</div>
-            <ModalHeader closeSize="lg" title="모달 타이틀" onClose={() => {}} />
-            <ModalBody><div style={{ color: '#aaa', fontSize: 13 }}>본문 영역</div></ModalBody>
+            <BeModalHeader closeSize="lg" title="모달 타이틀" onClose={() => {}} />
+            <BeModalBody><div style={{ color: '#aaa', fontSize: 13 }}>본문 영역</div></BeModalBody>
           </div>
 
           {/* lg: Type 3 — title + desc + close */}
           <div style={{ width: 428, background: '#fff', borderRadius: 14, boxShadow: '0 8px 14px rgba(0,0,0,0.12)', overflow: 'hidden' }}>
             <div style={{ padding: '4px 8px', background: '#f5f5f5', fontSize: 11, color: '#888' }}>lg · Type 3 — title + desc + close</div>
-            <ModalHeader closeSize="lg" title="모달 타이틀" description="보조 설명 텍스트가 여기 들어갑니다." onClose={() => {}} />
-            <ModalBody><div style={{ color: '#aaa', fontSize: 13 }}>본문 영역</div></ModalBody>
+            <BeModalHeader closeSize="lg" title="모달 타이틀" description="보조 설명 텍스트가 여기 들어갑니다." onClose={() => {}} />
+            <BeModalBody><div style={{ color: '#aaa', fontSize: 13 }}>본문 영역</div></BeModalBody>
           </div>
 
           {/* lg: Type 4 — step + close */}
           <div style={{ width: 428, background: '#fff', borderRadius: 14, boxShadow: '0 8px 14px rgba(0,0,0,0.12)', overflow: 'hidden' }}>
             <div style={{ padding: '4px 8px', background: '#f5f5f5', fontSize: 11, color: '#888' }}>lg · Type 4 — step + close</div>
-            <ModalHeader closeSize="lg" step={2} title="단계별 설정" description="2단계 내용을 입력해 주세요." onClose={() => {}} />
-            <ModalBody><div style={{ color: '#aaa', fontSize: 13 }}>본문 영역</div></ModalBody>
+            <BeModalHeader closeSize="lg" step={2} title="단계별 설정" description="2단계 내용을 입력해 주세요." onClose={() => {}} />
+            <BeModalBody><div style={{ color: '#aaa', fontSize: 13 }}>본문 영역</div></BeModalBody>
           </div>
 
           {/* lg: Type 5 — icon + title + desc + action + close */}
           <div style={{ width: 526, background: '#fff', borderRadius: 14, boxShadow: '0 8px 14px rgba(0,0,0,0.12)', overflow: 'hidden' }}>
             <div style={{ padding: '4px 8px', background: '#f5f5f5', fontSize: 11, color: '#888' }}>lg · Type 5 — icon + title + desc + action + close</div>
-            <ModalHeader closeSize="lg" icon={sampleIcon} title="아이콘 타이틀" description="아이콘과 함께 표시되는 설명입니다." action={sampleAction} onClose={() => {}} />
-            <ModalBody><div style={{ color: '#aaa', fontSize: 13 }}>본문 영역</div></ModalBody>
+            <BeModalHeader closeSize="lg" icon={sampleIcon} title="아이콘 타이틀" description="아이콘과 함께 표시되는 설명입니다." action={sampleAction} onClose={() => {}} />
+            <BeModalBody><div style={{ color: '#aaa', fontSize: 13 }}>본문 영역</div></BeModalBody>
           </div>
 
           {/* lg: Type 6 — centered, large title */}
           <div style={{ width: 428, background: '#fff', borderRadius: 14, boxShadow: '0 8px 14px rgba(0,0,0,0.12)', overflow: 'hidden' }}>
             <div style={{ padding: '4px 8px', background: '#f5f5f5', fontSize: 11, color: '#888' }}>lg · Type 6 — center + large title</div>
-            <ModalHeader closeSize="lg" title="중앙 정렬 타이틀" description="설명도 가운데 정렬됩니다." textAlign="center" titleSize="large" onClose={() => {}} />
-            <ModalBody><div style={{ color: '#aaa', fontSize: 13 }}>본문 영역</div></ModalBody>
+            <BeModalHeader closeSize="lg" title="중앙 정렬 타이틀" description="설명도 가운데 정렬됩니다." textAlign="center" titleSize="large" onClose={() => {}} />
+            <BeModalBody><div style={{ color: '#aaa', fontSize: 13 }}>본문 영역</div></BeModalBody>
           </div>
 
         </div>
@@ -758,7 +758,7 @@ export const ModalFooterVariants: Story = {
     );
 
     const nextBtn = (
-      <Button variant="primary-outline" rightIcon={nextArrow}>Next</Button>
+      <BeButton variant="primary-outline" rightIcon={nextArrow}>Next</BeButton>
     );
 
     const backArrow = (
@@ -768,7 +768,7 @@ export const ModalFooterVariants: Story = {
     );
 
     const backBtn = (
-      <Button variant="secondary-ghost" size="s" leftIcon={backArrow}>Back</Button>
+      <BeButton variant="secondary-ghost" size="s" leftIcon={backArrow}>Back</BeButton>
     );
 
     return (
@@ -778,10 +778,10 @@ export const ModalFooterVariants: Story = {
           {/* Type 1 — checkbox + Cancel/Confirm */}
           <div style={{ width: 526, background: '#fff', borderRadius: 14, boxShadow: '0 8px 14px rgba(0,0,0,0.12)', overflow: 'hidden' }}>
             <div style={{ padding: '4px 8px', background: '#f5f5f5', fontSize: 11, color: '#888' }}>Type 1 — checkbox + Cancel / Confirm (with divider)</div>
-            <ModalDivider />
-            <ModalFooter
+            <BeModalDivider />
+            <BeModalFooter
               checkbox={
-                <Checkbox
+                <BeCheckbox
                   size="s"
                   color="primary"
                   label="I have read and agree to the above."
@@ -790,18 +790,18 @@ export const ModalFooterVariants: Story = {
                 />
               }
             >
-              <Button variant="secondary">Cancel</Button>
-              <Button variant="primary">Confirm</Button>
-            </ModalFooter>
+              <BeButton variant="secondary">Cancel</BeButton>
+              <BeButton variant="primary">Confirm</BeButton>
+            </BeModalFooter>
           </div>
 
           {/* Type 2 — checkbox + Back / Next */}
           <div style={{ width: 526, background: '#fff', borderRadius: 14, boxShadow: '0 8px 14px rgba(0,0,0,0.12)', overflow: 'hidden' }}>
             <div style={{ padding: '4px 8px', background: '#f5f5f5', fontSize: 11, color: '#888' }}>Type 2 — checkbox + Back / Next (with divider)</div>
-            <ModalDivider />
-            <ModalFooter
+            <BeModalDivider />
+            <BeModalFooter
               checkbox={
-                <Checkbox
+                <BeCheckbox
                   size="s"
                   color="primary"
                   label="I have read and agree to the above."
@@ -812,21 +812,21 @@ export const ModalFooterVariants: Story = {
               leftAction={backBtn}
             >
               {nextBtn}
-            </ModalFooter>
+            </BeModalFooter>
           </div>
 
           {/* Type 3 — Back / Next only (no divider) */}
           <div style={{ width: 526, background: '#fff', borderRadius: 14, boxShadow: '0 8px 14px rgba(0,0,0,0.12)', overflow: 'hidden' }}>
             <div style={{ padding: '4px 8px', background: '#f5f5f5', fontSize: 11, color: '#888' }}>Type 3 — Back / Next (no divider)</div>
-            <ModalFooter leftAction={backBtn}>
+            <BeModalFooter leftAction={backBtn}>
               {nextBtn}
-            </ModalFooter>
+            </BeModalFooter>
           </div>
 
           {/* Type 4 — empty (no divider) */}
           <div style={{ width: 526, background: '#fff', borderRadius: 14, boxShadow: '0 8px 14px rgba(0,0,0,0.12)', overflow: 'hidden' }}>
             <div style={{ padding: '4px 8px', background: '#f5f5f5', fontSize: 11, color: '#888' }}>Type 4 — empty (no divider)</div>
-            <ModalFooter />
+            <BeModalFooter />
           </div>
 
         </div>

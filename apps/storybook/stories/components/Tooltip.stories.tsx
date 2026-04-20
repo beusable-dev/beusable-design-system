@@ -1,6 +1,6 @@
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
-import { Tooltip } from '@beusable-dev/react';
+import { BeTooltip } from '@beusable-dev/react';
 
 const meta = {
   title: 'Components/Tooltip',
@@ -16,8 +16,8 @@ type Story = StoryObj;
 export const TypeA: Story = {
   render: () => (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
-      <Tooltip content="Choose below Screen, you can see the user's information on the right side of the screen." />
-      <Tooltip
+      <BeTooltip content="Choose below Screen, you can see the user's information on the right side of the screen." />
+      <BeTooltip
         content="Stream feature has been updated on September 30, 2025, and data from previous periods cannot be viewed."
         maxWidth={360}
       />
@@ -30,11 +30,11 @@ export const TypeA: Story = {
 export const TypeBClose: Story = {
   render: () => (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
-      <Tooltip
+      <BeTooltip
         content="Choose below Screen, you can see the user's information on the right side of the screen."
         onClose={() => {}}
       />
-      <Tooltip
+      <BeTooltip
         content="Stream feature has been updated on September 30, 2025, and data from previous periods cannot be viewed."
         onClose={() => {}}
         maxWidth={360}
@@ -48,12 +48,12 @@ export const TypeBClose: Story = {
 export const TypeBAction: Story = {
   render: () => (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 32 }}>
-      <Tooltip
+      <BeTooltip
         content="Choose below Screen, you can see the user's information on the right side of the screen."
         actionLabel="Detail"
         onAction={() => {}}
       />
-      <Tooltip
+      <BeTooltip
         content="Stream feature has been updated on September 30, 2025, and data from previous periods cannot be viewed."
         actionLabel="Detail"
         onAction={() => {}}
@@ -124,11 +124,11 @@ export const TextAlignment: Story = {
     <div style={{ display: 'flex', gap: 32, alignItems: 'flex-start' }}>
       <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
         <p style={{ margin: 0, fontWeight: 600 }}>Align left</p>
-        <Tooltip
+        <BeTooltip
           content="Korean, English, and Japanese are supported, and other languages are automatically applied in English."
           maxWidth={240}
         />
-        <Tooltip
+        <BeTooltip
           content="Inflow path patterning will be applied from May 1, 2026 (KST)."
           linkLabel="Read more about updates"
           linkHref="https://example.com"
@@ -137,7 +137,7 @@ export const TextAlignment: Story = {
       </div>
       <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
         <p style={{ margin: 0, fontWeight: 600 }}>Align Center</p>
-        <Tooltip
+        <BeTooltip
           content="Korean, English, and Japanese are supported, and other languages are automatically applied in English."
           textAlign="center"
           maxWidth={240}
@@ -145,7 +145,7 @@ export const TextAlignment: Story = {
       </div>
       <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
         <p style={{ margin: 0, fontWeight: 600 }}>Align Justify</p>
-        <Tooltip content={<KeyValueContent />} maxWidth={220} style={{ padding: 17 }} />
+        <BeTooltip content={<KeyValueContent />} maxWidth={220} style={{ padding: 17 }} />
       </div>
     </div>
   ),
@@ -156,9 +156,9 @@ export const TextAlignment: Story = {
 export const ArrowBottom: Story = {
   render: () => (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 32, paddingBottom: 16 }}>
-      <Tooltip arrow="bottom-left"   content="bottom-left arrow" />
-      <Tooltip arrow="bottom-center" content="bottom-center arrow" />
-      <Tooltip arrow="bottom-right"  content="bottom-right arrow" />
+      <BeTooltip arrow="bottom-left"   content="bottom-left arrow" />
+      <BeTooltip arrow="bottom-center" content="bottom-center arrow" />
+      <BeTooltip arrow="bottom-right"  content="bottom-right arrow" />
     </div>
   ),
 };
@@ -166,9 +166,9 @@ export const ArrowBottom: Story = {
 export const ArrowTop: Story = {
   render: () => (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 32, paddingTop: 16 }}>
-      <Tooltip arrow="top-left"   content="top-left arrow" />
-      <Tooltip arrow="top-center" content="top-center arrow" />
-      <Tooltip arrow="top-right"  content="top-right arrow" />
+      <BeTooltip arrow="top-left"   content="top-left arrow" />
+      <BeTooltip arrow="top-center" content="top-center arrow" />
+      <BeTooltip arrow="top-right"  content="top-right arrow" />
     </div>
   ),
 };
@@ -176,8 +176,8 @@ export const ArrowTop: Story = {
 export const ArrowSide: Story = {
   render: () => (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 32, padding: '16px 16px' }}>
-      <Tooltip arrow="left"  content="left arrow — tooltip is to the right of the target" />
-      <Tooltip arrow="right" content="right arrow — tooltip is to the left of the target" />
+      <BeTooltip arrow="left"  content="left arrow — tooltip is to the right of the target" />
+      <BeTooltip arrow="right" content="right arrow — tooltip is to the left of the target" />
     </div>
   ),
 };
@@ -187,12 +187,12 @@ export const ArrowSide: Story = {
 export const TypeCLink: Story = {
   render: () => (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
-      <Tooltip
+      <BeTooltip
         content="Inflow path patterning will be applied from May 1, 2026 (KST)."
         linkLabel="Read more about updates"
         linkHref="https://example.com"
       />
-      <Tooltip
+      <BeTooltip
         content="Inflow path patterning will be applied from May 1, 2026 (KST)."
         linkLabel="Read more about updates"
         linkHref="https://example.com"
@@ -207,13 +207,13 @@ export const TypeCLink: Story = {
 export const TypeBCloseAndAction: Story = {
   render: () => (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 32 }}>
-      <Tooltip
+      <BeTooltip
         content="Choose below Screen, you can see the user's information on the right side of the screen."
         onClose={() => {}}
         actionLabel="Detail"
         onAction={() => {}}
       />
-      <Tooltip
+      <BeTooltip
         content="Stream feature has been updated on September 30, 2025, and data from previous periods cannot be viewed."
         onClose={() => {}}
         actionLabel="Detail"
@@ -229,12 +229,12 @@ export const TypeBCloseAndAction: Story = {
 export const ArrowWithClose: Story = {
   render: () => (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 32, paddingBottom: 16 }}>
-      <Tooltip
+      <BeTooltip
         arrow="bottom-left"
         content="Stream feature has been updated on September 30, 2025, and data from previous periods cannot be viewed."
         onClose={() => {}}
       />
-      <Tooltip
+      <BeTooltip
         arrow="bottom-left"
         content="Choose below Screen, you can see the user's information."
         actionLabel="Detail"

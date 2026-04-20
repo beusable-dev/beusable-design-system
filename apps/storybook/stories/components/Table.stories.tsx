@@ -1,10 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
-import { Table, type TableColumn, type SortOrder } from '@beusable-dev/react';
+import { BeTable, type TableColumn, type SortOrder } from '@beusable-dev/react';
 
 const meta: Meta<typeof Table> = {
   title: 'Components/Table',
-  component: Table,
+  component: BeTable,
   tags: ['autodocs'],
   parameters: {
     layout: 'padded',
@@ -182,7 +182,7 @@ export const Default: Story = {
     };
 
     return (
-      <Table
+      <BeTable
         columns={figma5688Columns}
         data={sampleData}
         sortKey={sortKey}
@@ -204,7 +204,7 @@ export const Dark_40_40: Story = {
     const [sortOrder, setSortOrder] = useState<SortOrder>('asc');
 
     return (
-      <Table
+      <BeTable
         columns={[
           { key: 'no', label: 'No', width: 68, align: 'center', sortable: true },
           { key: 'id', label: 'ID', width: 130, sortable: true },
@@ -238,7 +238,7 @@ export const Dark_52_48: Story = {
     const [selectedRowKeys, setSelectedRowKeys] = useState<Array<string | number>>([1, 3]);
 
     return (
-      <Table
+      <BeTable
         columns={[
           { key: 'no', label: 'No', width: 68, align: 'center', sortable: true },
           { key: 'id', label: 'ID', width: 130, sortable: true },
@@ -276,7 +276,7 @@ export const TypeB_Light: Story = {
     const [sortOrder, setSortOrder] = useState<SortOrder>('asc');
 
     return (
-      <Table
+      <BeTable
         columns={figmaDefaultColumns}
         data={sampleData}
         sortKey={sortKey}
@@ -304,7 +304,7 @@ export const HeaderFocusedColor: Story = {
     );
     return (
       <div style={{ display: 'flex', flexDirection: 'column', gap: 32 }}>
-        <Table
+        <BeTable
           columns={darkColumns}
           data={sampleData.slice(0, 4)}
           sortKey={sortKey}
@@ -312,7 +312,7 @@ export const HeaderFocusedColor: Story = {
           onSort={(key, order) => { setSortKey(key); setSortOrder(order); }}
           headerTone="dark"
         />
-        <Table
+        <BeTable
           columns={lightColumns}
           data={sampleData.slice(0, 4)}
           sortKey={sortKey}
@@ -328,7 +328,7 @@ export const HeaderFocusedColor: Story = {
 /* ── 정렬 없는 테이블 ── */
 export const NoSort: Story = {
   render: () => (
-    <Table
+    <BeTable
       columns={baseColumns.map((col) => ({ ...col, sortable: false }))}
       data={sampleData.slice(0, 6)}
       headerTone="dark"
@@ -369,7 +369,7 @@ export const CustomRender: Story = {
     ];
 
     return (
-      <Table
+      <BeTable
         columns={columns}
         data={sampleData.slice(0, 8)}
         sortKey="no"
@@ -402,7 +402,7 @@ export const StickyColumns: Story = {
 
     return (
       <div style={{ width: 820 }}>
-        <Table
+        <BeTable
           columns={columns}
           data={sampleData}
           sortKey={sortKey}
@@ -443,7 +443,7 @@ export const Overflow: Story = {
 
     return (
       <div style={{ maxWidth: 580 }}>
-        <Table columns={columns} data={data} />
+        <BeTable columns={columns} data={data} />
       </div>
     );
   },

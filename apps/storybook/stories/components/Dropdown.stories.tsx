@@ -1,10 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
-import { Dropdown } from '@beusable-dev/react';
+import { BeDropdown } from '@beusable-dev/react';
 
 const meta = {
   title: 'Components/Dropdown',
-  component: Dropdown,
+  component: BeDropdown,
   parameters: { layout: 'padded' },
   tags: ['autodocs'],
   argTypes: {
@@ -70,11 +70,11 @@ export const Playground: Story = {
 export const States: Story = {
   render: (args) => (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 16, maxWidth: 320 }}>
-      <Dropdown {...args} label="Default" placeholder="Select" />
-      <Dropdown {...args} label="With value" defaultValue="option1" />
-      <Dropdown {...args} label="Error" errorMessage="Here is an error message!" />
-      <Dropdown {...args} label="Disabled" defaultValue="option2" disabled />
-      <Dropdown {...args} label="Help message" message="Here is a help message." />
+      <BeDropdown {...args} label="Default" placeholder="Select" />
+      <BeDropdown {...args} label="With value" defaultValue="option1" />
+      <BeDropdown {...args} label="Error" errorMessage="Here is an error message!" />
+      <BeDropdown {...args} label="Disabled" defaultValue="option2" disabled />
+      <BeDropdown {...args} label="Help message" message="Here is a help message." />
     </div>
   ),
 };
@@ -84,9 +84,9 @@ export const States: Story = {
 export const Sizes: Story = {
   render: (args) => (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 16, maxWidth: 320 }}>
-      <Dropdown {...args} label="Small (s)" size="s" placeholder="Select" />
-      <Dropdown {...args} label="Medium (m)" size="m" placeholder="Select" />
-      <Dropdown {...args} label="Large (l)" size="l" placeholder="Select" />
+      <BeDropdown {...args} label="Small (s)" size="s" placeholder="Select" />
+      <BeDropdown {...args} label="Medium (m)" size="m" placeholder="Select" />
+      <BeDropdown {...args} label="Large (l)" size="l" placeholder="Select" />
     </div>
   ),
 };
@@ -130,7 +130,7 @@ export const Controlled: Story = {
     const [value, setValue] = useState('option1');
     return (
       <div style={{ maxWidth: 320 }}>
-        <Dropdown
+        <BeDropdown
           {...args}
           label="Controlled"
           value={value}
@@ -149,9 +149,9 @@ export const Controlled: Story = {
 export const Horizontal: Story = {
   render: (args) => (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 16, maxWidth: 480 }}>
-      <Dropdown {...args} label="Label" layout="horizontal" placeholder="Select" />
-      <Dropdown {...args} label="Label" layout="horizontal" defaultValue="option1" />
-      <Dropdown {...args} label="Label" layout="horizontal" disabled />
+      <BeDropdown {...args} label="Label" layout="horizontal" placeholder="Select" />
+      <BeDropdown {...args} label="Label" layout="horizontal" defaultValue="option1" />
+      <BeDropdown {...args} label="Label" layout="horizontal" disabled />
     </div>
   ),
 };
@@ -161,10 +161,10 @@ export const Horizontal: Story = {
 export const Shadow: Story = {
   render: (args) => (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 16, maxWidth: 320 }}>
-      <Dropdown {...args} variant="shadow" label="Default" placeholder="Select" />
-      <Dropdown {...args} variant="shadow" label="With value" defaultValue="option1" />
-      <Dropdown {...args} variant="shadow" label="Disabled" defaultValue="option2" disabled />
-      <Dropdown {...args} variant="shadow" label="Label" layout="horizontal" placeholder="Select" />
+      <BeDropdown {...args} variant="shadow" label="Default" placeholder="Select" />
+      <BeDropdown {...args} variant="shadow" label="With value" defaultValue="option1" />
+      <BeDropdown {...args} variant="shadow" label="Disabled" defaultValue="option2" disabled />
+      <BeDropdown {...args} variant="shadow" label="Label" layout="horizontal" placeholder="Select" />
     </div>
   ),
   parameters: {
@@ -178,9 +178,9 @@ export const NoLabel: Story = {
   args: { placeholder: 'All' },
   render: (args) => (
     <div style={{ display: 'flex', gap: 12, alignItems: 'center', maxWidth: 500 }}>
-      <Dropdown {...args} size="s" style={{ width: 160 }} />
-      <Dropdown {...args} size="m" style={{ width: 200 }} />
-      <Dropdown {...args} size="l" style={{ width: 240 }} />
+      <BeDropdown {...args} size="s" style={{ width: 160 }} />
+      <BeDropdown {...args} size="m" style={{ width: 200 }} />
+      <BeDropdown {...args} size="l" style={{ width: 240 }} />
     </div>
   ),
 };

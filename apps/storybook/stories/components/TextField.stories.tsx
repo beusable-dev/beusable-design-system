@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
-import { TextField } from '@beusable-dev/react';
+import { BeTextField } from '@beusable-dev/react';
 
 const meta: Meta<typeof TextField> = {
   title: 'Components/TextField',
-  component: TextField,
+  component: BeTextField,
   tags: ['autodocs'],
   parameters: { layout: 'padded' },
   argTypes: {
@@ -51,7 +51,7 @@ export const Playground: Story = {
     const [value, setValue] = useState('');
     return (
       <div style={{ width: 300 }}>
-        <TextField
+        <BeTextField
           {...args}
           value={value}
           onChange={(e) => setValue(e.target.value)}
@@ -71,11 +71,11 @@ export const Playground: Story = {
 export const States: Story = {
   render: () => (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 20, width: 300 }}>
-      <TextField label="Default" defaultValue="Text here" />
-      <TextField label="Focused" defaultValue="Text here" autoFocus />
-      <TextField label="Error" defaultValue="Text here" errorMessage="Here is an error message!" />
-      <TextField label="Valid (Confirm)" defaultValue="Confirm" valid />
-      <TextField label="Disable" defaultValue="Disabled" disabled />
+      <BeTextField label="Default" defaultValue="Text here" />
+      <BeTextField label="Focused" defaultValue="Text here" autoFocus />
+      <BeTextField label="Error" defaultValue="Text here" errorMessage="Here is an error message!" />
+      <BeTextField label="Valid (Confirm)" defaultValue="Confirm" valid />
+      <BeTextField label="Disable" defaultValue="Disabled" disabled />
     </div>
   ),
 };
@@ -87,13 +87,13 @@ export const Password: Story = {
     const [confirm, setConfirm] = useState('password123');
     return (
       <div style={{ display: 'flex', flexDirection: 'column', gap: 16, width: 300 }}>
-        <TextField
+        <BeTextField
           label="Password"
           type="password"
           value={pw}
           onChange={(e) => setPw(e.target.value)}
         />
-        <TextField
+        <BeTextField
           label="Confirm"
           type="password"
           value={confirm}
@@ -112,7 +112,7 @@ export const Clearable: Story = {
     const [value, setValue] = useState('Clear me');
     return (
       <div style={{ width: 300 }}>
-        <TextField
+        <BeTextField
           label="Label"
           value={value}
           onChange={(e) => setValue(e.target.value)}
@@ -133,7 +133,7 @@ export const Timer: Story = {
     return (
       <div style={{ display: 'flex', flexDirection: 'column', gap: 20, width: 300 }}>
         {/* timerSeconds: 컴포넌트가 자체 카운트다운 */}
-        <TextField
+        <BeTextField
           label="Additional Item"
           placeholder="Verification Numbers"
           timerSeconds={299}
@@ -143,8 +143,8 @@ export const Timer: Story = {
           errorMessage={expired ? '인증 시간이 만료되었습니다.' : undefined}
         />
         {/* timer: 외부에서 직접 문자열 전달 */}
-        <TextField label="Additional Item" timer="4:59" defaultValue="Text here" />
-        <TextField label="Additional Item" timer="4:59" defaultValue="Text here" errorMessage="Here is an error message!" />
+        <BeTextField label="Additional Item" timer="4:59" defaultValue="Text here" />
+        <BeTextField label="Additional Item" timer="4:59" defaultValue="Text here" errorMessage="Here is an error message!" />
       </div>
     );
   },
@@ -156,7 +156,7 @@ export const Textarea: Story = {
     const [value, setValue] = useState('');
     return (
       <div style={{ display: 'flex', flexDirection: 'column', gap: 16, width: 300 }}>
-        <TextField
+        <BeTextField
           label="Label"
           multiline
           rows={4}
@@ -166,7 +166,7 @@ export const Textarea: Story = {
           maxLength={100}
           showCount
         />
-        <TextField label="Label" multiline rows={3} defaultValue="The overall average device ratio across industries is similar, with Desktop at 49% and Phone at 49.62%." maxLength={100} showCount disabled />
+        <BeTextField label="Label" multiline rows={3} defaultValue="The overall average device ratio across industries is similar, with Desktop at 49% and Phone at 49.62%." maxLength={100} showCount disabled />
       </div>
     );
   },
@@ -177,13 +177,13 @@ export const DarkTheme: Story = {
   render: () => (
     <div style={{ background: '#222', borderRadius: 8, padding: 32 }}>
       <div style={{ display: 'flex', flexDirection: 'column', gap: 16, width: 300 }}>
-        <TextField theme="dark" label="Default" defaultValue="Text here" />
-        <TextField theme="dark" label="Place Holder" placeholder="Place Holder" />
-        <TextField theme="dark" label="Password" type="password" defaultValue="password" />
-        <TextField theme="dark" label="Focused" defaultValue="Text here" autoFocus />
-        <TextField theme="dark" label="Error" defaultValue="Text here" errorMessage="Here is an error message!" />
-        <TextField theme="dark" label="Confirm" defaultValue="Confirm" valid />
-        <TextField theme="dark" label="Disable" defaultValue="Disabled" disabled />
+        <BeTextField theme="dark" label="Default" defaultValue="Text here" />
+        <BeTextField theme="dark" label="Place Holder" placeholder="Place Holder" />
+        <BeTextField theme="dark" label="Password" type="password" defaultValue="password" />
+        <BeTextField theme="dark" label="Focused" defaultValue="Text here" autoFocus />
+        <BeTextField theme="dark" label="Error" defaultValue="Text here" errorMessage="Here is an error message!" />
+        <BeTextField theme="dark" label="Confirm" defaultValue="Confirm" valid />
+        <BeTextField theme="dark" label="Disable" defaultValue="Disabled" disabled />
       </div>
     </div>
   ),
@@ -193,9 +193,9 @@ export const DarkTheme: Story = {
 export const Sizes: Story = {
   render: () => (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 16, width: 300 }}>
-      <TextField size="l" label="Large" placeholder="Text here" />
-      <TextField size="m" label="Medium" placeholder="Text here" />
-      <TextField size="s" label="Small" placeholder="Text here" />
+      <BeTextField size="l" label="Large" placeholder="Text here" />
+      <BeTextField size="m" label="Medium" placeholder="Text here" />
+      <BeTextField size="s" label="Small" placeholder="Text here" />
     </div>
   ),
 };
@@ -204,8 +204,8 @@ export const Sizes: Story = {
 export const NoLabel: Story = {
   render: () => (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 16, width: 300 }}>
-      <TextField placeholder="Text here" />
-      <TextField placeholder="Text here" errorMessage="Error message" />
+      <BeTextField placeholder="Text here" />
+      <BeTextField placeholder="Text here" errorMessage="Error message" />
     </div>
   ),
 };
@@ -214,9 +214,9 @@ export const NoLabel: Story = {
 export const Horizontal: Story = {
   render: () => (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 16, width: 420 }}>
-      <TextField layout="horizontal" label="Label" placeholder="Text here" />
-      <TextField layout="horizontal" label="Label" defaultValue="Text here" errorMessage="Error message" />
-      <TextField layout="horizontal" label="Label" defaultValue="Disabled" disabled />
+      <BeTextField layout="horizontal" label="Label" placeholder="Text here" />
+      <BeTextField layout="horizontal" label="Label" defaultValue="Text here" errorMessage="Error message" />
+      <BeTextField layout="horizontal" label="Label" defaultValue="Disabled" disabled />
     </div>
   ),
 };

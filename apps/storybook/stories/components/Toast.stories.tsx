@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { Toast } from '@beusable-dev/react';
+import { BeToast } from '@beusable-dev/react';
 
 const meta = {
   title: 'Components/Toast',
-  component: Toast,
+  component: BeToast,
   parameters: { layout: 'padded' },
   tags: ['autodocs'],
   argTypes: {
@@ -44,21 +44,21 @@ export const Types: Story = {
     <div style={{ display: 'flex', flexDirection: 'column', gap: 16, alignItems: 'flex-start' }}>
       <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
         <span style={{ width: 80, fontSize: 13, color: '#777' }}>A-1</span>
-        <Toast type="a1" status="complete" message="Complete" />
-        <Toast type="a1" status="normal" message="Complete" />
-        <Toast type="a1" status="caution" message="Caution" />
+        <BeToast type="a1" status="complete" message="Complete" />
+        <BeToast type="a1" status="normal" message="Complete" />
+        <BeToast type="a1" status="caution" message="Caution" />
       </div>
       <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
         <span style={{ width: 80, fontSize: 13, color: '#777' }}>A-2</span>
-        <Toast type="a2" status="complete" message="Copied to clipboard" />
-        <Toast type="a2" status="normal" message="Copied to clipboard" />
-        <Toast type="a2" status="caution" message="Copied to clipboard" />
+        <BeToast type="a2" status="complete" message="Copied to clipboard" />
+        <BeToast type="a2" status="normal" message="Copied to clipboard" />
+        <BeToast type="a2" status="caution" message="Copied to clipboard" />
       </div>
       <div style={{ display: 'flex', alignItems: 'flex-start', gap: 8 }}>
         <span style={{ width: 80, fontSize: 13, color: '#777', paddingTop: 8 }}>B</span>
-        <Toast type="b" status="complete" message="Two weeks of content" description="has been reloaded." />
-        <Toast type="b" status="normal" message="Two weeks of content" description="has been reloaded." />
-        <Toast type="b" status="caution" message="Two weeks of content" description="has been reloaded." />
+        <BeToast type="b" status="complete" message="Two weeks of content" description="has been reloaded." />
+        <BeToast type="b" status="normal" message="Two weeks of content" description="has been reloaded." />
+        <BeToast type="b" status="caution" message="Two weeks of content" description="has been reloaded." />
       </div>
     </div>
   ),
@@ -69,9 +69,9 @@ export const Types: Story = {
 export const Status: Story = {
   render: () => (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 12, alignItems: 'flex-start' }}>
-      <Toast type="a1" status="complete" message="Complete" />
-      <Toast type="a1" status="normal" message="Normal" />
-      <Toast type="a1" status="caution" message="Caution" />
+      <BeToast type="a1" status="complete" message="Complete" />
+      <BeToast type="a1" status="normal" message="Normal" />
+      <BeToast type="a1" status="caution" message="Caution" />
     </div>
   ),
 };
@@ -81,9 +81,9 @@ export const Status: Story = {
 export const Multiline: Story = {
   render: () => (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 12, alignItems: 'flex-start' }}>
-      <Toast type="b" status="complete" message="Two weeks of content" description="has been reloaded." />
-      <Toast type="b" status="normal" message="Two weeks of content" description="has been reloaded." />
-      <Toast type="b" status="caution" message="Two weeks of content" description="has been reloaded." />
+      <BeToast type="b" status="complete" message="Two weeks of content" description="has been reloaded." />
+      <BeToast type="b" status="normal" message="Two weeks of content" description="has been reloaded." />
+      <BeToast type="b" status="caution" message="Two weeks of content" description="has been reloaded." />
     </div>
   ),
 };
@@ -93,7 +93,7 @@ export const Multiline: Story = {
 export const CustomIcon: Story = {
   render: () => (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 12, alignItems: 'flex-start' }}>
-      <Toast type="a1" status="normal" message="Custom icon (class name)" icon="my-icon-class" />
+      <BeToast type="a1" status="normal" message="Custom icon (class name)" icon="my-icon-class" />
     </div>
   ),
 };
