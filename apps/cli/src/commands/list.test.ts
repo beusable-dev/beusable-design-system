@@ -12,7 +12,7 @@ const FAKE_MANIFEST: ComponentsManifest = {
     modal: { react: ['Modal.tsx', 'Modal.module.css'], vue: ['Modal.vue', 'Modal.module.css'], deps: ['clsx'] },
     datepicker: { react: ['DatePicker.tsx'], vue: ['DatePicker.vue'], deps: ['date-fns', 'date-fns-tz'] },
   },
-  tokens: { src: 'packages/tokens/dist/css/variables.css', dest: 'src/styles/tokens.css' },
+  tokens: { src: 'packages/tokens/dist/css/variables.css', dest: 'src/styles/tokens.css', srcScss: 'packages/tokens/dist/scss/_tokens.scss', destScss: 'src/styles/_tokens.scss' },
 };
 
 describe('list command (AC-4)', () => {
