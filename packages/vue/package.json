@@ -1,6 +1,6 @@
 {
   "name": "@beusable-dev/vue",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Beusable Design System — Vue 3 components",
   "license": "MIT",
   "type": "module",
