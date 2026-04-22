@@ -9,8 +9,8 @@
  *   dist/assets/packages/vue/src/components/...
  *   dist/assets/packages/tokens/dist/css/...
  *
- * Ejecución: tsx src/scripts/copy-assets.ts
- * (Se invoca automáticamente en el paso "postbuild" después de tsup)
+ * 실행: tsx src/scripts/copy-assets.ts
+ * (tsup 실행 후 "postbuild" 단계에서 자동으로 호출된다)
  */
 
 import { cp, copyFile, mkdir, rm, access, readFile } from 'fs/promises';
@@ -48,6 +48,10 @@ const COPY_SPECS: CopySpec[] = [
     src: path.join(MONOREPO_ROOT, 'packages/tokens/dist/css'),
     dest: path.join(DIST_ASSETS, 'packages/tokens/dist/css'),
   },
+  {
+    src: path.join(MONOREPO_ROOT, 'packages/tokens/dist/scss'),
+    dest: path.join(DIST_ASSETS, 'packages/tokens/dist/scss'),
+  },
 ];
 
 /**
@@ -60,7 +64,7 @@ function shouldExclude(filename: string): boolean {
 }
 
 async function main(): Promise<void> {
-  console.log('Copiando assets al directorio dist/assets/...');
+  console.log('dist/assets/ 디렉토리로 assets 복사 중...');
 
   // Clean previous assets to avoid stale files
   await rm(DIST_ASSETS, { recursive: true, force: true });
@@ -78,21 +82,21 @@ async function main(): Promise<void> {
     });
 
     const relativeSrc = path.relative(MONOREPO_ROOT, spec.src);
-    console.log(`  Copiado: ${relativeSrc} → dist/assets/${path.relative(DIST_ASSETS, spec.dest)}`);
+    console.log(`  복사됨: ${relativeSrc} → dist/assets/${path.relative(DIST_ASSETS, spec.dest)}`);
   }
 
   // Copy components.json into dist/ so the published CLI can load the manifest at runtime.
   const componentsSrc = path.resolve(__dirname, '../components.json');
   const componentsDest = path.resolve(__dirname, '../../dist/components.json');
   await copyFile(componentsSrc, componentsDest);
-  console.log('  Copiado: src/components.json → dist/components.json');
+  console.log('  복사됨: src/components.json → dist/components.json');
 
   // Verify that every sharedReact.src referenced in components.json
   // actually landed in dist/assets. Catches mismatches between the manifest
   // and what copy-assets decided to include.
   await verifySharedDepsPresent();
 
-  console.log('Assets copiados correctamente.');
+  console.log('assets 복사 완료.');
 }
 
 interface ComponentEntry {
@@ -138,6 +142,6 @@ async function verifySharedDepsPresent(): Promise<void> {
 }
 
 main().catch((error) => {
-  console.error('Error al copiar assets:', error);
+  console.error('assets 복사 오류:', error);
   process.exit(1);
 });

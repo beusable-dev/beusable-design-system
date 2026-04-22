@@ -1,5 +1,5 @@
 {
-  "version": "0.1.0",
+  "version": "0.1.1",
   "components": {
     "button": {
       "react": [
@@ -361,6 +361,8 @@
   },
   "tokens": {
     "src": "packages/tokens/dist/css/variables.css",
-    "dest": "src/styles/tokens.css"
+    "dest": "src/styles/tokens.css",
+    "srcScss": "packages/tokens/dist/scss/_tokens.scss",
+    "destScss": "src/styles/_tokens.scss"
   }
 }

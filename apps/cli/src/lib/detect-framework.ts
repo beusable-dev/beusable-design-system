@@ -16,10 +16,6 @@ function isSupportedFramework(value: string): value is SupportedFramework {
   return SUPPORTED_FRAMEWORKS.includes(value as SupportedFramework);
 }
 
-/**
- * Detecta el framework del proyecto leyendo package.json.
- * Si se pasa explicitFramework, se usa directamente sin leer package.json.
- */
 export async function detectFramework(
   projectCwd: string,
   explicitFramework?: string
@@ -27,7 +23,7 @@ export async function detectFramework(
   if (explicitFramework !== undefined) {
     if (!isSupportedFramework(explicitFramework)) {
       throw new FrameworkDetectionError(
-        `Framework no reconocido: "${explicitFramework}". Usa react o vue.`
+        `지원하지 않는 프레임워크: "${explicitFramework}". react 또는 vue를 사용하세요.`
       );
     }
     return explicitFramework;
@@ -40,20 +36,21 @@ export async function detectFramework(
     packageJsonContent = await readFile(packageJsonPath, 'utf-8');
   } catch {
     throw new FrameworkDetectionError(
-      `No se encontró package.json en ${projectCwd}. ¿Estás en la raíz del proyecto?`
+      `${projectCwd}에서 package.json을 찾을 수 없습니다. 프로젝트 루트에서 실행하고 있나요?`
     );
   }
 
-  let packageJson: { dependencies?: Record<string, string>; devDependencies?: Record<string, string> };
+  let packageJson: { dependencies?: Record<string, string>; devDependencies?: Record<string, string>; peerDependencies?: Record<string, string> };
   try {
     packageJson = JSON.parse(packageJsonContent);
   } catch {
-    throw new FrameworkDetectionError(`package.json no es JSON válido en ${projectCwd}.`);
+    throw new FrameworkDetectionError(`${projectCwd}의 package.json이 유효한 JSON이 아닙니다.`);
   }
 
   const allDependencies = {
     ...packageJson.dependencies,
     ...packageJson.devDependencies,
+    ...packageJson.peerDependencies,
   };
 
   const hasReact = 'react' in allDependencies;
@@ -61,13 +58,13 @@ export async function detectFramework(
 
   if (hasReact && hasVue) {
     throw new FrameworkDetectionError(
-      'Se detectaron tanto react como vue. Usa --framework react o --framework vue para especificar.'
+      'react와 vue가 모두 감지되었습니다. --framework react 또는 --framework vue로 명시해 주세요.'
     );
   }
 
   if (!hasReact && !hasVue) {
     throw new FrameworkDetectionError(
-      'No se detectó react ni vue en package.json. Usa --framework react o --framework vue.'
+      'package.json에서 react 또는 vue를 찾을 수 없습니다. --framework react 또는 --framework vue를 사용하세요.'
     );
   }
 

@@ -1,28 +1,28 @@
 /**
- * Prebuild script: escanea los directorios de componentes React y Vue,
- * genera src/components.json con la lista de archivos por componente.
+ * Prebuild 스크립트: React 및 Vue 컴포넌트 디렉토리를 스캔하여
+ * 컴포넌트별 파일 목록을 담은 src/components.json을 생성한다.
  *
- * Ejecución: tsx src/scripts/generate-manifest.ts
- * (Se invoca automáticamente en el paso "prebuild" antes de tsup)
+ * 실행: tsx src/scripts/generate-manifest.ts
+ * (tsup 실행 전 "prebuild" 단계에서 자동으로 호출된다)
  */
 
-import { readdir, writeFile } from 'fs/promises';
+import { readdir, readFile, writeFile } from 'fs/promises';
 import path from 'path';
 
 import type { SharedFileDep } from '../lib/manifest';
 
-// __dirname = apps/cli/src/scripts — subimos 4 niveles para llegar a la raíz del monorepo
+// __dirname = apps/cli/src/scripts — 모노레포 루트까지 4단계 상위로 이동
 const MONOREPO_ROOT = path.resolve(__dirname, '../../../..');
 const REACT_COMPONENTS_DIR = path.join(MONOREPO_ROOT, 'packages/react/src/components');
 const VUE_COMPONENTS_DIR = path.join(MONOREPO_ROOT, 'packages/vue/src/components');
-// El manifiesto se escribe en apps/cli/src/components.json
+// 매니페스트는 apps/cli/src/components.json에 저장된다
 const MANIFEST_OUTPUT = path.join(__dirname, '../components.json');
 
-const MANIFEST_VERSION = '0.1.0';
+const CLI_PACKAGE_JSON = path.join(__dirname, '../../package.json');
 
 /**
- * Dependencias por componente — hardcoded porque no se pueden inferir del fuente.
- * Si se añade un componente nuevo, añadir aquí su entrada.
+ * 컴포넌트별 의존성 — 소스에서 추론할 수 없어 하드코딩한다.
+ * 새 컴포넌트를 추가할 때 이 항목에도 추가해야 한다.
  */
 const DEPS_MAP: Record<string, string[]> = {
   button: ['clsx'],
@@ -109,8 +109,8 @@ const SHARED_DEPS_MAP: Record<string, { react?: SharedFileDep[]; vue?: SharedFil
 };
 
 /**
- * Archivos que se excluyen siempre de la copia:
- * - *.test.ts / *.test.tsx: archivos de test
+ * 복사에서 항상 제외되는 파일:
+ * - *.test.ts / *.test.tsx: 테스트 파일
  * Note: index.ts / index.tsx are now included because React directory imports
  * (e.g. `import { Button } from '../Button'`) resolve through the component's index.ts re-export.
  * Consumer projects need this file to resolve such imports.
@@ -130,7 +130,7 @@ async function scanComponentDirectory(componentsDir: string): Promise<Record<str
       .filter((entry) => entry.isDirectory())
       .map((entry) => entry.name);
   } catch (error) {
-    console.error(`Error leyendo directorio de componentes: ${componentsDir}`, error);
+    console.error(`컴포넌트 디렉토리 읽기 오류: ${componentsDir}`, error);
     return result;
   }
 
@@ -153,12 +153,19 @@ async function scanComponentDirectory(componentsDir: string): Promise<Record<str
 }
 
 async function main(): Promise<void> {
-  console.log('Generando components.json...');
+  console.log('components.json 생성 중...');
+
+  const pkgRaw = await readFile(CLI_PACKAGE_JSON, 'utf-8');
+  const pkg = JSON.parse(pkgRaw) as { version?: string };
+  if (typeof pkg.version !== 'string' || pkg.version.length === 0) {
+    throw new Error('apps/cli/package.json is missing a valid "version" field');
+  }
+  const manifestVersion = pkg.version;
 
   const reactFiles = await scanComponentDirectory(REACT_COMPONENTS_DIR);
   const vueFiles = await scanComponentDirectory(VUE_COMPONENTS_DIR);
 
-  // Unión de todos los componentes detectados (en ambos frameworks)
+  // 두 프레임워크에서 감지된 모든 컴포넌트 합집합
   const allComponentKeys = new Set([...Object.keys(reactFiles), ...Object.keys(vueFiles)]);
 
   const components: Record<
@@ -188,11 +195,13 @@ async function main(): Promise<void> {
   }
 
   const manifest = {
-    version: MANIFEST_VERSION,
+    version: manifestVersion,
     components,
     tokens: {
       src: 'packages/tokens/dist/css/variables.css',
       dest: 'src/styles/tokens.css',
+      srcScss: 'packages/tokens/dist/scss/_tokens.scss',
+      destScss: 'src/styles/_tokens.scss',
     },
   };
 
@@ -200,11 +209,11 @@ async function main(): Promise<void> {
   await writeFile(MANIFEST_OUTPUT, manifestJson, 'utf-8');
 
   const componentCount = Object.keys(components).length;
-  console.log(`components.json generado con ${componentCount} componentes.`);
-  console.log(`Ruta: ${MANIFEST_OUTPUT}`);
+  console.log(`components.json 생성 완료: ${componentCount}개 컴포넌트.`);
+  console.log(`출력 경로: ${MANIFEST_OUTPUT}`);
 }
 
 main().catch((error) => {
-  console.error('Error al generar el manifiesto:', error);
+  console.error('매니페스트 생성 오류:', error);
   process.exit(1);
 });

@@ -6,8 +6,8 @@ import { existsSync } from 'fs';
 import { createAddCommand } from './commands/add';
 import { createListCommand } from './commands/list';
 
-// En el bundle CJS de tsup, __dirname apunta a dist/.
-// components.json se copia al directorio dist/ durante el build.
+// tsup CJS 번들에서 __dirname은 dist/를 가리킨다.
+// components.json은 빌드 시 dist/ 디렉토리로 복사된다.
 const MANIFEST_DIR = __dirname;
 
 // When published to npm, component source files are bundled under dist/assets/
@@ -26,7 +26,7 @@ const program = new Command();
 program
   .name('beusable')
   .description(packageJson.description)
-  .version(packageJson.version, '-v, --version', 'Muestra la versión del CLI');
+  .version(packageJson.version, '-v, --version', '버전을 출력합니다');
 
 program.addCommand(createAddCommand(MANIFEST_DIR, MONOREPO_ROOT));
 program.addCommand(createListCommand(MANIFEST_DIR));

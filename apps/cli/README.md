@@ -49,8 +49,14 @@ cd apps/cli && pnpm link --global
 # CSS 토큰 먼저 설치 (권장)
 beusable add tokens
 
+# SCSS 토큰으로 설치 (_tokens.scss)
+beusable add tokens --scss
+
 # 컴포넌트 추가 — 프레임워크 자동 감지
 beusable add button
+
+# SCSS 모드: .module.css → .module.scss로 복사
+beusable add button --scss
 
 # 프레임워크 직접 지정
 beusable add button --framework vue
@@ -78,18 +84,61 @@ beusable list
 | `--framework <react\|vue>` | 자동 감지 | 프레임워크를 명시적으로 지정 |
 | `--output-dir <dir>` | `src/components` | 파일을 복사할 출력 디렉토리 |
 | `--overwrite` | false | 이미 파일이 존재하면 덮어쓴다 |
+| `--scss` | false | 토큰을 SCSS로, CSS Module을 `.module.scss`로 복사 |
+
+`--scss` 플래그를 사용하면 복사된 컴포넌트 파일 내부의 import 경로도 자동으로 `.module.scss`로 재작성된다.
 
 ### `beusable add tokens`
 
-CSS 변수 파일을 `src/styles/tokens.css`로 복사한다. 컴포넌트를 설치하기 전에 먼저 실행하는 것을 권장한다. 복사 후 CSS 진입점 파일에 다음 import를 추가한다.
+CSS 변수 파일을 `src/styles/tokens.css`로 복사한다. 컴포넌트를 설치하기 전에 먼저 실행하는 것을 권장한다.
 
-```css
-@import "./tokens.css";
+```bash
+# CSS 방식 (기본)
+beusable add tokens
+# → src/styles/tokens.css 생성, 진입점에 @import "./tokens.css"; 추가
+
+# SCSS 방식
+beusable add tokens --scss
+# → src/styles/_tokens.scss 생성, 진입점에 @use "./tokens" as *; 추가
 ```
 
 ### `beusable list`
 
 설치 가능한 컴포넌트 전체 목록을 출력한다.
+
+---
+
+## Be 네이밍 컨벤션
+
+설치된 컴포넌트는 **`Be` 접두사**를 붙인 이름으로 복사된다.
+
+```
+src/components/
+└── BeButton/
+    ├── BeButton.tsx          ← export const BeButton = ...
+    ├── BeButton.module.css
+    └── index.ts              ← export { BeButton } from './BeButton'
+```
+
+사용 예시:
+
+```tsx
+import { BeButton } from './components/BeButton';
+
+<BeButton variant="primary">확인</BeButton>
+```
+
+Tabs처럼 여러 컴포넌트가 하나의 디렉토리에 있는 경우도 동일하게 적용된다.
+
+```
+src/components/
+└── BeTabs/
+    ├── BeSegmentControl.tsx
+    ├── BeTabBar.tsx
+    ├── BeTabPill.tsx
+    ├── BeTabCard.tsx
+    └── index.ts              ← export { BeSegmentControl, BeTabBar, ... }
+```
 
 ---
 
@@ -134,7 +183,7 @@ CLI는 복사 완료 후 필요한 패키지를 자동으로 안내한다.
 
 ## 프레임워크 자동 감지
 
-대상 프로젝트의 `package.json`에서 `dependencies`와 `devDependencies`를 확인한다.
+대상 프로젝트의 `package.json`에서 `dependencies`, `devDependencies`, `peerDependencies`를 모두 확인한다.
 
 | 상황 | 동작 |
 |------|------|
@@ -152,10 +201,11 @@ CLI는 복사 완료 후 필요한 패키지를 자동으로 안내한다.
 beusable add button --overwrite
 ```
 
+`--overwrite`는 명령줄에 직접 지정한 컴포넌트 파일만 덮어쓴다. 전이 의존성(예: `datepicker`가 의존하는 `BeButton`, `BeCheckbox`)과 shared 파일은 이미 존재하면 항상 건너뛴다. 커스터마이징한 의존 파일을 보호하기 위한 동작이다.
+
 ---
 
 ## 참고
 
-- 복사된 파일 상단에 원본 버전 주석이 기록된다. 향후 업데이트 여부를 비교할 때 참고할 수 있다.
 - `beusable update` 명령어는 v1에서 지원하지 않는다. 복사 이후의 파일은 팀이 직접 관리한다.
 - `beusable list`가 동작하려면 빌드 후 `dist/components.json`이 생성되어 있어야 한다. 빌드를 먼저 실행한다.

@@ -21,7 +21,7 @@ export class FileConflictError extends Error {
 
   constructor(conflictingFiles: string[]) {
     super(
-      `Los siguientes archivos ya existen:\n${conflictingFiles.map((f) => `  ${f}`).join('\n')}\nUsa --overwrite para reemplazarlos.`
+      `다음 파일이 이미 존재합니다:\n${conflictingFiles.map((f) => `  ${f}`).join('\n')}\n--overwrite 옵션을 사용하면 덮어쓸 수 있습니다.`
     );
     this.name = 'FileConflictError';
     this.conflictingFiles = conflictingFiles;
@@ -30,21 +30,21 @@ export class FileConflictError extends Error {
 
 export class SourceFileNotFoundError extends Error {
   constructor(sourcePath: string) {
-    super(`Archivo fuente no encontrado: ${sourcePath}`);
+    super(`소스 파일을 찾을 수 없습니다: ${sourcePath}`);
     this.name = 'SourceFileNotFoundError';
   }
 }
 
 /**
- * Valida y resuelve el directorio de salida.
- * BR-01: Bloquea path traversal comprobando que el resultado esté dentro del cwd.
+ * 출력 디렉토리를 검증하고 절대 경로로 반환한다.
+ * BR-01: 결과 경로가 cwd 내부에 있는지 확인하여 경로 탈출을 차단한다.
  */
 export function validateOutputDir(cwd: string, outputDir: string): string {
   const resolvedOutput = path.resolve(cwd, outputDir);
 
   if (!resolvedOutput.startsWith(cwd + path.sep) && resolvedOutput !== cwd) {
     throw new PathTraversalError(
-      `Ruta de salida fuera del proyecto: "${outputDir}". No se permite path traversal.`
+      `프로젝트 외부 출력 경로: "${outputDir}". 경로 탈출은 허용되지 않습니다.`
     );
   }
 
@@ -52,13 +52,13 @@ export function validateOutputDir(cwd: string, outputDir: string): string {
 }
 
 /**
- * Valida el nombre del componente contra la allowlist.
- * BR-02: Rechaza nombres con path traversal o caracteres peligrosos.
+ * 컴포넌트 이름을 allowlist에 대해 검증한다.
+ * BR-02: 경로 탈출이나 위험한 문자가 포함된 이름을 거부한다.
  */
 export function validateComponentName(componentName: string, allowlist: string[]): void {
   if (!componentName || componentName.includes('/') || componentName.includes('..')) {
     throw new ComponentNameError(
-      `Nombre de componente inválido: "${componentName}". No se permiten slashes ni path traversal.`
+      `유효하지 않은 컴포넌트 이름: "${componentName}". 슬래시 및 경로 탈출은 허용되지 않습니다.`
     );
   }
 
@@ -68,17 +68,17 @@ export function validateComponentName(componentName: string, allowlist: string[]
 
   if (!allowlist.includes(componentName.toLowerCase())) {
     throw new ComponentNameError(
-      `Componente desconocido: "${componentName}". Usa "beusable list" para ver los componentes disponibles.`
+      `알 수 없는 컴포넌트: "${componentName}". "beusable list" 명령으로 사용 가능한 컴포넌트를 확인하세요.`
     );
   }
 }
 
 export interface FileCopyOperation {
-  /** Ruta absoluta del archivo fuente — siempre calculada desde __dirname, nunca del input del usuario (BR-03) */
+  /** 소스 파일의 절대 경로 — 항상 __dirname 기준으로 계산, 사용자 입력 금지 (BR-03) */
   absoluteSourcePath: string;
-  /** Ruta relativa de destino (se mostrará al usuario) */
+  /** 목적지 상대 경로 (사용자에게 표시됨) */
   relativeDestPath: string;
-  /** Si true, se omite la copia si el destino ya existe (usado para shared deps). */
+  /** true이면 목적지가 이미 존재할 때 복사를 건너뜀 (shared deps에 사용). */
   skipIfExists?: boolean;
 }
 
@@ -87,16 +87,31 @@ export interface CopyFilesOptions {
   resolvedOutputDir: string;
   /** Project root used to confine all destination paths. Defaults to process.cwd(). */
   projectRoot?: string;
+  /** Monorepo root used to confine all source paths. When provided, every absoluteSourcePath must resolve within this directory. */
+  monorepoRoot?: string;
+}
+
+export interface BackupEntry {
+  /** Absolute path of the newly installed file. */
+  destPath: string;
+  /** Absolute path of the .bak backup of the original file. */
+  bakPath: string;
 }
 
 export interface CopyResult {
   copiedFiles: string[];
+  /**
+   * Backup entries created during --overwrite. The caller must either:
+   * - delete these after post-processing succeeds (happy path), or
+   * - rename them back to destPath if post-processing fails (recovery).
+   */
+  backups: BackupEntry[];
 }
 
 /**
- * Copia archivos de fuente a destino con rollback en caso de error.
- * BR-05: Crea el directorio de destino si no existe.
- * BR-06: Verifica existencia de fuente antes de copiar; hace rollback si falla.
+ * 소스에서 목적지로 파일을 복사하며 오류 시 롤백한다.
+ * BR-05: 목적지 디렉토리가 없으면 생성한다.
+ * BR-06: 복사 전 소스 파일 존재를 확인하고; 실패 시 롤백한다.
  */
 export async function copyFiles(
   operations: FileCopyOperation[],
@@ -105,6 +120,19 @@ export async function copyFiles(
   const { overwrite, resolvedOutputDir } = options;
   const projectRoot = options.projectRoot ?? process.cwd();
 
+  // Confine every source path to the monorepo root when provided (C-2).
+  if (options.monorepoRoot !== undefined) {
+    const realMonorepoRoot = await fsRealpath(options.monorepoRoot);
+    for (const operation of operations) {
+      const realSrc = await fsRealpath(operation.absoluteSourcePath).catch(() => operation.absoluteSourcePath);
+      if (!realSrc.startsWith(realMonorepoRoot + path.sep) && realSrc !== realMonorepoRoot) {
+        throw new PathTraversalError(
+          `소스 경로가 모노레포 루트를 벗어났습니다: "${operation.absoluteSourcePath}"`
+        );
+      }
+    }
+  }
+
   // Confine every destination to the project root before any I/O.
   // Shared deps legitimately use '..' to target sibling directories (e.g. src/hooks/),
   // but all paths must still resolve within the consumer project.
@@ -112,20 +140,20 @@ export async function copyFiles(
     const absoluteDest = path.resolve(resolvedOutputDir, operation.relativeDestPath);
     if (!absoluteDest.startsWith(projectRoot + path.sep) && absoluteDest !== projectRoot) {
       throw new PathTraversalError(
-        `Destination path escapes project root: "${operation.relativeDestPath}"`
+        `목적지 경로가 프로젝트 루트를 벗어났습니다: "${operation.relativeDestPath}"`
       );
     }
   }
 
-  // BR-05: crear directorio si no existe
+  // BR-05: 디렉토리가 없으면 생성
   await mkdir(resolvedOutputDir, { recursive: true });
 
-  // Resolve real paths after mkdir so symlinks in the path are detected (BR-01/BR-03).
+  // mkdir 후 realpath로 symlink를 해소하여 재검증 (BR-01/BR-03).
   const realProjectRoot = await fsRealpath(projectRoot);
   await assertWithinProjectRoot(resolvedOutputDir, realProjectRoot);
 
-  // Comprobar conflictos si no se sobreescribe (BR-04)
-  // Operaciones con skipIfExists se ignoran en el conflicto check.
+  // 충돌 감지 (BR-04) — --overwrite 없을 때만 실행
+  // skipIfExists인 operation은 충돌 체크에서 제외.
   if (!overwrite) {
     const conflictingFiles: string[] = [];
     for (const operation of operations) {
@@ -141,14 +169,14 @@ export async function copyFiles(
     }
   }
 
-  // Verificar que todos los archivos fuente existen antes de copiar nada (BR-06)
+  // 복사 전 모든 소스 파일 존재 확인 (BR-06)
   for (const operation of operations) {
     if (!await fileExists(operation.absoluteSourcePath)) {
       throw new SourceFileNotFoundError(operation.absoluteSourcePath);
     }
   }
 
-  // Copiar con rollback en caso de error (BR-06)
+  // 복사 실행 — 오류 시 롤백 포함 (BR-06)
   const copiedFiles: string[] = [];
 
   if (overwrite) {
@@ -261,15 +289,14 @@ export async function copyFiles(
       throw commitError;
     }
 
-    // ── Phase 3: Cleanup ─────────────────────────────────────────────────────
-    for (const { bakPath } of committed) {
-      if (bakPath === null) continue;
-      try {
-        await unlink(bakPath);
-      } catch (err) {
-        console.warn(`⚠ Could not remove backup ${bakPath}: ${err instanceof Error ? err.message : err}`);
-      }
-    }
+    // ── Phase 3: Collect backups (cleanup deferred to caller) ────────────────
+    // The caller must delete these after successful post-processing, or restore
+    // them (rename bakPath → destPath) if post-processing fails.
+    const backups: BackupEntry[] = committed
+      .filter(c => c.bakPath !== null)
+      .map(c => ({ destPath: c.destPath, bakPath: c.bakPath! }));
+
+    return { copiedFiles, backups };
   } else {
     try {
       for (const operation of operations) {
@@ -287,7 +314,7 @@ export async function copyFiles(
     }
   }
 
-  return { copiedFiles };
+  return { copiedFiles, backups: [] };
 }
 
 async function fileExists(filePath: string): Promise<boolean> {
@@ -303,7 +330,7 @@ async function assertWithinProjectRoot(absPath: string, realProjectRoot: string)
   const real = await fsRealpath(absPath);
   if (!real.startsWith(realProjectRoot + path.sep) && real !== realProjectRoot) {
     throw new PathTraversalError(
-      `Path escapes project root via symlink: "${absPath}"`
+      `심볼릭 링크로 프로젝트 루트를 벗어나는 경로: "${absPath}"`
     );
   }
 }
@@ -318,7 +345,7 @@ async function rollbackCopiedFiles(
       await unlink(fullPath);
     } catch (err) {
       // Rollback best-effort: log but do not re-throw (would mask the original error)
-      console.warn(`⚠ Could not clean up ${fullPath}: ${err instanceof Error ? err.message : err}`);
+      console.warn(`⚠ 롤백 중 파일 삭제 실패 ${fullPath}: ${err instanceof Error ? err.message : err}`);
     }
   }
 }
