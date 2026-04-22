@@ -7,8 +7,8 @@ Figma 기반의 멀티 프레임워크 디자인 시스템. React 18과 Vue 3을
 | Package | Description | Status |
 |---------|-------------|--------|
 | [`@beusable-dev/tokens`](./packages/tokens) | Style Dictionary v4 기반 CSS/SCSS/JS 토큰 | ✅ |
-| [`@beusable-dev/react`](./packages/react) | React 18 컴포넌트 라이브러리 (13개) | ✅ |
-| [`@beusable-dev/vue`](./packages/vue) | Vue 3 컴포넌트 라이브러리 (13개) | ✅ |
+| [`@beusable-dev/react`](./packages/react) | React 18 컴포넌트 라이브러리 (14개) | ✅ |
+| [`@beusable-dev/vue`](./packages/vue) | Vue 3 컴포넌트 라이브러리 (14개) | ✅ |
 | `@beusable-dev/storybook` | Storybook 8 문서/플레이그라운드 | ✅ React / 🔲 Vue |
 | [`@beusable-dev/cli`](./apps/cli) | shadcn 스타일 컴포넌트 소스 복사 CLI | ✅ |
 
@@ -177,9 +177,9 @@ beusable-design-system/
 
 ## Components
 
-13개 컴포넌트 그룹이 React와 Vue 모두 지원됩니다:
+14개 컴포넌트 그룹이 React와 Vue 모두 지원됩니다:
 
-Button · TextField · Dropdown · Toast · Checkbox · Radio · Toggle · Snackbar · Tooltip · Modal · Table · Slider · Tabs family (SegmentControl · TabBar · TabPill · TabCard)
+Button · TextField · Dropdown · Toast · Checkbox · Radio · Toggle · Snackbar · Tooltip · Modal · Table · Slider · Tabs family (SegmentControl · TabBar · TabPill · TabCard) · DatePicker
 
 ## Tech Stack
 
