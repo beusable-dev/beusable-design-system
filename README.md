@@ -96,9 +96,9 @@ npm install -g @beusable-dev/cli
 beusable add button
 ```
 
-> **CLI 릴리스**: `v*` 태그를 푸시하면 `.github/workflows/cli-publish.yml`이 자동으로 GitHub Packages에 배포합니다.
+> **CLI 릴리스**: `cli-v*` 태그를 푸시하면 `.github/workflows/cli-publish.yml`이 자동으로 GitHub Packages에 배포합니다.
 > ```bash
-> git tag v0.x.y && git push origin v0.x.y
+> git tag cli-v0.x.y && git push origin cli-v0.x.y
 > ```
 
 > **패키지 릴리스**: `react-v*`, `vue-v*`, `tokens-v*` 태그를 푸시하면 `.github/workflows/packages-publish.yml`이 해당 패키지 하나만 자동 배포합니다.
