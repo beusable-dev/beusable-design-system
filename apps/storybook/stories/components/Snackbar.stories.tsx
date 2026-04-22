@@ -3,9 +3,10 @@ import { BeSnackbar } from '@beusable-dev/react';
 
 const meta = {
   title: 'Components/Snackbar',
+  component: BeSnackbar,
   parameters: { layout: 'padded' },
   tags: ['autodocs'],
-} satisfies Meta;
+} satisfies Meta<typeof BeSnackbar>;
 
 export default meta;
 type Story = StoryObj;

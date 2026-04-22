@@ -7,7 +7,7 @@ const meta = {
   component: BeToggle,
   parameters: { layout: 'padded' },
   tags: ['autodocs'],
-} satisfies Meta<typeof Toggle>;
+} satisfies Meta<typeof BeToggle>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;

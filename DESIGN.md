@@ -19,9 +19,9 @@ Use this design system when building UI for the Beusable product family.
 
 This repo provides:
 
-- shared tokens via `@beusable/tokens`
-- React 18 components via `@beusable/react`
-- Vue 3 components via `@beusable/vue`
+- shared tokens via `@beusable-dev/tokens`
+- React 18 components via `@beusable-dev/react`
+- Vue 3 components via `@beusable-dev/vue`
 - Storybook docs via `apps/storybook`
 
 Current exported React/Vue surface includes:
@@ -59,14 +59,14 @@ Components depend on token CSS variables.
 Import once at app entry:
 
 ```ts
-import '@beusable/tokens/css';
+import '@beusable-dev/tokens/css';
 ```
 
 Optional token outputs:
 
-- CSS variables: `@beusable/tokens/css`
-- SCSS: `@beusable/tokens/scss`
-- JS/TS exports: `@beusable/tokens/js`
+- CSS variables: `@beusable-dev/tokens/css`
+- SCSS: `@beusable-dev/tokens/scss`
+- JS/TS exports: `@beusable-dev/tokens/js`
 
 ## 4. Color System
 
@@ -616,8 +616,8 @@ When unsure, keep density moderate and align with existing form, modal, and tabl
 
 Use these working assumptions when implementing UI in this repo:
 
-- "Use existing `@beusable/react` or `@beusable/vue` components first."
-- "Import `@beusable/tokens/css` and follow Beusable token colors and typography."
+- "Use existing `@beusable-dev/react` or `@beusable-dev/vue` components first."
+- "Import `@beusable-dev/tokens/css` and follow Beusable token colors and typography."
 - "Default to `Pretendard Variable`."
 - "Use `#EC0047` as the primary brand color and `#2F2F2F` as the primary dark neutral."
 - "Do not invent new component variants, spacing scales, or accent colors."

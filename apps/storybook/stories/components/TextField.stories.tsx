@@ -2,7 +2,7 @@ import { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { BeTextField } from '@beusable-dev/react';
 
-const meta: Meta<typeof TextField> = {
+const meta = {
   title: 'Components/TextField',
   component: BeTextField,
   tags: ['autodocs'],
@@ -41,9 +41,9 @@ const meta: Meta<typeof TextField> = {
     onClear:      { description: '초기화 버튼 클릭 콜백', control: false },
     onTimerEnd:   { description: '타이머 종료 콜백', control: false },
   },
-};
+} satisfies Meta<typeof BeTextField>;
 export default meta;
-type Story = StoryObj<typeof TextField>;
+type Story = StoryObj<typeof meta>;
 
 // ── Playground ────────────────────────────────────
 export const Playground: Story = {

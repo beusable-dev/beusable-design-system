@@ -28,10 +28,10 @@ const meta = {
     step: 1,
     defaultValue: 50,
   },
-} satisfies Meta<typeof Slider>;
+} satisfies Meta<typeof BeSlider>;
 
 export default meta;
-type Story = StoryObj<typeof Slider>;
+type Story = StoryObj<typeof meta>;
 
 // ─── Variants ─────────────────────────────────────────────────────────────────
 

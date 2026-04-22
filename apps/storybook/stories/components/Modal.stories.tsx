@@ -13,9 +13,10 @@ import { BeButton, BeRadio, BeCheckbox, BeDropdown, BeTextField } from '@beusabl
 
 const meta = {
   title: 'Components/Modal',
+  component: BeModal,
   parameters: { layout: 'fullscreen' },
   tags: ['autodocs'],
-} satisfies Meta;
+} satisfies Meta<typeof BeModal>;
 
 export default meta;
 type Story = StoryObj;

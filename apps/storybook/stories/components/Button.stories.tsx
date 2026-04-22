@@ -19,7 +19,7 @@ const iconMap: Record<string, React.ReactNode> = {
   arrow: <ArrowIcon />,
 };
 
-const meta: Meta<typeof Button> = {
+const meta = {
   title: 'Components/Button',
   component: BeButton,
   tags: ['autodocs'],
@@ -81,10 +81,10 @@ const meta: Meta<typeof Button> = {
       table: { defaultValue: { summary: 'none' } },
     },
   },
-};
+} satisfies Meta<typeof BeButton>;
 export default meta;
 
-type Story = StoryObj<typeof Button>;
+type Story = StoryObj<typeof meta>;
 
 // ── Playground ────────────────────────────────────
 export const Playground: Story = {

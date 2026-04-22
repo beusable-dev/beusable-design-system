@@ -4,9 +4,10 @@ import { BeTooltip } from '@beusable-dev/react';
 
 const meta = {
   title: 'Components/Tooltip',
+  component: BeTooltip,
   parameters: { layout: 'padded' },
   tags: ['autodocs'],
-} satisfies Meta;
+} satisfies Meta<typeof BeTooltip>;
 
 export default meta;
 type Story = StoryObj;

@@ -2,17 +2,17 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
 import { BeTable, type TableColumn, type SortOrder } from '@beusable-dev/react';
 
-const meta: Meta<typeof Table> = {
+const meta = {
   title: 'Components/Table',
   component: BeTable,
   tags: ['autodocs'],
   parameters: {
     layout: 'padded',
   },
-};
+} satisfies Meta<typeof BeTable>;
 
 export default meta;
-type Story = StoryObj<typeof Table>;
+type Story = StoryObj;
 
 function LinkPopupIcon() {
   return (

@@ -1,42 +1,42 @@
-# @beusable/react
+# @beusable-dev/react
 
 React 18 component library for the Beusable Design System.
 
 ## Installation
 
 ```bash
-npm install @beusable/react @beusable/tokens
+npm install @beusable-dev/react @beusable-dev/tokens
 # or
-pnpm add @beusable/react @beusable/tokens
+pnpm add @beusable-dev/react @beusable-dev/tokens
 ```
 
-> **`@beusable/tokens` is required.** Components use CSS variables defined by the tokens package.
+> **`@beusable-dev/tokens` is required.** Components use CSS variables defined by the tokens package.
 
 ## Setup
 
 Import the token CSS variables once at your app entry point:
 
 ```ts
-import '@beusable/tokens/css';
+import '@beusable-dev/tokens/css';
 ```
 
 ## Usage
 
 ```tsx
-import { Button, TextField, Dropdown } from '@beusable/react';
-import '@beusable/tokens/css';
+import { BeButton, BeTextField, BeDropdown } from '@beusable-dev/react';
+import '@beusable-dev/tokens/css';
 
 // Button
-<Button variant="primary" size="m">저장</Button>
-<Button variant="action-surface" loading>처리 중</Button>
+<BeButton variant="primary" size="m">저장</BeButton>
+<BeButton variant="action-surface" loading>처리 중</BeButton>
 
 // TextField
-<TextField label="이메일" placeholder="example@beusable.com" />
-<TextField label="비밀번호" type="password" />
-<TextField label="내용" multiline rows={4} maxLength={100} showCount />
+<BeTextField label="이메일" placeholder="example@beusable.com" />
+<BeTextField label="비밀번호" type="password" />
+<BeTextField label="내용" multiline rows={4} maxLength={100} showCount />
 
 // Dropdown
-<Dropdown
+<BeDropdown
   label="카테고리"
   options={[{ value: 'a', label: '옵션 A' }]}
   placeholder="선택하세요"
@@ -47,19 +47,19 @@ import '@beusable/tokens/css';
 
 | Component | Description |
 |-----------|-------------|
-| `Button` | 12 variants, 4 sizes, loading/disabled support |
-| `TextField` | Input/textarea, password, timer, clearable |
-| `Dropdown` | Single/multiple select, searchable |
-| `Checkbox` | 3 sizes, 3 colors, indeterminate support |
-| `Radio` | 3 sizes, 3 colors |
-| `Toggle` | 3 sizes, showText option |
-| `Toast` | 3 types (a1/a2/b), 3 status variants |
-| `Snackbar` | 3 variants, 2 sizes, action/close buttons |
-| `Tooltip` | 8 arrow directions, link/action/close |
-| `Modal` | Sub-components: Header, Body, Footer, Popup |
-| `Table` | Sorting, selection, sticky columns |
-| `Slider` | Extended/simplified variants |
-| `Tabs` | TabBar, TabPill, TabCard, SegmentControl |
+| `BeButton` | 13 variants, 4 sizes, loading/disabled support |
+| `BeTextField` | Input/textarea, password, timer, clearable |
+| `BeDropdown` | Single/multiple select, searchable |
+| `BeCheckbox` | 3 sizes, 3 colors, indeterminate support |
+| `BeRadio` | 3 sizes, 3 colors |
+| `BeToggle` | 3 sizes, showText option |
+| `BeToast` | 3 types (a1/a2/b), 3 status variants |
+| `BeSnackbar` | 3 variants, 2 sizes, action/close buttons |
+| `BeTooltip` | 8 arrow directions, link/action/close |
+| `BeModal` | Sub-components: Header, Body, Footer, Popup |
+| `BeTable` | Sorting, selection, sticky columns |
+| `BeSlider` | Extended/simplified variants |
+| `BeTabs family` | BeTabBar, BeTabPill, BeTabCard, BeSegmentControl |
 
 ## Peer Dependencies
 
@@ -72,14 +72,14 @@ import '@beusable/tokens/css';
 
 ## Token Integration
 
-Components use CSS custom properties from `@beusable/tokens`. Consumers **must** import the token stylesheet:
+Components use CSS custom properties from `@beusable-dev/tokens`. Consumers **must** import the token stylesheet:
 
 ```ts
 // CSS Variables (recommended)
-import '@beusable/tokens/css';
+import '@beusable-dev/tokens/css';
 
 // SCSS
-@use '@beusable/tokens/scss' as *;
+@use '@beusable-dev/tokens/scss' as *;
 ```
 
 ## Hooks (Public API)

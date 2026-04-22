@@ -32,15 +32,15 @@ This policy covers the following packages in this monorepo:
 
 | Package | Scope |
 |---------|-------|
-| `@beusable/react` | In scope |
-| `@beusable/vue` | In scope |
-| `@beusable/tokens` | In scope |
+| `@beusable-dev/react` | In scope |
+| `@beusable-dev/vue` | In scope |
+| `@beusable-dev/tokens` | In scope |
 
 ## Security Considerations for Consumers
 
 - **`Tooltip` `linkHref`**: The component sanitizes `href` values to block `javascript:` and other unsafe protocols. Do not bypass this by passing pre-constructed `href` strings from untrusted sources.
 - **`Table` `column.render`**: The `render` callback receives raw data. Sanitize external data before rendering HTML-like content inside `render`.
-- **Tokens import**: Always import `@beusable/tokens/css` to load CSS variables. Do not inline token values into user-generated content.
+- **Tokens import**: Always import `@beusable-dev/tokens/css` to load CSS variables. Do not inline token values into user-generated content.
 
 ## Compliance
 

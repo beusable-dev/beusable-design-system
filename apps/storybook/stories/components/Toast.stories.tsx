@@ -26,7 +26,7 @@ const meta = {
     message: 'Toast message',
     status: 'normal',
   },
-} satisfies Meta<typeof Toast>;
+} satisfies Meta<typeof BeToast>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;

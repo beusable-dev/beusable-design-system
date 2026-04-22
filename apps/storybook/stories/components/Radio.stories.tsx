@@ -7,7 +7,7 @@ const meta = {
   component: BeRadio,
   parameters: { layout: 'padded' },
   tags: ['autodocs'],
-} satisfies Meta<typeof Radio>;
+} satisfies Meta<typeof BeRadio>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;

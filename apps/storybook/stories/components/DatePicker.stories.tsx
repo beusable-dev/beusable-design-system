@@ -1,15 +1,15 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { useState, type CSSProperties } from 'react';
 import {
-  DatePicker,
+  BeDatePicker,
   type DatePickerProps,
   type DatePickerValue,
   type DateRangeValue,
-} from '../../../../packages/react/src/components/DatePicker';
+} from '@beusable-dev/react';
 
 const meta = {
   title: 'Components/DatePicker',
-  component: DatePicker,
+  component: BeDatePicker,
   parameters: {
     layout: 'fullscreen',
     docs: {
@@ -69,7 +69,7 @@ const meta = {
     startPlaceholder: 'Start Date',
     endPlaceholder: 'End Date',
   },
-} satisfies Meta<typeof DatePicker>;
+} satisfies Meta<typeof BeDatePicker>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
@@ -107,7 +107,7 @@ export const Playground: Story = {
 
     return (
       <div style={comparisonCanvasStyle}>
-        <DatePicker
+        <BeDatePicker
           {...args}
           value={value}
           onChange={(nextValue: DatePickerValue) => setValue(nextValue)}
@@ -122,7 +122,7 @@ export const SingleMode: Story = {
     const [value, setValue] = useState<DatePickerValue>(new Date(2025, 1, 15));
     return (
       <div style={{ maxWidth: 420, minHeight: 700, paddingTop: 16 }}>
-        <DatePicker
+        <BeDatePicker
           mode="single"
           label="Analysis Date"
           placeholder="Select date"
@@ -143,7 +143,7 @@ export const RangeMode: Story = {
 
     return (
       <div style={comparisonCanvasStyle}>
-        <DatePicker
+        <BeDatePicker
           mode="range"
           label="Analysis Period"
           value={value}
@@ -163,7 +163,7 @@ export const Constraints: Story = {
 
     return (
       <div style={comparisonCanvasStyle}>
-        <DatePicker
+        <BeDatePicker
           mode="range"
           label="Max 6 months"
           timezone="America/New_York"
@@ -183,14 +183,14 @@ export const Constraints: Story = {
 export const DisabledAndError: Story = {
   render: () => (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 16, maxWidth: 700, minHeight: 760, paddingTop: 16 }}>
-      <DatePicker
+      <BeDatePicker
         mode="single"
         label="Disabled"
         placeholder="Select date"
         defaultValue={new Date(2025, 1, 15)}
         disabled
       />
-      <DatePicker
+      <BeDatePicker
         mode="range"
         label="Error"
         startPlaceholder="Start Date"
@@ -215,7 +215,7 @@ export const SpecVariants: Story = {
 
         <strong>Default</strong>
         {variants.map((variant) => (
-          <DatePicker
+          <BeDatePicker
             key={`default-${variant}`}
             mode="range"
             variant={variant}
@@ -225,7 +225,7 @@ export const SpecVariants: Story = {
 
         <strong>Hover</strong>
         {variants.map((variant) => (
-          <DatePicker
+          <BeDatePicker
             key={`hover-${variant}`}
             mode="range"
             variant={variant}
@@ -236,7 +236,7 @@ export const SpecVariants: Story = {
 
         <strong>Place Holder</strong>
         {variants.map((variant) => (
-          <DatePicker
+          <BeDatePicker
             key={`placeholder-${variant}`}
             mode="range"
             variant={variant}
@@ -248,7 +248,7 @@ export const SpecVariants: Story = {
 
         <strong>Place Holder (Hover)</strong>
         {variants.map((variant) => (
-          <DatePicker
+          <BeDatePicker
             key={`placeholder-hover-${variant}`}
             mode="range"
             variant={variant}
@@ -261,7 +261,7 @@ export const SpecVariants: Story = {
 
         <strong>Disable</strong>
         {variants.map((variant) => (
-          <DatePicker
+          <BeDatePicker
             key={`disabled-${variant}`}
             mode="range"
             variant={variant}

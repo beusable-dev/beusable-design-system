@@ -7,7 +7,7 @@ const meta = {
   component: BeCheckbox,
   parameters: { layout: 'padded' },
   tags: ['autodocs'],
-} satisfies Meta<typeof Checkbox>;
+} satisfies Meta<typeof BeCheckbox>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;

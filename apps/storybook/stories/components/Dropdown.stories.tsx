@@ -51,7 +51,7 @@ const meta = {
     size: 'm',
     variant: 'border',
   },
-} satisfies Meta<typeof Dropdown>;
+} satisfies Meta<typeof BeDropdown>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
