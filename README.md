@@ -101,6 +101,13 @@ beusable add button
 > git tag v0.x.y && git push origin v0.x.y
 > ```
 
+> **패키지 릴리스**: `react-v*`, `vue-v*`, `tokens-v*` 태그를 푸시하면 `.github/workflows/packages-publish.yml`이 해당 패키지 하나만 자동 배포합니다.
+> ```bash
+> git tag react-v0.x.y && git push origin react-v0.x.y
+> git tag vue-v0.x.y && git push origin vue-v0.x.y
+> git tag tokens-v0.x.y && git push origin tokens-v0.x.y
+> ```
+
 ### 미배포(로컬) 버전
 
 ```bash

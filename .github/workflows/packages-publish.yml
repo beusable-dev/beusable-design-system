@@ -1,0 +1,88 @@
+name: Publish Packages to GitHub Packages
+
+on:
+  push:
+    tags:
+      - "react-v*"
+      - "vue-v*"
+      - "tokens-v*"
+
+permissions:
+  contents: read
+  packages: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: pnpm
+          registry-url: https://npm.pkg.github.com
+          scope: "@beusable-dev"
+
+      - name: Expose GitHub token for pnpm
+        run: echo "GITHUB_TOKEN=${{ secrets.GITHUB_TOKEN }}" >> "$GITHUB_ENV"
+
+      - name: Resolve release target
+        id: release
+        shell: bash
+        run: |
+          tag="${GITHUB_REF_NAME}"
+
+          case "$tag" in
+            react-v*)
+              package_name='@beusable-dev/react'
+              package_dir='packages/react'
+              package_version="${tag#react-v}"
+              ;;
+            vue-v*)
+              package_name='@beusable-dev/vue'
+              package_dir='packages/vue'
+              package_version="${tag#vue-v}"
+              ;;
+            tokens-v*)
+              package_name='@beusable-dev/tokens'
+              package_dir='packages/tokens'
+              package_version="${tag#tokens-v}"
+              ;;
+            *)
+              echo "Unsupported tag: $tag" >&2
+              exit 1
+              ;;
+          esac
+
+          echo "package_name=$package_name" >> "$GITHUB_OUTPUT"
+          echo "package_dir=$package_dir" >> "$GITHUB_OUTPUT"
+          echo "package_version=$package_version" >> "$GITHUB_OUTPUT"
+
+      - name: Verify tag version matches package.json
+        run: |
+          node -e "const pkg = require('./${{ steps.release.outputs.package_dir }}/package.json'); const expected = '${{ steps.release.outputs.package_version }}'; if (pkg.version !== expected) { console.error('Tag version does not match package.json:', expected, pkg.version); process.exit(1); }"
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Test package
+        if: steps.release.outputs.package_name != '@beusable-dev/tokens'
+        run: pnpm --filter "${{ steps.release.outputs.package_name }}" test
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build package
+        run: pnpm --filter "${{ steps.release.outputs.package_name }}" build
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Publish package
+        run: pnpm --filter "${{ steps.release.outputs.package_name }}" publish --no-git-checks
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
