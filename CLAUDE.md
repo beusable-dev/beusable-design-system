@@ -15,12 +15,12 @@ Built on Figma designs: tokens → React/Vue components → Storybook documentat
 ```
 beusable-design-system/
 ├── packages/
-│   ├── tokens/     @beusable/tokens  — Style Dictionary-based CSS/SCSS/JS tokens
-│   ├── react/      @beusable/react   — React 18 component library
-│   └── vue/        @beusable/vue     — Vue 3 component library
+│   ├── tokens/     @beusable-dev/tokens  — Style Dictionary-based CSS/SCSS/JS tokens
+│   ├── react/      @beusable-dev/react   — React 18 component library
+│   └── vue/        @beusable-dev/vue     — Vue 3 component library
 └── apps/
-    ├── storybook/  @beusable/storybook — Storybook 8 docs/playground (React only currently)
-    └── cli/        @beusable-dev/cli      — shadcn-style component installer CLI
+    ├── storybook/  @beusable-dev/storybook — Storybook 8 docs/playground (React only currently)
+    └── cli/        @beusable-dev/cli        — shadcn-style component installer CLI
 ```
 
 ## Commands
@@ -51,7 +51,7 @@ pnpm --filter @beusable-dev/cli dev      # tsx로 직접 실행 (개발용)
 
 ## Public API
 
-`@beusable/react` exports components **and** the following hooks (see `packages/react/src/index.ts`):
+`@beusable-dev/react` exports components **and** the following hooks (see `packages/react/src/index.ts`):
 
 | Export | Type | Notes |
 |--------|------|-------|
@@ -64,7 +64,7 @@ pnpm --filter @beusable-dev/cli dev      # tsx로 직접 실행 (개발용)
 - Test environment: `happy-dom` (configured in `packages/react/vitest.config.ts`)
 - Setup file: `packages/react/src/test/setup.ts` — jest-dom matchers + `scrollIntoView` mock
 - Use `@testing-library/user-event` for all interactions. Never dispatch DOM events directly.
-- Do not include test files in commits (see `agent_docs/git.md`).
+- Do not include test files in commits.
 - Run from repo root: `pnpm test`.
 
 ## Testing Rules (Vue)
@@ -75,15 +75,16 @@ pnpm --filter @beusable-dev/cli dev      # tsx로 직접 실행 (개발용)
 - **`closable` prop required for close button tests**: Pass `closable: true` + `attrs: { onClose: vi.fn() }`. Without `closable`, the button is not rendered.
 - **Document-level key events**: `document.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', bubbles: true }))` + `await wrapper.vm.$nextTick()`.
 - **`element.checked` unreliable in happy-dom**: Use `modelValue` (controlled) instead of `defaultChecked` in tests; check `aria-checked` attribute rather than `.checked` property.
-- Do not include test files in commits (see `agent_docs/git.md`).
-- Run Vue tests: `pnpm --filter @beusable/vue test`.
+- Do not include test files in commits.
+- Run Vue tests: `pnpm --filter @beusable-dev/vue test`.
 
 ## Component Authoring Rules (React)
 
 - Styles must use CSS Modules (`Component.module.css`). Tailwind and inline styles are prohibited.
-- Color values use `@beusable/tokens` CSS variables (`var(--color-*)`, `var(--shadow-*)`, `var(--radius-*)`, `var(--font-*)`). Consumers must import `@beusable/tokens/css` to load the `:root` variables. A small number of Snackbar-specific and Button accent colors without token equivalents remain hardcoded.
+- Color values use `@beusable-dev/tokens` CSS variables (`var(--color-*)`, `var(--shadow-*)`, `var(--radius-*)`, `var(--font-*)`). Consumers must import `@beusable-dev/tokens/css` to load the `:root` variables. A small number of Snackbar-specific and Button accent colors without token equivalents remain hardcoded.
 - Component file location: `packages/react/src/components/<ComponentName>/`
 - Story file location: `apps/storybook/stories/components/<ComponentName>.stories.tsx`
+- Compound component families may use one story file per export plus an overview file (for example `SegmentControl.stories.tsx`, `TabBar.stories.tsx`, `TabPill.stories.tsx`, `TabCard.stories.tsx`, and `Tabs.stories.tsx`)
 - When adding a new component, exporting from `packages/react/src/index.ts` is required.
 
 ## Component Authoring Rules (Vue)
@@ -92,7 +93,7 @@ pnpm --filter @beusable-dev/cli dev      # tsx로 직접 실행 (개발용)
 - Component file location: `packages/vue/src/components/<ComponentName>/`
 - When adding a new component, exporting from `packages/vue/src/index.ts` is required.
 - **`closable` prop pattern**: To conditionally show a close button, use an explicit `closable?: boolean` prop. Never check `$attrs.onClose !== undefined` — in Vue 3, `defineEmits(['close'])` strips `onClose` from `$attrs`, making it always `undefined`.
-- **Build check**: After adding/modifying a component, run `pnpm --filter @beusable/vue build` and verify `dist/` contains no test `.d.ts` files.
+- **Build check**: After adding/modifying a component, run `pnpm --filter @beusable-dev/vue build` and verify `dist/` contains no test `.d.ts` files.
 
 ## Figma Integration
 
@@ -114,7 +115,7 @@ pnpm --filter @beusable-dev/cli dev      # tsx로 직접 실행 (개발용)
 ## Implemented Components
 
 ### Button (`packages/react/src/components/Button/`)
-- 12 variants: `primary` / `primary-outline` / `primary-surface` / `primary-ghost` / `secondary` / `secondary-surface` / `secondary-ghost` / `action` / `action-surface` / `action-ghost` / `accent` / `accent-surface` / `accent-ghost`
+- 13 variants: `primary` / `primary-outline` / `primary-surface` / `primary-ghost` / `secondary` / `secondary-surface` / `secondary-ghost` / `action` / `action-surface` / `action-ghost` / `accent` / `accent-surface` / `accent-ghost`
 - size: `xs` / `s` / `m` / `l`
 - shape: `pill` / `rounded`
 - props: `loading`, `disabled`, `fullWidth`, `leftIcon`, `rightIcon`
@@ -294,7 +295,30 @@ Sub-components: `Modal`, `ModalHeader`, `ModalBody`, `ModalFooter`, `ModalDivide
 - dependencies: `date-fns ^4.1.0`, `date-fns-tz ^3.2.0`
 - JS/TS compatible: ships compiled ESM/CJS — usable without TypeScript
 
+## CLI Release & Deployment
+
+Registry: GitHub Packages (`https://npm.pkg.github.com`), tag-based automation via GitHub Actions.
+
+### Release flow
+
+```bash
+# 1. Bump version in apps/cli/package.json
+# 2. Commit
+git add apps/cli/package.json
+git commit -m "Bump CLI version to x.y.z"
+# 3. Create tag & push → triggers GitHub Actions automatically
+git tag vx.y.z
+git push origin vx.y.z
+```
+
+### GitHub Actions Workflow
+
+- File: `.github/workflows/cli-publish.yml`
+- Trigger: push of any `v*` tag
+- Steps: test → build → `pnpm publish`
+- Auth: `secrets.GITHUB_TOKEN` (no additional Secrets setup required)
+
 ## Planned Work
 
-- `@beusable/icons` — shared SVG icon package (eliminate React/Vue duplication)
+- `@beusable-dev/icons` — shared SVG icon package (eliminate React/Vue duplication)
 - Vue Storybook stories (currently 0% coverage)

@@ -37,7 +37,9 @@ jobs:
         run: pnpm --filter @beusable-dev/cli test
 
       - name: Build
-        run: pnpm --filter @beusable-dev/cli build
+        run: |
+          pnpm --filter @beusable-dev/tokens build
+          pnpm --filter @beusable-dev/cli build
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 

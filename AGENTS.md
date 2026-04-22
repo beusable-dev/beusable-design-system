@@ -52,44 +52,37 @@ beusable-design-system/
 │       │   │                     SegmentControl.vue, Tabs.module.css, Tabs.test.ts
 │       │   └── DatePicker/       DatePicker.vue, DatePicker.module.css, types.ts,
 │                                   index.ts, DatePicker.test.ts
-│       ├── vue-shim.d.ts         *.vue 모듈 타입 선언 (테스트에서 .vue import 해결)
+│       ├── vue-shim.d.ts         *.vue module type declaration (resolves .vue imports in tests)
 │       └── index.ts              public exports
 ├── apps/storybook/
 │   ├── .storybook/               main.ts, preview.ts, reset.css
 │   ├── stories/tokens/           Colors, Radius, Shadows, Typography
-│   └── stories/components/       (React only — Vue stories 미작성)
-└── apps/cli/                     @beusable-dev/cli — shadcn-style 컴포넌트 설치 CLI
+│   └── stories/components/       (React only — Vue stories not yet written,
+│                                 Tabs family split into SegmentControl/TabBar/
+│                                 TabPill/TabCard story files + Tabs overview)
+└── apps/cli/                     @beusable-dev/cli — shadcn-style component installer CLI
     ├── package.json              bin: beusable, type: commonjs
     ├── tsconfig.json
     ├── tsup.config.ts
     ├── src/
-    │   ├── index.ts              CLI 진입점 (Commander 설정)
+    │   ├── index.ts              CLI entry point (Commander setup)
     │   ├── commands/
     │   │   ├── add.ts            beusable add <component> | tokens
     │   │   └── list.ts           beusable list
     │   ├── lib/
-    │   │   ├── manifest.ts       components.json 로더
-    │   │   ├── detect-framework.ts  package.json 기반 React/Vue 자동 감지
-    │   │   ├── copy-files.ts     파일 복사 + 보안 검증 (BR-01~BR-06)
-    │   │   └── logger.ts         출력 헬퍼 (picocolors)
+    │   │   ├── manifest.ts       components.json loader + runtime schema validation
+    │   │   ├── detect-framework.ts  React/Vue auto-detection from package.json (dependencies + devDependencies + peerDependencies)
+    │   │   ├── copy-files.ts     file copy + security validation (BR-01~BR-06) + monorepoRoot source guard
+    │   │   └── logger.ts         output helper (picocolors)
     │   ├── scripts/
-    │   │   ├── generate-manifest.ts  prebuild: components.json 생성
-    │   │   ├── copy-assets.ts        postbuild: 컴포넌트 소스 → dist/assets/, components.json → dist/
-    │   │   └── clean.ts              dist/ 삭제 (rm -rf 대체, 크로스플랫폼)
-    │   └── components.json       빌드 산출물 — 14개 컴포넌트 목록
+    │   │   ├── generate-manifest.ts  prebuild: generates components.json
+    │   │   ├── copy-assets.ts        postbuild: component sources → dist/assets/, components.json → dist/
+    │   │   └── clean.ts              deletes dist/ (cross-platform rm -rf replacement)
+    │   └── components.json       build artifact — list of 14 components
     └── dist/
-        └── index.js              tsup CJS 번들 (shebang 포함)
-        ├── Button.stories.tsx
-        ├── TextField.stories.tsx
-        ├── Dropdown.stories.tsx
-        ├── Toast.stories.tsx
-        ├── SelectionControl.stories.tsx  (Checkbox, Radio, Toggle)
-        ├── Snackbar.stories.tsx
-        ├── Tooltip.stories.tsx
-        ├── Modal.stories.tsx
-        ├── Table.stories.tsx
-        ├── Slider.stories.tsx
-        └── Tabs.stories.tsx
+        ├── index.js              tsup CJS bundle (includes shebang)
+        ├── components.json       runtime manifest copied for published CLI
+        └── assets/               copied component/token source tree for installer runtime
 ```
 
 ## Code Conventions (React)
@@ -132,8 +125,8 @@ Component-local logic (e.g. `usePasswordToggle` in TextField) stays as a local f
 - **scrollIntoView**: Globally mocked in `src/test/setup.ts` — happy-dom does not implement it.
 - **Query priority**: `getByRole` > `getByLabelText` > `getByText` > `getByPlaceholderText` > `querySelector`
 - `type="password"` inputs have no ARIA `textbox` role — use `container.querySelector('input')` instead.
-- The close button `aria-label` is Korean: `"닫기"` — match with `{ name: '닫기' }` not `/close/i`.
-- Do not stage or commit test files (see `agent_docs/git.md`).
+- The close button `aria-label` in the source code is `"닫기"` (Korean for "close") — match with `{ name: '닫기' }` not `/close/i`.
+- Do not stage or commit test files.
 
 ## Testing Conventions (Vue)
 
@@ -145,7 +138,7 @@ Component-local logic (e.g. `usePasswordToggle` in TextField) stays as a local f
 - **close button test**: Must pass `closable: true` prop. Without it, the close button is not rendered (by design). Pass handler via `attrs: { onClose: vi.fn() }`.
 - **Document-level listeners** (e.g. Modal Escape): use `document.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', bubbles: true }))` then `await wrapper.vm.$nextTick()`.
 - **happy-dom `:checked` caveat**: `element.checked` may not reflect bound value in happy-dom. Use `aria-checked` attribute or `modelValue` (controlled) instead of `defaultChecked` (uncontrolled) in tests.
-- Do not stage or commit test files (see `agent_docs/git.md`).
+- Do not stage or commit test files.
 
 ## Figma Spec Checklist (verify before implementing)
 
@@ -171,7 +164,7 @@ Check every item below in Figma before implementing a component and reflect them
 - **ModalFooter**: children are always centered in a 3-column layout. If `leftAction` is absent, left/right spacers are symmetrical.
 - **ModalBody fadeout**: When `fadeout` prop is used, internal structure changes to `.bodyOuter` + `.body` wrappers. Scroll state is detected via `useRef` + `ResizeObserver`.
 - **ModalButtons**: Not needed when using `ModalFooter`. Only used inside B-type (`ModalPopup`).
-- **Build required**: After modifying a component, always run `pnpm --filter @beusable/react build`. Storybook references the dist output.
+- **Build required**: After modifying a component, always run `pnpm --filter @beusable-dev/react build`. Storybook references the dist output.
 
 ## File Modification Notes
 
@@ -231,6 +224,7 @@ pnpm storybook   # http://localhost:6006
 2. Write `<Name>.tsx` + `<Name>.module.css`
 3. Add export to `packages/react/src/index.ts`
 4. Write `apps/storybook/stories/components/<Name>.stories.tsx`
+   Compound component families may use separate story files per export (for example `SegmentControl.stories.tsx`, `TabBar.stories.tsx`) plus an optional overview story.
 5. Verify rendering in Storybook
 
 ## New Component Checklist (Vue)
@@ -240,45 +234,118 @@ pnpm storybook   # http://localhost:6006
 3. In `<Name>.vue`: `<style module src="./<Name>.module.css"></style>` — no inline styles
 4. Add export to `packages/vue/src/index.ts`
 5. Write `<Name>.test.ts` co-located with the component
-6. Run `pnpm --filter @beusable/vue test` and verify all pass
-7. Run `pnpm --filter @beusable/vue build` and verify `dist/` contains no test `.d.ts` files
+6. Run `pnpm --filter @beusable-dev/vue test` and verify all pass
+7. Run `pnpm --filter @beusable-dev/vue build` and verify `dist/` contains no test `.d.ts` files
 
 ## CLI Maintenance Rules (`apps/cli`)
 
 ### Build Pipeline
 
 ```
-prebuild  → tsx src/scripts/generate-manifest.ts   # components.json 생성
-build     → tsup                                    # CJS 번들
-postbuild → tsx src/scripts/copy-assets.ts          # dist/assets/ + dist/components.json 복사
+prebuild  → tsx src/scripts/generate-manifest.ts   # generates components.json
+build     → tsup                                    # CJS bundle
+postbuild → tsx src/scripts/copy-assets.ts          # copies dist/assets/ + dist/components.json
 ```
 
-`pnpm --filter @beusable-dev/cli build` 한 번으로 세 단계가 순서대로 실행된다.
+`pnpm --filter @beusable-dev/cli build` runs all three steps in order.
 
-### SHARED_DEPS_MAP 규칙 (가장 중요)
+### SHARED_DEPS_MAP Rules (critical)
 
-`apps/cli/src/scripts/generate-manifest.ts`의 `SHARED_DEPS_MAP`은 컴포넌트가 디렉터리 외부 파일을 import할 때 반드시 수동으로 등록해야 한다. 자동 감지 없음.
+`SHARED_DEPS_MAP` in `apps/cli/src/scripts/generate-manifest.ts` must be manually updated whenever a component imports files outside its own directory. There is no automatic detection.
 
-| 컴포넌트가 import하는 경로 | 등록해야 할 항목 |
-|--------------------------|----------------|
+| Import path in component | Entry to register |
+|--------------------------|-------------------|
 | `../../hooks/useControllableState` (React) | `react: [{ src: 'hooks/useControllableState.ts', dest: '../../hooks/useControllableState.ts' }]` |
 | `../../hooks/useCountdownTimer` (React) | `react: [{ src: 'hooks/useCountdownTimer.ts', dest: '../../hooks/useCountdownTimer.ts' }]` |
 | `../../composables/useControllableState` (Vue) | `vue: [VUE_CONTROLLABLE]` |
-| `../selectionColors` (React, 컴포넌트 간 공유) | `react: [{ src: 'components/selectionColors.ts', dest: '../selectionColors.ts' }]` |
+| `../selectionColors` (React, shared across components) | `react: [{ src: 'components/selectionColors.ts', dest: '../selectionColors.ts' }]` |
 
-**누락 시 증상**: `beusable add <component> --framework react` 후 소비자 프로젝트에서 모듈을 찾지 못해 즉시 빌드 실패.
+**Symptom when missing**: consumer project fails to build immediately after `beusable add <component> --framework react` — module not found.
 
-**수정 후 필수 절차**: `SHARED_DEPS_MAP` 수정 → `pnpm --filter @beusable-dev/cli build` 실행 → `src/components.json`에 `sharedReact`/`sharedVue` 항목 확인.
+**Required after any change**: modify `SHARED_DEPS_MAP` → run `pnpm --filter @beusable-dev/cli build` → verify `sharedReact`/`sharedVue` entries appear in `src/components.json`.
 
-### `--overwrite` 동작
+### Be Prefix Naming (`add.ts`)
 
-`--overwrite` 플래그는 메인 컴포넌트뿐 아니라 의존 컴포넌트(`componentDeps`)와 shared 파일 모두에 적용된다. `add.ts`의 `skipIfExists` 계산에 `&& !options.overwrite`가 포함되어 있어야 한다.
+When running `beusable add button`, the component is copied with the `Be` prefix applied to names.
 
-### 보안: 경로 탈출 방지 (BR-01/BR-03)
+- Destination directory: `Button/` → `BeButton/`
+- Filenames: `Button.tsx` → `BeButton.tsx`, `Button.module.css` → `BeButton.module.css`
+- `index.ts` is not renamed
 
-`copy-files.ts`는 두 단계로 경로를 검증한다:
+After copying, `rewriteForBePrefix` rewrites the content of each `.tsx`/`.ts`/`.vue` file:
 
-1. **문자열 검사** (`path.resolve` 기반) — `mkdir` 전에 조기 차단
-2. **realpath 검사** — `mkdir` 후 symlink를 실제 경로로 해소해 재검증
+| Pattern | Before | After |
+|---------|--------|-------|
+| CSS import (React) | `from './Button.module.css'` | `from './BeButton.module.css'` |
+| CSS src attr (Vue) | `src="./Button.module.css"` | `src="./BeButton.module.css"` |
+| export declaration | `export const Button ` | `export const BeButton ` |
+| displayName | `Button.displayName` | `BeButton.displayName` |
+| re-export path (no extension) | `from './Button'` | `from './BeButton'` |
+| re-export path (Vue .vue) | `from './Modal.vue'` | `from './BeModal.vue'` |
+| named export | `{ Button }` | `{ BeButton }` |
+| Vue default alias | `as Modal }` | `as BeModal }` |
 
-두 번째 검사가 없으면 중간 경로에 symlink가 있을 때 프로젝트 외부 디렉터리에 파일이 쓰일 수 있다. `assertWithinProjectRoot(dir, realProjectRoot)` 헬퍼를 각 `mkdir` 호출 직후에 반드시 호출해야 한다.
+Type names (`ButtonProps`, `ButtonVariant`, etc.) are not renamed.
+
+Related functions: `toDestDirName`, `renameForBe`, `rewriteForBePrefix`, `strReplaceAll` (all at the bottom of `add.ts`)
+
+### `--scss` behavior
+
+When the `--scss` flag is set:
+
+- `beusable add tokens --scss`: copies `_tokens.scss` into `src/styles/`
+- `beusable add button --scss`: copies files with `.module.css` → `.module.scss` rename, and rewrites internal import paths automatically
+
+**Be prefix + --scss combination**: `BeButton.module.css` → `BeButton.module.scss`, and `rewriteForBePrefix` rewrites paths to use the `.scss` extension.
+
+### `--overwrite` behavior
+
+`--overwrite` only overwrites files belonging to the **explicitly requested main component**.
+
+- Transitive dependencies (`componentDeps`) and shared files are always treated as `skipIfExists: true`. Even with `--overwrite`, they are skipped if they already exist.
+- This protects customized dependency files (e.g. `BeButton`, `BeCheckbox`) from being accidentally reset when running `datepicker --overwrite`.
+
+```
+beusable add datepicker --overwrite
+  → BeDatePicker/*                 : overwritten
+  → BeButton/*                     : skipped if exists (skipIfExists: true)
+  → BeCheckbox/*                   : skipped if exists (skipIfExists: true)
+  → hooks/useControllableState.ts  : skipped if exists (skipIfExists: true)
+```
+
+### Security: path traversal prevention (BR-01/BR-03)
+
+`copy-files.ts` validates paths in three stages:
+
+1. **Source path guard** (`monorepoRoot`) — When `CopyFilesOptions.monorepoRoot` is provided, every `absoluteSourcePath` must resolve within `fsRealpath(monorepoRoot)`. Blocks source path escape.
+2. **String check** (`path.resolve`) — Early rejection of destination paths before any I/O.
+3. **Realpath check** — After `mkdir`, resolves symlinks to real paths and re-validates.
+
+Without stage 3, a symlink in the intermediate path could allow writes outside the project root. `assertWithinProjectRoot(dir, realProjectRoot)` must be called immediately after each `mkdir`.
+
+### Release & Deployment
+
+Registry: GitHub Packages (`@beusable-dev:registry=https://npm.pkg.github.com`)
+
+**Automated publish (GitHub Actions)**
+- Workflow: `.github/workflows/cli-publish.yml`
+- Trigger: push of any `v*` tag
+- Steps: test → build → publish
+- `GITHUB_TOKEN` is provided automatically by Actions — no extra Secrets needed
+
+**Release procedure**
+```bash
+# After bumping version in apps/cli/package.json
+git add apps/cli/package.json && git commit -m "Bump CLI version to x.y.z"
+git tag vx.y.z && git push origin vx.y.z
+```
+
+### Security: manifest runtime validation
+
+`loadManifest()` in `manifest.ts` calls `assertValidManifest()` immediately after `JSON.parse`. It checks:
+
+- Required top-level fields exist: `version`, `components`, `tokens`
+- `tokens.src/dest/srcScss/destScss` are safe relative paths (no absolute paths, no `..` escape)
+- Same check for `sharedReact[].src/dest` and `sharedVue[].src/dest`
+
+`isSafePath(p)` helper: passes only if `path.isAbsolute(p) === false` and `path.normalize(p)` does not start with `..`.
