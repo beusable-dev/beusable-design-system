@@ -15,10 +15,22 @@
 
 import { cp, copyFile, mkdir, rm, access, readFile } from 'fs/promises';
 import path from 'path';
+import { execFile } from 'child_process';
+import { promisify } from 'util';
 
 // __dirname = apps/cli/src/scripts — four levels up reaches the monorepo root
 const MONOREPO_ROOT = path.resolve(__dirname, '../../../..');
 const DIST_ASSETS = path.resolve(__dirname, '../../dist/assets');
+const execFileAsync = promisify(execFile);
+const TOKEN_ASSET_DIRS = [
+  path.join(MONOREPO_ROOT, 'packages/tokens/dist/css'),
+  path.join(MONOREPO_ROOT, 'packages/tokens/dist/scss'),
+];
+
+interface EnsureTokenAssetsOptions {
+  accessFn?: typeof access;
+  execFileFn?: typeof execFileAsync;
+}
 
 interface CopySpec {
   /** Absolute source path inside the monorepo */
@@ -66,6 +78,8 @@ function shouldExclude(filename: string): boolean {
 async function main(): Promise<void> {
   console.log('dist/assets/ 디렉토리로 assets 복사 중...');
 
+  await ensureTokenAssetsAvailable();
+
   // Clean previous assets to avoid stale files
   await rm(DIST_ASSETS, { recursive: true, force: true });
   await mkdir(DIST_ASSETS, { recursive: true });
@@ -97,6 +111,27 @@ async function main(): Promise<void> {
   await verifySharedDepsPresent();
 
   console.log('assets 복사 완료.');
+}
+
+export async function ensureTokenAssetsAvailable(
+  options: EnsureTokenAssetsOptions = {}
+): Promise<void> {
+  const { accessFn = access, execFileFn = execFileAsync } = options;
+
+  if (await areAllPathsPresent(TOKEN_ASSET_DIRS, accessFn)) {
+    return;
+  }
+
+  console.log('  토큰 산출물이 없어 `pnpm --filter @beusable-dev/tokens build`를 실행합니다.');
+  await execFileFn('pnpm', ['--filter', '@beusable-dev/tokens', 'build'], {
+    cwd: MONOREPO_ROOT,
+  });
+
+  if (!(await areAllPathsPresent(TOKEN_ASSET_DIRS, accessFn))) {
+    throw new Error(
+      '토큰 빌드 후에도 필요한 산출물이 없습니다: packages/tokens/dist/css, packages/tokens/dist/scss'
+    );
+  }
 }
 
 interface ComponentEntry {
@@ -141,7 +176,24 @@ async function verifySharedDepsPresent(): Promise<void> {
   console.log('  Shared dep validation: all sharedReact/sharedVue sources present in dist/assets.');
 }
 
-main().catch((error) => {
-  console.error('assets 복사 오류:', error);
-  process.exit(1);
-});
+async function areAllPathsPresent(
+  targetPaths: string[],
+  accessFn: typeof access
+): Promise<boolean> {
+  for (const targetPath of targetPaths) {
+    try {
+      await accessFn(targetPath);
+    } catch {
+      return false;
+    }
+  }
+
+  return true;
+}
+
+if (require.main === module) {
+  main().catch((error) => {
+    console.error('assets 복사 오류:', error);
+    process.exit(1);
+  });
+}
