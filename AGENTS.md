@@ -218,6 +218,13 @@ Mapping from Checkbox and Radio `color` prop to CSS variable:
 pnpm storybook   # http://localhost:6006
 ```
 
+## Storybook Deployment
+
+- Workflow: `.github/workflows/storybook.yml`
+- Trigger: `main` branch push with path filters
+- Included paths: `apps/storybook/**`, `packages/react/**`, `packages/tokens/**`
+- Excluded doc-only changes: `*.md` in those paths, plus `AGENTS.md` and `CLAUDE.md`
+
 ## New Component Checklist (React)
 
 1. Create `packages/react/src/components/<Name>/` directory
@@ -329,15 +336,15 @@ Registry: GitHub Packages (`@beusable-dev:registry=https://npm.pkg.github.com`)
 
 **Automated publish (GitHub Actions)**
 - Workflow: `.github/workflows/cli-publish.yml`
-- Trigger: push of any `v*` tag
+- Trigger: push of any `cli-v*` tag
 - Steps: test → build → publish
-- `GITHUB_TOKEN` is provided automatically by Actions — no extra Secrets needed
+- Publish step uses `NPM_TOKEN`
 
 **Release procedure**
 ```bash
 # After bumping version in apps/cli/package.json
 git add apps/cli/package.json && git commit -m "Bump CLI version to x.y.z"
-git tag vx.y.z && git push origin vx.y.z
+git tag cli-vx.y.z && git push origin cli-vx.y.z
 ```
 
 ### Security: manifest runtime validation

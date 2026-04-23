@@ -100,7 +100,7 @@ pnpm --filter @beusable-dev/cli dev      # tsx로 직접 실행 (개발용)
 - Figma MCP is available (`mcp__claude_ai_Figma__get_design_context`).
 - File key: `hREc7djOTwlFT7bgSHIXBE` (00. Component_Beusable_ver01)
 - Figma-generated code is for reference only. Always convert to React + CSS Modules patterns.
-- Use Figma color values as-is (tokens not yet integrated).
+- Verify values in Figma first, but when an existing token-backed pattern already exists in the codebase, keep using the token/CSS variable approach instead of re-hardcoding colors.
 
 ## Figma → CSS Conversion Rules (follow carefully)
 
@@ -307,16 +307,23 @@ Registry: GitHub Packages (`https://npm.pkg.github.com`), tag-based automation v
 git add apps/cli/package.json
 git commit -m "Bump CLI version to x.y.z"
 # 3. Create tag & push → triggers GitHub Actions automatically
-git tag vx.y.z
-git push origin vx.y.z
+git tag cli-vx.y.z
+git push origin cli-vx.y.z
 ```
 
 ### GitHub Actions Workflow
 
 - File: `.github/workflows/cli-publish.yml`
-- Trigger: push of any `v*` tag
+- Trigger: push of any `cli-v*` tag
 - Steps: test → build → `pnpm publish`
-- Auth: `secrets.GITHUB_TOKEN` (no additional Secrets setup required)
+- Auth: publish step uses `secrets.NPM_TOKEN`
+
+## Storybook Deployment
+
+- File: `.github/workflows/storybook.yml`
+- Trigger: `main` branch push with path filters
+- Included paths: `apps/storybook/**`, `packages/react/**`, `packages/tokens/**`
+- Excluded doc-only changes: `*.md` in those paths, plus `AGENTS.md` and `CLAUDE.md`
 
 ## Planned Work
 

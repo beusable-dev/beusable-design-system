@@ -161,6 +161,12 @@ pnpm test               # 전체 테스트 실행 (React + Vue)
 pnpm test:watch         # Watch 모드
 ```
 
+### Storybook 배포
+
+- GitHub Pages 배포 워크플로우는 `main` 브랜치 push 중 아래 경로 변경이 있을 때만 실행됩니다.
+- 포함: `apps/storybook/**`, `packages/react/**`, `packages/tokens/**`
+- 제외: 각 경로 아래 `*.md`, 그리고 `AGENTS.md`, `CLAUDE.md` 같은 문서성 변경
+
 ### Build individual packages
 
 ```bash

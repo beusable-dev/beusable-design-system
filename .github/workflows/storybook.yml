@@ -4,6 +4,15 @@ on:
   push:
     branches:
       - main
+    paths:
+      - 'apps/storybook/**'
+      - 'packages/react/**'
+      - 'packages/tokens/**'
+      - '!apps/storybook/**/*.md'
+      - '!packages/react/**/*.md'
+      - '!packages/tokens/**/*.md'
+      - '!**/AGENTS.md'
+      - '!**/CLAUDE.md'
 
 permissions:
   contents: read
